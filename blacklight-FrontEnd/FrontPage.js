@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, MapView } from 'react-native';
 
 import MemoryList from './MemoryList';
 
@@ -18,6 +18,10 @@ export default class FrontPage extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>THIS IS THE FRONT PAGE</Text>
         <Text style={styles.subText}>THE MAP WILL BE HERE</Text>
+        <MapView
+        style={{height:200, margin:40}}
+        showUserLocation={true}
+        fllowUserLocation={true} />
         <Button
           onPress={() => navigate('MemoryList', {})}
           title='Go to memories'
