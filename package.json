@@ -10,7 +10,6 @@
   "scripts": {
     "deploy": "script/deploy",
     "lint": "eslint ./ --ignore-path .gitignore",
-    "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
     "start-server": "NODE_ENV='development' nodemon server -e html,js",
