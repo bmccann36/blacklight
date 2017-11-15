@@ -18,6 +18,11 @@ const extractKey = ({id}) => id;
 export default class MemoryList extends Component {
 
 
+
+  static navigationOptions = {
+    title: 'Memories',
+  };
+
   render() {
 
     return (
