@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import MemoryList from './MemoryList';
 
-export default class App extends Component {
+export default class FrontPage extends Component {
 
+
+  static navigationOptions = {
+    title: 'Blacklight',
+  };
 
   render() {
 

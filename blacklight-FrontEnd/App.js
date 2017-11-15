@@ -6,6 +6,8 @@ import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 
 
+
+
 const Views = StackNavigator({
   Home: { screen: FrontPage },
   MemoryList: { screen: MemoryList }
