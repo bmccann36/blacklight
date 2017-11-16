@@ -28,3 +28,10 @@ router.put('/:memoryId', (req, res, next) => {
     .then(updatedMemory => res.json(updatedMemory))
     .catch(next);
 });
+
+router.delete('/:memoryId', (req, res, next) => {
+  Memory.findById(req.params.memoryId)
+    .then(memoryToDelete => memoryToDelete.destroy())
+    .then(() => res.json('memory has been deleted'))
+    .catch(next);
+});
