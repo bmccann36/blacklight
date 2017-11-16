@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import store from './store';
+import store, { fetchMemories } from './store';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 // example list
@@ -19,7 +20,10 @@ const extractKey = ({id}) => id;
 
 class MemoryList extends Component {
 
-
+  componentWillMount() {
+    // console.log('props *********', this.props)
+    store.dispatch(fetchMemories());
+  }
 
   static navigationOptions = {
     title: 'Memories',
@@ -28,7 +32,7 @@ class MemoryList extends Component {
   render() {
 
     const { memories } = this.props;
-    // console.log('********',this.props)
+    console.log('********',this.props)
 
     return (
       <View style={styles.container}>
@@ -37,7 +41,7 @@ class MemoryList extends Component {
         <FlatList style={styles.flatlist}
           // data={list}
           data={memories}
-          renderItem={({item}) => <Text style={styles.row}>{item.name}</Text>}
+          renderItem={({item}) => <Text style={styles.row}>{item.title}</Text>}
           keyExtractor={extractKey}
 
         />
@@ -47,11 +51,13 @@ class MemoryList extends Component {
   }
 }
 
+const mapDispatchToProps = {fetchMemories};
+
 const mapStateToProps = (state) => ({
   memories: state.memories
 });
 
-export default connect(mapStateToProps)(MemoryList);
+export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
 
 
 
