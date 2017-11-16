@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import store, { fetchMemories } from './store';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 
-//example list
-const list = [
-  { id: 0,name: 'John is dead' },
-  { id: 1, name: 'Bruce is also dead' },
-  { id: 2, name: 'Brian is still alive' },
-  { id: 3, name: 'Matt is .....' },
-  { id: 4, name: 'David ... who knows' },
-  { id: 5, name: 'Jane is gone' },
-  { id: 6, name: 'Molly left' },
-];
+// example list
+// const list = [
+//   { id: 0,name: 'John is dead' },
+//   { id: 1, name: 'Bruce is also dead' },
+//   { id: 2, name: 'Brian is still alive' },
+//   { id: 3, name: 'Matt is .....' },
+//   { id: 4, name: 'David ... who knows' },
+//   { id: 5, name: 'Jane is gone' },
+//   { id: 6, name: 'Molly left' },
+// ];
 
 const extractKey = ({id}) => id;
 
-export default class MemoryList extends Component {
+class MemoryList extends Component {
 
-
+  componentWillMount() {
+    // console.log('props *********', this.props)
+    store.dispatch(fetchMemories());
+  }
 
   static navigationOptions = {
     title: 'Memories',
@@ -25,13 +31,17 @@ export default class MemoryList extends Component {
 
   render() {
 
+    const { memories } = this.props;
+    console.log('********',this.props)
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>LIST OF MEMORIES</Text>
 
         <FlatList style={styles.flatlist}
-          data={list}
-          renderItem={({item}) => <Text style={styles.row}>{item.name}</Text>}
+          // data={list}
+          data={memories}
+          renderItem={({item}) => <Text style={styles.row}>{item.title}</Text>}
           keyExtractor={extractKey}
 
         />
@@ -40,6 +50,17 @@ export default class MemoryList extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {fetchMemories};
+
+const mapStateToProps = (state) => ({
+  memories: state.memories
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
+
+
+
 
 const styles = StyleSheet.create({
   container: {
