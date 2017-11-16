@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, MapView } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 import MemoryList from './MemoryList';
+import MemoryMap from './MemoryMap';
 
 export default class FrontPage extends Component {
 
@@ -18,14 +19,10 @@ export default class FrontPage extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>THIS IS THE FRONT PAGE</Text>
         <Text style={styles.subText}>THE MAP WILL BE HERE</Text>
-        <MapView
-        style={{height:200, margin:40}}
-        showUserLocation={true}
-        fllowUserLocation={true} />
         <Button
-          onPress={() => navigate('MemoryList', {})}
-          title='Go to memories'
-          color='red'
+        onPress={() => navigate('MemoryMap', {})}
+        title='Go to Map'
+        color='red'
         />
 
       </View>
@@ -52,3 +49,10 @@ const styles = StyleSheet.create({
     color: 'blue',
   }
 });
+
+
+        // <Button
+        //   onPress={() => navigate('MemoryList', {})}
+        //   title='Go to memories'
+        //   color='red'
+        // />
