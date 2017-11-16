@@ -3,6 +3,7 @@ const { Memory } = require('../db/models');
 
 module.exports = router;
 
+// heroku.com/api/memories
 router.get('/', (req, res, next) => {
   Memory.findAll()
     .then(memories => res.json(memories))
@@ -16,7 +17,8 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:memoryId', (req, res, next) => {
-  Memory.update({ where: { id: req.params.memoryId } }, req.body)
+  Memory.findById(req.params.memoryId)
+    .then(memoryToUpdate => memoryToUpdate.update(req.body))
     .then(updatedMemory => res.json(updatedMemory))
     .catch(next);
 });
