@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { connect, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
-import store from './store'
+import store from './store';
 
 
 
@@ -27,6 +27,7 @@ export default class App extends Component {
 
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {

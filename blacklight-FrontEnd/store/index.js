@@ -1,8 +1,24 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
 import App from '../App';
+
+const list = [
+  { id: 0,name: 'John is dead' },
+  { id: 1, name: 'Bruce is also dead' },
+  { id: 2, name: 'Brian is still alive' },
+  { id: 3, name: 'Matt is .....' },
+  { id: 4, name: 'David ... who knows' },
+  { id: 5, name: 'Jane is gone' },
+  { id: 6, name: 'Molly left' },
+];
+
+
+
+
 
 //action types
 const GET_ALL_MEMORIES = 'GET_ALL_MEMORIES';
@@ -10,18 +26,38 @@ const GET_ALL_MEMORIES = 'GET_ALL_MEMORIES';
 
 
 // action creators
-
+const getAllMemories = (memories) => ({ type: GET_ALL_MEMORIES, memories });
 
 //initial state
 const initialState = {
-  memories: []
-}
+  memories: list
+};
+
+//thunk creators
+// function fetchMemories() {
+
+// }
+
+
+
 
 export const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_ALL_MEMORIES:
+      return Object.assign({}, state, { memories: action.memories });
 
 
+
+
+    default:
+      return state
+  }
 }
 
+// const middleware = composeWithDevTools(applyMiddleware(
+//   thunkMiddleware,
+//   createLogger({collapsed: true})
+// ));
 
 const store = createStore(reducer);
 export default store;
