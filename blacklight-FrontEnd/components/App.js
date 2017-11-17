@@ -9,7 +9,7 @@ import MemoryList from './MemoryList';
 import Home from './Home';
 import User from './User';
 import MemoryMap from './MemoryMap';
-
+import Login from './Login'
 // const MyApp = TabRouter({
 //   Home: {screen: Home},
 //   User: {screen: User}
@@ -19,7 +19,7 @@ const TabNav = TabNavigator({
   Home: { screen: Home },
   Memories: { screen: MemoryList },
   Map: { screen: MemoryMap },
-  User: { screen: User },
+  Login: { screen: Login },
 }, {
   tabBarPosition: 'bottom',
   // animationEnabled: true,

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class User extends Component {
 
 
+ class User extends Component {
 
 
   render() {
@@ -21,6 +22,13 @@ export default class User extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => ({
+  memories: state.memories
+});
+
+export default connect(mapStateToProps)(User);
+
 
 
 const styles = StyleSheet.create({
