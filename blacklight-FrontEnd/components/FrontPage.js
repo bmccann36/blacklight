@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+// import TabNavigator from 'react-native-tab-navigator';
+import { TabNavigator, DrawerNavigator } from 'react-navigation';
 
 import MemoryList from './MemoryList';
 import MemoryMap from './MemoryMap';
 
 export default class FrontPage extends Component {
 
-
-  static navigationOptions = {
-    title: 'Blacklight',
-  };
+  // static navigationOptions = {
+  //   title: 'Blacklight',
+  // };
 
   render() {
 
@@ -26,6 +27,7 @@ export default class FrontPage extends Component {
         />
 
       </View>
+
     );
   }
 }
@@ -37,12 +39,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center'
-  },
+  // text: {
+  //   fontSize: 40,
+  //   fontWeight: 'bold',
+  //   color: 'white',
+  //   textAlign: 'center'
+  // },
   subText: {
     fontSize: 20,
     fontWeight: 'bold',

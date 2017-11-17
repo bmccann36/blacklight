@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import store, { fetchMemories } from './store';
+import store, { fetchMemories } from '../store';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -32,18 +32,16 @@ class MemoryList extends Component {
   render() {
 
     const { memories } = this.props;
-    console.log('********',this.props)
+    // console.log('********',this.props)
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>LIST OF MEMORIES</Text>
 
         <FlatList style={styles.flatlist}
-          // data={list}
           data={memories}
           renderItem={({item}) => <Text style={styles.row}>{item.title}</Text>}
           keyExtractor={extractKey}
-
         />
 
       </View>
@@ -76,7 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'blue',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 40
   },
   row: {
     padding: 15,
