@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { TabNavigator } from 'react-navigation';
@@ -18,7 +19,7 @@ export default class Home extends Component {
 
 
 
-      const { navigate } = this.props.navigation;
+      // const { navigate } = this.props.navigation;
 
 
 
