@@ -5,13 +5,15 @@ import { Provider } from 'react-redux';
 
 import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
+import MemoryMap from './MemoryMap';
 import store from './store';
 
 
 
 const Views = StackNavigator({
   Home: { screen: FrontPage },
-  MemoryList: { screen: MemoryList }
+  MemoryList: { screen: MemoryList },
+  MemoryMap: { screen: MemoryMap}
 });
 
 export default class App extends Component {
