@@ -14,6 +14,9 @@ const Memory = require('./memory');
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+
+User.hasMany(Memory, { as: 'author' });
+
 module.exports = {
   User,
   Memory,
