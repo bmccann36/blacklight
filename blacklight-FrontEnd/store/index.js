@@ -1,24 +1,10 @@
+'use strict';
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-
-// import App from '../components/App';
-
-// const list = [
-//   { id: 0, name: 'John is dead' },
-//   { id: 1, name: 'Bruce is also dead' },
-//   { id: 2, name: 'Brian is still alive' },
-//   { id: 3, name: 'Matt is .....' },
-//   { id: 4, name: 'David ... who knows' },
-//   { id: 5, name: 'Jane is gone' },
-//   { id: 6, name: 'Molly left' },
-// ];
-
-
 
 
 
