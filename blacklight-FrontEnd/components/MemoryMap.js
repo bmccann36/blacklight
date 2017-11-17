@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { StackNavigator } from 'react-navigation';
