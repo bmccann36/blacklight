@@ -16,8 +16,12 @@ const Memory = require('./memory');
  */
 
 Memory.belongsTo(User, { as: 'author' });
-User.belongsToMany(Memory, { through: 'viewedMemories', foreignKey: 'viewerId' });
-Memory.belongsToMany(User, { through: 'viewedMemories', foreignKey: 'viewedMemoryId' });
+User.belongsToMany(Memory, { as: 'viewedMemories', through: 'memoryViews', foreignKey: 'viewerId' });
+Memory.belongsToMany(User, { as: 'viewers', through: 'memoryViews', foreignKey: 'viewedMemoryId' });
+
+// This will add methods: memory.getViewers(), memory.setViewers, memory.addViewer,
+//   memory.addViewers, user.getViewedMemories, user.setViewedMemories,
+//   user.addViewedMemory, and user.addViewedMemories
 
 module.exports = {
   User,
