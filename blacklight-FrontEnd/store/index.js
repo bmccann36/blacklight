@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
 // import { composeWithDevTools } from 'redux-devtools-extension';
 
-import App from '../App';
+// import App from '../components/App';
 
 // const list = [
 //   { id: 0, name: 'John is dead' },

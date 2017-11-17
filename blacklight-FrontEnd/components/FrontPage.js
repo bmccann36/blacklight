@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+// import TabNavigator from 'react-native-tab-navigator';
+import { TabNavigator, DrawerNavigator } from 'react-navigation';
 
 import MemoryList from './MemoryList';
 
 export default class FrontPage extends Component {
 
-
-  static navigationOptions = {
-    title: 'Blacklight',
-  };
+  // static navigationOptions = {
+  //   title: 'Blacklight',
+  // };
 
   render() {
 
@@ -16,15 +17,18 @@ export default class FrontPage extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>THIS IS THE FRONT PAGE</Text>
-        <Text style={styles.subText}>THE MAP WILL BE HERE</Text>
-        <Button
-          onPress={() => navigate('MemoryList', {})}
-          title='Go to memories'
-          color='red'
-        />
+        <Text style={styles.subText}>MAP WILL BE HERE</Text>
+        {
+        // <Button
+        //   onPress={() => navigate('MemoryList', {})}
+        //   title='Go to memories'
+        //   color='red'
+        // />
+        }
+
 
       </View>
+
     );
   }
 }
@@ -36,12 +40,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center'
-  },
+  // text: {
+  //   fontSize: 40,
+  //   fontWeight: 'bold',
+  //   color: 'white',
+  //   textAlign: 'center'
+  // },
   subText: {
     fontSize: 20,
     fontWeight: 'bold',
