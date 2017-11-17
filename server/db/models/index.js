@@ -16,7 +16,8 @@ const Memory = require('./memory');
  */
 
 Memory.belongsTo(User, { as: 'author' });
-User.belongsToMany(Memory, { as: 'reader', through: 'user_memories' });
+User.belongsToMany(Memory, { through: 'viewedMemories', foreignKey: 'viewerId' });
+Memory.belongsToMany(User, { through: 'viewedMemories', foreignKey: 'viewedMemoryId' });
 
 module.exports = {
   User,
