@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { TabNavigator, DrawerNavigator } from 'react-navigation';
 
 import MemoryList from './MemoryList';
+import MemoryMap from './MemoryMap';
 
 export default class FrontPage extends Component {
 
@@ -17,15 +18,13 @@ export default class FrontPage extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.subText}>MAP WILL BE HERE</Text>
-        {
-        // <Button
-        //   onPress={() => navigate('MemoryList', {})}
-        //   title='Go to memories'
-        //   color='red'
-        // />
-        }
-
+        <Text style={styles.text}>THIS IS THE FRONT PAGE</Text>
+        <Text style={styles.subText}>THE MAP WILL BE HERE</Text>
+        <Button
+        onPress={() => navigate('MemoryMap', {})}
+        title='Go to Map'
+        color='red'
+        />
 
       </View>
 
@@ -52,3 +51,10 @@ const styles = StyleSheet.create({
     color: 'blue',
   }
 });
+
+
+        // <Button
+        //   onPress={() => navigate('MemoryList', {})}
+        //   title='Go to memories'
+        //   color='red'
+        // />

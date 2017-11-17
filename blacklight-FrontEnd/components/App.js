@@ -8,6 +8,7 @@ import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 import Home from './Home';
 import User from './User';
+import MemoryMap from './MemoryMap';
 
 // const MyApp = TabRouter({
 //   Home: {screen: Home},
@@ -17,7 +18,7 @@ import User from './User';
 const TabNav = TabNavigator({
   Home: { screen: Home },
   Memories: { screen: MemoryList },
-  Map: { screen: FrontPage },
+  Map: { screen: MemoryMap },
   User: { screen: User },
 }, {
   tabBarPosition: 'bottom',
