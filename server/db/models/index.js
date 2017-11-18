@@ -22,6 +22,8 @@ Memory.belongsToMany(User, { as: 'viewers', through: 'memoryViews', foreignKey: 
 // This will add methods: memory.getViewers(), memory.setViewers, memory.addViewer,
 //   memory.addViewers, user.getViewedMemories, user.setViewedMemories,
 //   user.addViewedMemory, and user.addViewedMemories
+// user.addViewedMemory(memory)
+// memory.addViewer(user)
 
 module.exports = {
   User,

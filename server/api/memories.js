@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Memory } = require('../db/models');
+const { Memory, User } = require('../db/models');
 
 module.exports = router;
 
@@ -34,5 +34,29 @@ router.delete('/:memoryId', (req, res, next) => {
   Memory.findById(req.params.memoryId)
     .then(memoryToDelete => memoryToDelete.destroy())
     .then(() => res.json('memory has been deleted'))
+    .catch(next);
+});
+
+//  heroku.com/api/memories/:memoryId/memory-viewers/
+router.get('/:memoryId/memory-viewers/', (req, res, next) => {
+  Memory.findById(req.params.memoryId)
+    .then(foundMemory => foundMemory.getViewers())
+    .then(viewers => res.json(viewers))
+    .catch(next);
+});
+
+//  we could easily change this to take the userId from req.body instead.
+//  heroku.com/api/memories/:memoryId/memory-viewers/:userId
+router.post('/:memoryId/memory-viewers/:userId', (req, res, next) => {
+  const memoryPromise = Memory.findById(req.params.memoryId).catch(next);
+  const userPromise = User.findById(req.params.userId).catch(next);
+
+  Promise.all([memoryPromise, userPromise])
+    .then(([memoryToView, viewerUser]) => {
+      memoryToView.addViewer(viewerUser)
+        .then(() => memoryToView.getViewers())
+        .then(viewers => res.json(viewers))
+        .catch(next);
+    })
     .catch(next);
 });
