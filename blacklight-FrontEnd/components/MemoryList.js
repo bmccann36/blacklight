@@ -5,16 +5,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 
-// example list
-// const list = [
-//   { id: 0,name: 'John is dead' },
-//   { id: 1, name: 'Bruce is also dead' },
-//   { id: 2, name: 'Brian is still alive' },
-//   { id: 3, name: 'Matt is .....' },
-//   { id: 4, name: 'David ... who knows' },
-//   { id: 5, name: 'Jane is gone' },
-//   { id: 6, name: 'Molly left' },
-// ];
 
 const extractKey = ({id}) => id;
 
@@ -52,7 +42,7 @@ class MemoryList extends Component {
 const mapDispatchToProps = {fetchMemories};
 
 const mapStateToProps = (state) => ({
-  memories: state.memories
+  memories: state.memory  // changed from memories, non plural is convention rest of component stays the same -brian
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
