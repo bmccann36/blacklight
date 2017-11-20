@@ -12,6 +12,11 @@ import MemoryList from './MemoryList';
 import Home from './Home';
 import User from './User';
 import MemoryMap from './MemoryMap';
+import Login from './Login'
+// const MyApp = TabRouter({
+//   Home: {screen: Home},
+//   User: {screen: User}
+// })
 import SingleMemoryView from './SingleMemoryView';
 
 
@@ -29,6 +34,7 @@ const Views = StackNavigator({
 
 //tabs configuration
 const TabNav = TabNavigator({
+
   Home: {
     screen: Home,
     navigationOptions: {
@@ -56,7 +62,9 @@ const TabNav = TabNavigator({
       tabBarLabel: "User",
       tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor}/>
     }
-  }
+  },
+  Login: { screen: Login } // can I throw this here and have it render??
+
 }, {
   tabBarPosition: 'bottom',
   // animationEnabled: true,
