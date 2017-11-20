@@ -8,6 +8,8 @@ import { List, ListItem } from 'react-native-elements';
 
 import SingleMemoryView from './SingleMemoryView';
 
+// I accepted both changes in merge not really sure what's going on with this key thing -Brian
+const extractKey = ({id}) => id;
 
 class MemoryList extends Component {
 
@@ -72,7 +74,7 @@ class MemoryList extends Component {
 const mapDispatchToProps = { fetchMemories };
 
 const mapStateToProps = (state) => ({
-  memories: state.memories
+  memories: state.memory  // changed from memories, non plural is convention rest of component stays the same -brian
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
