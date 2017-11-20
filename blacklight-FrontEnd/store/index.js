@@ -1,7 +1,6 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
-import axios from 'axios';
 
 
 //REDUCERS WE MAKE GO HERE
@@ -16,7 +15,7 @@ const reducer = combineReducers({
 })
 
 const middleware = applyMiddleware(
-  thunkMiddleware,logger)
+  thunkMiddleware, logger)
 
 
 const store = createStore(reducer, middleware);
