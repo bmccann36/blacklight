@@ -43,19 +43,12 @@ class Login extends Component {
   }
 }
 
-//we may not need access to memories here but just doing it for now - -
 const mapStateToProps = (state) => ({
   email: state.auth.email,
   password: state.auth.password,
-  user: state.auth.user
 })
 
-// const mapStateToProps = (state) => ({
-//   memories: state.memory  // changed from memories, non plural is convention rest of component stays the same -brian
-// });
-
 const mapDispatchToProps = { emailChanged, passwordChanged, createUserOnServer }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
