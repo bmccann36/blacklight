@@ -102,7 +102,7 @@ export default class AddMemory extends Component {
       </View>
 
       <View style={styles.container}>
-      <Card title='Enter your memory'>
+      <Card title='Enter your story'>
         <FormLabel>Title</FormLabel>
         <FormInput onChangeText={this.onTitleChange.bind(this)} />
         <FormLabel>Text</FormLabel>
