@@ -21,8 +21,8 @@ async function seed() {
   const users = await Promise.all([
     User.create({ email: 'cody@email.com', password: '123' }),
     User.create({ email: 'murphy@email.com', password: '123' }),
-    User.create({ email: 'dude@email.com', password: 'dude' }),
-    User.create({ email: 'heyo@email.com', password: 'heyo' }),
+    User.create({ email: 'dude@email.com', password: 'dude', isAdmin: true }),
+    User.create({ email: 'heyo@email.com', password: 'heyo', isAdmin: true }),
   ]);
 
   const memories = await Memory.bulkCreate([
