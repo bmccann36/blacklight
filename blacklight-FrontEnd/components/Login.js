@@ -1,7 +1,7 @@
+'use strict';
 import { connect } from 'react-redux';
-import { Card, Button } from 'react-native-elements'
-import { FormLabel, FormInput } from 'react-native-elements'
-import store, { emailChanged, passwordChanged, createUserOnServer } from '../store'
+import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
+import store, { emailChanged, passwordChanged, createUserOnServer } from '../store';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 
@@ -23,7 +23,7 @@ class Login extends Component {
     const { textStyle } = styles
     return (
       <View style={styles.container}>
-        <Card >
+        <Card title='Signup page'>
           <FormLabel>Email</FormLabel>
           <FormInput
             onChangeText={this.onEmailChange.bind(this)}
@@ -36,7 +36,8 @@ class Login extends Component {
           <Button
             small
             onPress={this.handleSubmit.bind(this)}
-            title='submit' />
+            title='submit'
+          />
         </Card>
       </View>
     )
@@ -57,7 +58,7 @@ const styles = {
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textStyle: {
     fontSize: 50

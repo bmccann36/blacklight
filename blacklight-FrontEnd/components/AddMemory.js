@@ -1,15 +1,12 @@
 'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions, ActivityIndicator } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
+import store, { emailChanged, passwordChanged, createUserOnServer } from '../store';
+import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
 
-import FrontPage from './FrontPage';
-import MemoryList from './MemoryList';
-
-
-class MemoryMap extends Component {
+export default class AddMemory extends Component {
 
   constructor(props) {
     super(props)
@@ -73,54 +70,62 @@ class MemoryMap extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
+  handleSubmit() {
+    this.props.createUserOnServer({ email, password })
+  }
+
+  onTitleChange(text) {
+    this.props.emailChanged(text)
+  }
+
+  onTextChange(text) {
+    this.props.passwordChanged(text)
+  }
+
+
   render() {
-    const { memories } = this.props;
-    console.log('******', memories)
-    if (memories) {
-      return (
-        <View style={styles.container}>
-          <MapView
-            style={styles.map}
-            region={this.state.currentLocation}>
-            {
-              <MapView.Marker
-                coordinate={this.state.markerPosition}>
-                <View style={styles.radius}>
-                  <View style={styles.marker} />
-                </View>
-              </MapView.Marker>
-            }
+    return (
+      <View style={styles.container}>
+      <View style={styles.container}>
+        <MapView
+          style={styles.map}
+          region={this.state.currentLocation}>
+          {
+            <MapView.Marker
+              coordinate={this.state.markerPosition}>
+              <View style={styles.radius}>
+                <View style={styles.marker} />
+              </View>
+            </MapView.Marker>
+          }
+        </MapView>
+      </View>
 
-            {
-              memories.map(mem => (
-                <MapView.Marker
-                  key={mem.id}
-                  coordinate={{ latitude: mem.lat, longitude: mem.lng }}
-                  title={mem.title}
-                  description={mem.text}
-                />
-              ))
-            }
-          </MapView>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.center}>
-          <ActivityIndicator animating={true} />
-        </View>
-      )
-    }
-
+      <View style={styles.container}>
+      <Card title='Enter your memory'>
+        <FormLabel>Title</FormLabel>
+        <FormInput onChangeText={this.onTitleChange.bind(this)} />
+        <FormLabel>Text</FormLabel>
+        <FormInput onChangeText={this.onTextChange.bind(this)} />
+        <Button
+          small
+          backgroundColor='#00BFFF'
+          onPress={this.handleSubmit.bind(this)}
+          title='submit'
+        />
+      </Card>
+    </View>
+    </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: 'white',
   },
   map: {
     position: 'absolute',
@@ -148,20 +153,5 @@ const styles = StyleSheet.create({
     borderRadius: 20 / 2,
     overflow: 'hidden',
     backgroundColor: '#007AFF',
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 });
-
-
-const mapStateToProps = (state) => ({
-  memories: state.memory
-});
-
-export default connect(mapStateToProps)(MemoryMap);
-
-
-

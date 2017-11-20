@@ -6,13 +6,12 @@ import { Provider } from 'react-redux';
 import store from '../store';
 import { Icon } from 'react-native-elements';
 
-
-import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 import Home from './Home';
 import User from './User';
 import MemoryMap from './MemoryMap';
-import Login from './Login'
+import AddMemory from './AddMemory';
+import Login from './Login';
 // const MyApp = TabRouter({
 //   Home: {screen: Home},
 //   User: {screen: User}
@@ -56,11 +55,11 @@ const TabNav = TabNavigator({
       tabBarIcon: ({ tintColor }) => <Icon name="map" size={35} color={tintColor}/>
     }
   },
-  User: {
-    screen: User,
+  Post: {
+    screen: AddMemory,
     navigationOptions: {
-      tabBarLabel: "User",
-      tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor}/>
+      tabBarLabel: "Post Memory",
+      tabBarIcon: ({ tintColor }) => <Icon name="note-add" size={35} color={tintColor}/>
     }
   },
   Login: { screen: Login } // can I throw this here and have it render??
