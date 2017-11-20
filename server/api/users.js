@@ -5,23 +5,31 @@ module.exports = router;
 
 //  heroku.com/api/users/
 router.get('/', (req, res, next) => {
-  User.findAll({
-    attributes: ['id', 'email'],
-  })
-    .then(users => res.json(users))
-    .catch(next);
+  // if (req.body.user.isAdmin) {
+    console.log(req)
+    User.findAll({ attributes: ['id', 'email'] })
+      .then(users => res.json(users))
+      .catch(next);
+  // } else {
+    // res.json('Only administrators can access this.');
+  // }
 });
 
-router.post('/', (req, res, next) => {
-  User.create(req.body)
-    .then(createdUser => res.json(createdUser))
-    .catch(next);
-});
+// Probably just need to delete this route. It should only be accessed from /auth
+// router.post('/', (req, res, next) => {
+//   User.create(req.body)
+//     .then(createdUser => res.json(createdUser))
+//     .catch(next);
+// });
 
 router.get('/:userId', (req, res, next) => {
-  User.findById(req.params.userId)
-    .then(foundUser => res.json(foundUser))
-    .catch(next);
+  if (req.body.user.isAdmin || req.body.user.id == req.params.userId) {
+    User.findById(req.params.userId)
+      .then(foundUser => res.json(foundUser))
+      .catch(next);
+  } else {
+    res.json('Only administrators can access this.');
+  }
 });
 
 router.put('/:userId', (req, res, next) => {
