@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 // import TabNavigator from 'react-native-tab-navigator';
