@@ -82,40 +82,46 @@ export default class AddMemory extends Component {
     this.props.passwordChanged(text)
   }
 
+  attachAPin(event) {
+
+  }
+
 
   render() {
     return (
-      <View style={styles.container}>
-      <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          region={this.state.currentLocation}>
-          {
-            <MapView.Marker
-              coordinate={this.state.markerPosition}>
-              <View style={styles.radius}>
-                <View style={styles.marker} />
-              </View>
-            </MapView.Marker>
-          }
-        </MapView>
-      </View>
+      <View style={styles.container} >
+        <View style={styles.container}>
+          <MapView
+            onLongPress={e => console.log(e.nativeEvent.coordinate)} //get coordinates from the press, place the pin
+            style={styles.map}
+            region={this.state.currentLocation}>
+            {
+              <MapView.Marker
+                coordinate={this.state.markerPosition}>
+                <View style={styles.radius}>
+                  <View style={styles.marker} />
+                </View>
+              </MapView.Marker>
+            }
 
-      <View style={styles.container}>
-      <Card title='Enter your story'>
-        <FormLabel>Title</FormLabel>
-        <FormInput onChangeText={this.onTitleChange.bind(this)} />
-        <FormLabel>Text</FormLabel>
-        <FormInput onChangeText={this.onTextChange.bind(this)} />
-        <Button
-          small
-          backgroundColor='#00BFFF'
-          onPress={this.handleSubmit.bind(this)}
-          title='submit'
-        />
-      </Card>
-    </View>
-    </View>
+          </MapView>
+        </View>
+
+        <View style={styles.container}>
+          <Card title='Enter your story'>
+            <FormLabel>Title</FormLabel>
+            <FormInput onChangeText={this.onTitleChange.bind(this)} />
+            <FormLabel>Text</FormLabel>
+            <FormInput onChangeText={this.onTextChange.bind(this)} />
+            <Button
+              small
+              backgroundColor='#00BFFF'
+              onPress={this.handleSubmit.bind(this)}
+              title='submit'
+            />
+          </Card>
+        </View>
+      </View>
     );
   }
 }
@@ -155,3 +161,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#007AFF',
   }
 });
+
