@@ -125,7 +125,7 @@ class MemoryMap extends Component {
     } else {
       return (
         <View style={styles.center}>
-          <ActivityIndicator animating={true} />
+          {/* <ActivityIndicator animating={true} /> */}
         </View>
       )
     }
