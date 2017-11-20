@@ -7,21 +7,25 @@ import thunkMiddleware from 'redux-thunk';
 import memory from './memory'
 import auth from './auth'
 import user from './user'
+import memEntry from './memEntry'
 
 const reducer = combineReducers({
   memory,
   auth,
-  user
+  user,
+  memEntry
 })
 
-const middleware = applyMiddleware(
-  thunkMiddleware, logger)
+// WITH LOGGER
+const middleware = applyMiddleware(thunkMiddleware, logger)
 
+// NO LOGGER
+// const middleware = applyMiddleware(thunkMiddleware)
 
 const store = createStore(reducer, middleware);
-
 
 export default store
 export * from './memory'
 export * from './auth'
 export * from './user'
+export * from './memEntry'

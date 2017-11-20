@@ -13,10 +13,10 @@ import Home from './Home';
 import User from './User';
 import MemoryMap from './MemoryMap';
 import Login from './Login'
-// const MyApp = TabRouter({
-//   Home: {screen: Home},
-//   User: {screen: User}
-// })
+import Record from './Record'
+
+
+
 import SingleMemoryView from './SingleMemoryView';
 
 
@@ -56,13 +56,14 @@ const TabNav = TabNavigator({
       tabBarIcon: ({ tintColor }) => <Icon name="map" size={35} color={tintColor}/>
     }
   },
-  User: {
-    screen: User,
-    navigationOptions: {
-      tabBarLabel: "User",
-      tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor}/>
-    }
-  },
+  // User: {
+  //   screen: User,
+  //   navigationOptions: {
+  //     tabBarLabel: "User",
+  //     tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor}/>
+  //   }
+  // },
+  Record : { screen: Record },
   Login: { screen: Login } // can I throw this here and have it render??
 
 }, {
