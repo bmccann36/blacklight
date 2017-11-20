@@ -21,19 +21,81 @@ async function seed() {
   const users = await Promise.all([
     User.create({ email: 'cody@email.com', password: '123' }),
     User.create({ email: 'murphy@email.com', password: '123' }),
+    User.create({ email: 'dude@email.com', password: 'dude' }),
+    User.create({ email: 'heyo@email.com', password: 'heyo' }),
   ]);
 
   const memories = await Memory.bulkCreate([
-    { title: 'memory title 1', text: 'this is the body text of my memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory sad 2', text: 'a sad memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory happy 3', text: 'a happy memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory angry 4', text: 'an angry memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory cool 5', text: 'a cool memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory interesting 6', text: 'an interesting memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory dark 7', text: 'a dark memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory creepy 8', text: 'a creepy memory', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory stoked 9', text: 'a memory I am stoked about', lng: 123.09786573, lat: 321.98273498 },
-    { title: 'memory excited 10', text: 'an exciting memory', lng: 123.09786573, lat: 321.98273498 },
+    {
+      title: 'memory at a/a',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      lng: -73.98392230000002,
+      lat: 40.75135969999999,
+      authorId: 3,
+    },
+    {
+      title: 'memory alta restaurant',
+      text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
+      lng: -73.99820009999996,
+      lat: 40.7344108,
+      authorId: 1,
+    },
+    {
+      title: 'memory happy empire state building',
+      text: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.',
+      lng: -73.98575770000002,
+      lat: 40.7485413,
+      authorId: 4,
+    },
+    {
+      title: 'memory cool harlem',
+      text: 'an cool harlem memory',
+      lng: -73.9464769,
+      lat: 40.81155039999999,
+      authorId: 2,
+    },
+    {
+      title: 'memory angry central park',
+      text: 'a angry memory',
+      lng: -73.96535510000001,
+      lat: 40.7828647,
+      authorId: 2,
+    },
+    {
+      title: 'memory interesting hoboken',
+      text: 'an interesting memory',
+      lng: -74.0323626,
+      lat: 40.7439905,
+      authorId: 2,
+    },
+    {
+      title: 'memory dark fullstack',
+      text: 'a dark memory',
+      lng: -74.00916000000001,
+      lat: 40.705076,
+      authorId: 1,
+    },
+    {
+      title: 'memory creepy charging bull',
+      text: 'a creepy memory',
+      lng: -74.01344360000002,
+      lat: 40.7055537,
+      authorId: 1,
+    },
+    {
+      title: 'memory stoked brooklyn bridge',
+      text: 'a memory I am stoked about',
+      lng: -73.99686429999997,
+      lat: 40.7060855,
+      authorId: 3,
+    },
+    {
+      title: 'memory excited champs diner',
+      text: 'an exciting memory',
+      lng: -73.9409005,
+      lat: 40.7084401,
+      authorId: 3,
+    },
   ]);
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
