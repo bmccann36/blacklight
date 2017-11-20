@@ -38,6 +38,13 @@ router.delete('/:userId', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/:userId/authored-memories/', (req, res, next) => {
+  User.findById(req.params.userId)
+    .then(author => Memory.findAll({ where: { authorId: author.id } }))
+    .then(authoredMemories => res.json(authoredMemories))
+    .catch(next);
+});
+
 //  heroku.com/api/users/:userId/viewed-memories/
 router.get('/:userId/viewed-memories/', (req, res, next) => {
   User.findById(req.params.userId)
