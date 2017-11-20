@@ -23,7 +23,7 @@ class MemoryList extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { memories } = this.props;
-    console.log('********',memories)
+    // console.log('********',memories)
 
     return (
       <View style={styles.container}>
