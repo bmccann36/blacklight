@@ -4,20 +4,13 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
-import store from '../store';
+import store, { fetchMemories } from '../store';
 
 import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 
-// const { width, height } = Dimensions.get('window');
-// const SCREEN_HEIGHT = height;
-// const SCREEN_WIDTH = width;
-// const ASPECT_RATIO = width / height;
-// const LATTITUDE_DELTA = 0.0922;
-// const LONGTITUDE_DELTA = LATTITUDE_DELTA * ASPECT_RATIO;
 
-
-export default class MemoryMap extends Component {
+class MemoryMap extends Component {
 
   constructor(props) {
     super(props)
@@ -32,25 +25,25 @@ export default class MemoryMap extends Component {
       markerPosition: {
         latitude: 40.705076,
         longitude: -74.0113487
-      },
-      memories: [{
-        "createdAt": "2017-11-16T18:08:27.654Z",
-        "id": 1,
-        "lat": 40.7050758,
-        "lng": -74.00916039999998,
-        "text": "pretty exciting connecting back and front",
-        "title": "the first time",
-        "updatedAt": "2017-11-16T18:08:27.654Z",
-      },
-      {
-        "createdAt": "2017-11-16T18:13:09.514Z",
-        "id": 2,
-        "lat": 40.75048649999999,
-        "lng": -73.97640100000001,
-        "text": "pretty exciting connecting back and front",
-        "title": "the second time",
-        "updatedAt": "2017-11-16T18:13:09.514Z",
-      }]
+      }
+      // memories: [{
+      //   "createdAt": "2017-11-16T18:08:27.654Z",
+      //   "id": 1,
+      //   "lat": 40.7050758,
+      //   "lng": -74.00916039999998,
+      //   "text": "pretty exciting connecting back and front",
+      //   "title": "the first time",
+      //   "updatedAt": "2017-11-16T18:08:27.654Z",
+      // },
+      // {
+      //   "createdAt": "2017-11-16T18:13:09.514Z",
+      //   "id": 2,
+      //   "lat": 40.75048649999999,
+      //   "lng": -73.97640100000001,
+      //   "text": "pretty exciting connecting back and front",
+      //   "title": "the second time",
+      //   "updatedAt": "2017-11-16T18:13:09.514Z",
+      // }]
     };
   }
 
@@ -99,39 +92,44 @@ export default class MemoryMap extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-
-
   render() {
-    return (
-      <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          region={this.state.currentLocation}>
-          {
-            <MapView.Marker
-              coordinate={this.state.markerPosition}>
-              <View style={styles.radius}>
-                <View style={styles.marker} />
-              </View>
-            </MapView.Marker>
-          }
-
-          {
-            this.state.memories.map(mem => (
+    const { memories } = this.props;
+    if (memories) {
+      return (
+        <View style={styles.container}>
+          <MapView
+            style={styles.map}
+            region={this.state.currentLocation}>
+            {
               <MapView.Marker
-                key={mem.id}
-                coordinate={{ latitude: mem.lat, longitude: mem.lng }}
-                title={mem.title}
-              description={mem.text}
-              />
-            ))
-          }
+                coordinate={this.state.markerPosition}>
+                <View style={styles.radius}>
+                  <View style={styles.marker} />
+                </View>
+              </MapView.Marker>
+            }
 
+            {
+              memories.map(mem => (
+                <MapView.Marker
+                  key={mem.id}
+                  coordinate={{ latitude: mem.lat, longitude: mem.lng }}
+                  title={mem.title}
+                  description={mem.text}
+                />
+              ))
+            }
+          </MapView>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.center}>
+          <ActivityIndicator animating={true} />
+        </View>
+      )
+    }
 
-        </MapView>
-
-      </View>
-    );
   }
 }
 
@@ -168,16 +166,21 @@ const styles = StyleSheet.create({
     borderRadius: 20 / 2,
     overflow: 'hidden',
     backgroundColor: '#007AFF',
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
-// const mapDispatchToProps = { fetchMemories };
+const mapDispatchToProps = { fetchMemories };
 
-// const mapStateToProps = (state) => ({
-//   memories: state.memories
-// });
+const mapStateToProps = (state) => ({
+  memories: state.memories
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
+export default connect(mapStateToProps, mapDispatchToProps)(MemoryMap);
 
 
 
