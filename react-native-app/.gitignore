@@ -1,3 +1,10 @@
-node_modules/
-.expo/
-npm-debug.*
+
+
+# commenting out this redundate gitignore
+
+
+# node_modules/
+# .expo/
+# npm-debug.*
+
+# commenting out this redundate gitignore
