@@ -4,12 +4,15 @@ import { StyleSheet, View, Text, Dimensions, ActivityIndicator } from 'react-nat
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
-import store, { fetchMemories } from '../store';
+
 const {height, width} = Dimensions.get('window');
 
 import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 
+// const ASPECT_RATIO = width / height;
+// const LATITUDE_DELTA = 0.0922;
+// const LONGITUDE_DELTA = LATITUDE_DELTA + ASPECT_RATIO;
 
 class MemoryMap extends Component {
 
@@ -27,24 +30,6 @@ class MemoryMap extends Component {
         latitude: 40.705076,
         longitude: -74.0113487
       }
-      // memories: [{
-      //   "createdAt": "2017-11-16T18:08:27.654Z",
-      //   "id": 1,
-      //   "lat": 40.7050758,
-      //   "lng": -74.00916039999998,
-      //   "text": "pretty exciting connecting back and front",
-      //   "title": "the first time",
-      //   "updatedAt": "2017-11-16T18:08:27.654Z",
-      // },
-      // {
-      //   "createdAt": "2017-11-16T18:13:09.514Z",
-      //   "id": 2,
-      //   "lat": 40.75048649999999,
-      //   "lng": -73.97640100000001,
-      //   "text": "pretty exciting connecting back and front",
-      //   "title": "the second time",
-      //   "updatedAt": "2017-11-16T18:13:09.514Z",
-      // }]
     };
   }
 
@@ -95,14 +80,20 @@ class MemoryMap extends Component {
 
   render() {
     const { memories } = this.props;
+
+
+    // console.log('******', memories)
     if (memories) {
       return (
         <View style={styles.container}>
           <MapView
+
             style={styles.map}
-            region={this.state.currentLocation}>
+            region={this.state.currentLocation}
+          >
             {
               <MapView.Marker
+
                 coordinate={this.state.markerPosition}>
                 <View style={styles.radius}>
                   <View style={styles.marker} />
@@ -115,6 +106,7 @@ class MemoryMap extends Component {
                 <MapView.Marker
                   key={mem.id}
                   coordinate={{ latitude: mem.lat, longitude: mem.lng }}
+                  // image={require('../images/crystal.png')}
                   title={mem.title}
                   description={mem.text}>
                     <MapView.Callout>
@@ -201,13 +193,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = { fetchMemories };
 
 const mapStateToProps = (state) => ({
   memories: state.memory
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MemoryMap);
+export default connect(mapStateToProps)(MemoryMap);
 
 
 
