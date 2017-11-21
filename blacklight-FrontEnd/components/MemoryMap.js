@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
 import store, { fetchMemories } from '../store';
+const {height, width} = Dimensions.get('window');
 
 import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
@@ -115,10 +116,15 @@ class MemoryMap extends Component {
                   key={mem.id}
                   coordinate={{ latitude: mem.lat, longitude: mem.lng }}
                   title={mem.title}
-                  description={mem.text}
-                />
-              ))
-            }
+                  description={mem.text}>
+                    <MapView.Callout>
+                    <View style={styles.callout}>
+                    <Text style={styles.calloutTitle}>{mem.title}</Text>
+                    <Text style={styles.calloutText}>{mem.text}</Text>
+                  </View>
+                  </MapView.Callout>
+                </MapView.Marker>
+              ))}
           </MapView>
         </View>
       );
@@ -129,7 +135,6 @@ class MemoryMap extends Component {
         </View>
       )
     }
-
   }
 }
 
@@ -141,6 +146,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   map: {
+    width: width,
+    height: height,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -171,16 +178,37 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  callout:{
+    position: 'relative',
+    flex:1,
+    width: 300,
+    height: 400,
+    paddingRight: 0,
+    paddingBottom: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    backgroundColor: 'white',
+
+  },
+  calloutTitle:{
+    fontSize: 16,
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  calloutText:{
+    color : 'black'
   }
 });
 
 const mapDispatchToProps = { fetchMemories };
 
 const mapStateToProps = (state) => ({
-  memories: state.memories
+  memories: state.memory
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemoryMap);
+
 
 
 
