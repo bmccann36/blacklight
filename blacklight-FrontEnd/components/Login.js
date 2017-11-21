@@ -1,12 +1,17 @@
 'use strict';
 import { connect } from 'react-redux';
-import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
-import store, { emailChanged, passwordChanged, createUserOnServer } from '../store';
+import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
+import store, { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store'
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 
 
 class Login extends Component {
+
+  handleLogin() {
+    const { email, password } = this.props
+    this.props.getUser({ email, password })
+  }
   handleSubmit() {
     const { email, password } = this.props
     this.props.createUserOnServer({ email, password })
@@ -33,11 +38,18 @@ class Login extends Component {
             secureTextEntry
             onChangeText={this.onPasswordChange.bind(this)}
           />
-          <Button
-            small
-            onPress={this.handleSubmit.bind(this)}
-            title='submit'
-          />
+          <Card>
+            <Button
+              small
+              onPress={this.handleLogin.bind(this)}
+              title='log in' />
+          </Card>
+          <Card>
+            <Button
+              small
+              onPress={this.handleSubmit.bind(this)}
+              title='sign up' />
+          </Card>
         </Card>
       </View>
     )
@@ -49,7 +61,7 @@ const mapStateToProps = (state) => ({
   password: state.auth.password,
 })
 
-const mapDispatchToProps = { emailChanged, passwordChanged, createUserOnServer }
+const mapDispatchToProps = { emailChanged, passwordChanged, createUserOnServer, getUser }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
