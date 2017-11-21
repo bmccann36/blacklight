@@ -17,7 +17,7 @@ class Record extends Component {
   // }
 
   handleSubmit() {
-   const { latitude, longitude, title, text } = this.props
+    const { latitude, longitude, title, text } = this.props
     this.props.commitMemory(
       {
         title: title,
@@ -55,7 +55,7 @@ class Record extends Component {
             title=' test text' />
         </Card> */}
         <Card>
-        <Button
+          <Button
             small
             onPress={this.handleSubmit.bind(this)}
             title='SUBMIT' />
