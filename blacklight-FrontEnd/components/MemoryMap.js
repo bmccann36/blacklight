@@ -4,12 +4,15 @@ import { StyleSheet, View, Text, Dimensions, ActivityIndicator } from 'react-nat
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
-// import store, { fetchMemories } from '../store';
+
 const {height, width} = Dimensions.get('window');
 
 import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 
+// const ASPECT_RATIO = width / height;
+// const LATITUDE_DELTA = 0.0922;
+// const LONGITUDE_DELTA = LATITUDE_DELTA + ASPECT_RATIO;
 
 class MemoryMap extends Component {
 
@@ -77,15 +80,20 @@ class MemoryMap extends Component {
 
   render() {
     const { memories } = this.props;
+
+
     // console.log('******', memories)
     if (memories) {
       return (
         <View style={styles.container}>
           <MapView
+
             style={styles.map}
-            region={this.state.currentLocation}>
+            region={this.state.currentLocation}
+          >
             {
               <MapView.Marker
+
                 coordinate={this.state.markerPosition}>
                 <View style={styles.radius}>
                   <View style={styles.marker} />
@@ -98,6 +106,7 @@ class MemoryMap extends Component {
                 <MapView.Marker
                   key={mem.id}
                   coordinate={{ latitude: mem.lat, longitude: mem.lng }}
+                  // image={require('../images/crystal.png')}
                   title={mem.title}
                   description={mem.text}>
                     <MapView.Callout>

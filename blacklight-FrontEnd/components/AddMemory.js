@@ -21,7 +21,8 @@ export default class AddMemory extends Component {
       markerPosition: {
         latitude: 40.705076,
         longitude: -74.0113487
-      }
+      },
+      droppedPin: false
     };
   }
 
@@ -33,8 +34,8 @@ export default class AddMemory extends Component {
         currentLocation: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005
         }
       });
       this.setState({
@@ -52,8 +53,8 @@ export default class AddMemory extends Component {
         currentLocation: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005
         }
       });
 
@@ -83,27 +84,34 @@ export default class AddMemory extends Component {
   }
 
   attachAPin(event) {
-
+    this.setState({ droppedPin: event.nativeEvent.coordinate })
   }
 
 
   render() {
+    console.log('FROM RENDER', this.state)
+
     return (
       <View style={styles.container} >
         <View style={styles.container}>
           <MapView
-            onLongPress={e => console.log(e.nativeEvent.coordinate)} //get coordinates from the press, place the pin
+            onLongPress={e => this.attachAPin(e)}
             style={styles.map}
-            region={this.state.currentLocation}>
-            {
-              <MapView.Marker
-                coordinate={this.state.markerPosition}>
-                <View style={styles.radius}>
-                  <View style={styles.marker} />
-                </View>
-              </MapView.Marker>
-            }
+            region={this.state.currentLocation}
+          >
 
+            <MapView.Marker
+              coordinate={this.state.markerPosition}>
+              <View style={styles.radius}>
+                <View style={styles.marker} />
+              </View>
+            </MapView.Marker>
+
+            { this.state.droppedPin &&
+            <MapView.Marker
+              coordinate={this.state.droppedPin}>
+            </MapView.Marker>
+            }
           </MapView>
         </View>
 
