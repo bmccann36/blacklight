@@ -1,12 +1,16 @@
 'use strict';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store, { emailChanged, passwordChanged, createUserOnServer } from '../store';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
 
-export default class AddMemory extends Component {
+
+
+import { titleChanged, textChanged, receivedLocation, commitMemory } from '../store'
+
+
+class AddMemory extends Component {
 
   constructor(props) {
     super(props)
@@ -72,25 +76,34 @@ export default class AddMemory extends Component {
   }
 
   handleSubmit() {
-    this.props.createUserOnServer({ email, password })
+    const { latitude, longitude, title, text } = this.props
+    this.props.commitMemory(
+      {
+        title: title,
+        text: text,
+        lat: latitude,
+        lng: longitude
+      }
+    )
   }
+  // arbitrary change
 
-  onTitleChange(text) {
-    this.props.emailChanged(text)
-  }
+handleTitle(title) {
+  this.props.titleChanged(title)
+}
 
-  onTextChange(text) {
-    this.props.passwordChanged(text)
-  }
+handleText(text) {
+  this.props.textChanged(text)
+}
 
   attachAPin(event) {
+    console.log('event', event.nativeEvent.coordinate)
+    this.props.receivedLocation(event.nativeEvent.coordinate)
     this.setState({ droppedPin: event.nativeEvent.coordinate })
   }
 
-
   render() {
-    console.log('FROM RENDER', this.state)
-
+    // console.log('FROM RENDER', this.state)
     return (
       <View style={styles.container} >
         <View style={styles.container}>
@@ -107,10 +120,10 @@ export default class AddMemory extends Component {
               </View>
             </MapView.Marker>
 
-            { this.state.droppedPin &&
-            <MapView.Marker
-              coordinate={this.state.droppedPin}>
-            </MapView.Marker>
+            {this.state.droppedPin &&
+              <MapView.Marker
+                coordinate={this.state.droppedPin}>
+              </MapView.Marker>
             }
           </MapView>
         </View>
@@ -118,9 +131,11 @@ export default class AddMemory extends Component {
         <View style={styles.container}>
           <Card title='Enter your story'>
             <FormLabel>Title</FormLabel>
-            <FormInput onChangeText={this.onTitleChange.bind(this)} />
+            <FormInput onChangeText={this.handleTitle.bind(this)} />
+
             <FormLabel>Text</FormLabel>
-            <FormInput onChangeText={this.onTextChange.bind(this)} />
+            <FormInput onChangeText={this.handleText.bind(this)} />
+
             <Button
               small
               backgroundColor='#00BFFF'
@@ -133,6 +148,17 @@ export default class AddMemory extends Component {
     );
   }
 }
+const mapState = (state) => ({
+  title: state.memEntry.title,
+  text: state.memEntry.text,
+  latitude: state.memEntry.location.latitude,
+  longitude: state.memEntry.location.longitude
+});
+
+const mapDispatch = { titleChanged, textChanged, receivedLocation, commitMemory }
+
+export default connect(mapState, mapDispatch)(AddMemory)
+
 
 const styles = StyleSheet.create({
   container: {

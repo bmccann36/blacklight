@@ -7,14 +7,14 @@ import { titleChanged, textChanged, receivedLocation, commitMemory } from '../st
 
 
 class Record extends Component {
-  // handleTitle() {
-  //   const title = 'JABBERWOCKY'
-  //   this.props.titleChanged(title)
-  // }
-  // handleText() {
-  //   let text = " Twas brillig, and the slithy toves Did gyre and gimble the wabe: All mimsy were the borogoves, And the mome raths outgrabe"
-  //   this.props.textChanged(text)
-  // }
+  handleTitle() {
+    const title = 'JABBERWOCKY'
+    this.props.titleChanged(title)
+  }
+  handleText() {
+    let text = " Twas brillig, and the slithy toves Did gyre and gimble the wabe: All mimsy were the borogoves, And the mome raths outgrabe"
+    this.props.textChanged(text)
+  }
 
   handleSubmit() {
     const { latitude, longitude, title, text } = this.props
@@ -40,7 +40,7 @@ class Record extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        {/* <Card>
+        <Card>
           <Text style={styles.text}>Title</Text>
           <Button
             small
@@ -53,7 +53,7 @@ class Record extends Component {
             small
             onPress={this.handleText.bind(this)}
             title=' test text' />
-        </Card> */}
+        </Card>
         <Card>
           <Button
             small
