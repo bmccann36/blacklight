@@ -24,8 +24,8 @@ class SingleMemoryView extends Component {
     return (
       <ScrollView style={styles.container}>
 
-        <Text style={styles.text}>{memoryTitle}</Text>
-        <Text style={styles.subText}>{memoryText}</Text>
+        <Text style={styles.title}>{memoryTitle}</Text>
+        <Text style={styles.text}>{memoryText}</Text>
 
       </ScrollView>
     )
@@ -43,11 +43,12 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
-  text: {
+  title: {
     fontSize: 20,
     textAlign: 'center',
+    fontWeight: 'bold'
   },
-  subText: {
+  text: {
     fontSize: 16,
     textAlign: 'center',
     marginTop: 30

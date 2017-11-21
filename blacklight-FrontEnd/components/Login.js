@@ -1,3 +1,4 @@
+'use strict';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
 import store, { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store'
@@ -27,7 +28,7 @@ class Login extends Component {
     const { textStyle } = styles
     return (
       <View style={styles.container}>
-        <Card >
+        <Card title='Signup page'>
           <FormLabel>Email</FormLabel>
           <FormInput
             onChangeText={this.onEmailChange.bind(this)}
@@ -69,7 +70,7 @@ const styles = {
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textStyle: {
     fontSize: 50
