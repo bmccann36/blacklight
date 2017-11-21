@@ -1,7 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store, { emailChanged, passwordChanged, createUserOnServer } from '../store';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
@@ -76,15 +75,30 @@ class AddMemory extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-handleChange(){
+  handleSubmit() {
+    const { latitude, longitude, title, text } = this.props
+    this.props.commitMemory(
+      {
+        title: title,
+        text: text,
+        lat: latitude,
+        lng: longitude
+      }
+    )
+  }
 
+handleTitle(title) {
+  this.props.titleChanged(title)
+}
+
+handleText(text) {
+  this.props.textChanged(text)
 }
 
   attachAPin(event) {
     console.log('event', event.nativeEvent.coordinate)
     this.props.receivedLocation(event.nativeEvent.coordinate)
-
-    // this.setState({ droppedPin: event.nativeEvent.coordinate })
+    this.setState({ droppedPin: event.nativeEvent.coordinate })
   }
 
   render() {
@@ -116,13 +130,15 @@ handleChange(){
         <View style={styles.container}>
           <Card title='Enter your story'>
             <FormLabel>Title</FormLabel>
-            <FormInput onChangeText={this.handleChange.bind(this)} />
+            <FormInput onChangeText={this.handleTitle.bind(this)} />
+
             <FormLabel>Text</FormLabel>
-            <FormInput onChangeText={this.handleChange.bind(this)} />
+            <FormInput onChangeText={this.handleText.bind(this)} />
+
             <Button
               small
               backgroundColor='#00BFFF'
-              onPress={this.handleChange.bind(this)}
+              onPress={this.handleSubmit.bind(this)}
               title='submit'
             />
           </Card>
