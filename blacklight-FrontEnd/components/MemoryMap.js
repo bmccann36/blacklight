@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, ActivityIndicator } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = { fetchMemories };
 
 const mapStateToProps = (state) => ({
-  memories: state.memories
+  memories: state.memory
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemoryMap);
