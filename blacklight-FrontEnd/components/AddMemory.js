@@ -6,7 +6,12 @@ import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
 
-export default class AddMemory extends Component {
+
+
+import { titleChanged, textChanged, receivedLocation, commitMemory } from '../store'
+
+
+class AddMemory extends Component {
 
   constructor(props) {
     super(props)
@@ -71,26 +76,19 @@ export default class AddMemory extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-  handleSubmit() {
-    this.props.createUserOnServer({ email, password })
-  }
+handleChange(){
 
-  onTitleChange(text) {
-    this.props.emailChanged(text)
-  }
-
-  onTextChange(text) {
-    this.props.passwordChanged(text)
-  }
+}
 
   attachAPin(event) {
-    this.setState({ droppedPin: event.nativeEvent.coordinate })
+    console.log('event', event.nativeEvent.coordinate)
+    this.props.receivedLocation(event.nativeEvent.coordinate)
+
+    // this.setState({ droppedPin: event.nativeEvent.coordinate })
   }
 
-
   render() {
-    console.log('FROM RENDER', this.state)
-
+    // console.log('FROM RENDER', this.state)
     return (
       <View style={styles.container} >
         <View style={styles.container}>
@@ -107,10 +105,10 @@ export default class AddMemory extends Component {
               </View>
             </MapView.Marker>
 
-            { this.state.droppedPin &&
-            <MapView.Marker
-              coordinate={this.state.droppedPin}>
-            </MapView.Marker>
+            {this.state.droppedPin &&
+              <MapView.Marker
+                coordinate={this.state.droppedPin}>
+              </MapView.Marker>
             }
           </MapView>
         </View>
@@ -118,13 +116,13 @@ export default class AddMemory extends Component {
         <View style={styles.container}>
           <Card title='Enter your story'>
             <FormLabel>Title</FormLabel>
-            <FormInput onChangeText={this.onTitleChange.bind(this)} />
+            <FormInput onChangeText={this.handleChange.bind(this)} />
             <FormLabel>Text</FormLabel>
-            <FormInput onChangeText={this.onTextChange.bind(this)} />
+            <FormInput onChangeText={this.handleChange.bind(this)} />
             <Button
               small
               backgroundColor='#00BFFF'
-              onPress={this.handleSubmit.bind(this)}
+              onPress={this.handleChange.bind(this)}
               title='submit'
             />
           </Card>
@@ -133,6 +131,17 @@ export default class AddMemory extends Component {
     );
   }
 }
+const mapState = (state) => ({
+  title: state.memEntry.title,
+  text: state.memEntry.text,
+  latitude: state.memEntry.location.latitude,
+  longitude: state.memEntry.location.longitude
+});
+
+const mapDispatch = { titleChanged, textChanged, receivedLocation, commitMemory }
+
+export default connect(mapState, mapDispatch)(AddMemory)
+
 
 const styles = StyleSheet.create({
   container: {
