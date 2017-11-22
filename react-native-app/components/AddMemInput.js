@@ -1,50 +1,69 @@
-'use strict';
+
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 
-import { titleChanged, textChanged, receivedLocation, commitMemory } from '../store'
+import { commitMemory } from '../store';
 
 
 class AddMemInput extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       title: '',
       text: '',
-    }
+    };
+    this.handleTitle = this.handleTitle.bind(this);
+    this.handleText = this.handleText.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleTitle(title) {
-    this.setState({ title })
+    this.setState({ title });
   }
 
   handleText(text) {
-    this.setState({ text })
-    console.log(this.state)
+    this.setState({ text });
   }
 
-  attachAPin(event) {
-    console.log('event', event.nativeEvent.coordinate)
-    // this.props.receivedLocation(event.nativeEvent.coordinate)
-    // this.setState({ droppedPin: event.nativeEvent.coordinate })
+  handleSubmit() {
+    const { latitude, longitude } = this.props.memLocation;
+    const { title, text } = this.state;
+    this.setState({ title: '', text: '' });
+    this.props.commitMemory(
+      {
+        title,
+        text,
+        lat: latitude,
+        lng: longitude,
+      });
+    console.log(this.state)
+
   }
 
   render() {
+    // console.log(this.props.memLocation);
     return (
       <View style={styles.container}>
-        <Card title='Enter your story'>
+        <Card title="Enter your story">
           <FormLabel>Title</FormLabel>
-          <FormInput onChangeText={this.handleTitle} />
+          <FormInput
+            onChangeText={this.handleTitle}
+            value={this.state.title}
+          />
 
           <FormLabel>Text</FormLabel>
-          <FormInput onChangeText={this.handleText} />
+          <FormInput
+            onChangeText={this.handleText}
+            value={this.state.text}
+          />
 
           <Button
             small
-            backgroundColor='#00BFFF'
+            backgroundColor="#00BFFF"
             onPress={this.handleSubmit}
-            title='submit'
+            title="submit"
           />
         </Card>
       </View>
@@ -53,16 +72,16 @@ class AddMemInput extends Component {
 }
 
 
-const mapState = state => ({
-  title: state.memEntry.title,
-  text: state.memEntry.text,
-  latitude: state.memEntry.location.latitude,
-  longitude: state.memEntry.location.longitude,
-});
+// const mapState = state => ({
+//   title: state.memEntry.title,
+//   text: state.memEntry.text,
+//   latitude: state.memEntry.location.latitude,
+//   longitude: state.memEntry.location.longitude,
+// });
 
-const mapDispatch = { titleChanged, textChanged, receivedLocation, commitMemory }
+const mapDispatch = { commitMemory };
 
-export default connect(mapState, mapDispatch)(AddMemInput);
+export default connect(null, mapDispatch)(AddMemInput);
 
 
 const styles = StyleSheet.create({

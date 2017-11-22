@@ -94,13 +94,12 @@ export default class AddMemory extends Component {
   }
 
   attachAPin(event) {
-    console.log('event', event.nativeEvent.coordinate)
-    this.props.receivedLocation(event.nativeEvent.coordinate)
+    // this.props.receivedLocation(event.nativeEvent.coordinate)
     this.setState({ droppedPin: event.nativeEvent.coordinate })
   }
 
   render() {
-    // console.log('FROM RENDER', this.state)
+    // console.log('FROM RENDER', this.state.droppedPin)
     return (
       <View style={styles.container} >
         <View style={styles.container}>
@@ -124,7 +123,9 @@ export default class AddMemory extends Component {
             }
           </MapView>
         </View>
-        <AddMemInput />
+        <AddMemInput
+        memLocation={this.state.droppedPin}
+        />
       </View>
     );
   }
