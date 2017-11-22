@@ -4,30 +4,15 @@ import { connect } from 'react-redux';
 
 
 
- class User extends Component {
-
-
+ export default class User extends Component {
   render() {
-
-    const { navigate } = this.props.navigation;
-
     return (
       <View style={styles.container}>
-
         <Text style={styles.text}>User page</Text>
-
-
       </View>
     )
   }
-
 }
-
-const mapStateToProps = (state) => ({
-  memories: state.memories
-});
-
-export default connect(mapStateToProps)(User);
 
 
 

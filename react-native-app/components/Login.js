@@ -1,20 +1,20 @@
 'use strict';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
-import store, { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store'
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
+import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
 
 
 class Login extends Component {
 
-  handleLogin() {
-    const { email, password } = this.props
-    this.props.getUser({ email, password })
-  }
+
   handleSubmit() {
     const { email, password } = this.props
     this.props.createUserOnServer({ email, password })
+    Actions.user();
   }
   onEmailChange(text) {
     this.props.emailChanged(text)
@@ -22,6 +22,11 @@ class Login extends Component {
   onPasswordChange(text) {
     this.props.passwordChanged(text)
     // console.log(this.props)
+  }
+  handleLogin() {
+    const { email, password } = this.props;
+    this.props.getUser({ email, password });
+    Actions.user();
   }
 
   render() {
