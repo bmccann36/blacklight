@@ -14,19 +14,19 @@ class Login extends Component {
   handleSubmit() {
     const { email, password } = this.props
     this.props.createUserOnServer({ email, password })
-    Actions.user();
+    Actions.main();
   }
   onEmailChange(text) {
     this.props.emailChanged(text)
   }
   onPasswordChange(text) {
     this.props.passwordChanged(text)
-    // console.log(this.props)
+
   }
   handleLogin() {
     const { email, password } = this.props;
     this.props.getUser({ email, password });
-    Actions.user();
+    Actions.main();
   }
 
   render() {

@@ -7,8 +7,12 @@ import User from './components/User';
 
 const RouterComponent = () => (
   <Router sceneStyle={{ paddingTop: 40 }}>
-    <Scene key="single" component={Login} title="Please Login" initial />
-    <Scene key="user" component={User} title="Here is User" />
+    <Scene key="auth">
+      <Scene key="login" component={Login} title="Please Login" />
+    </Scene>
+    <Scene key="main">
+      <Scene key="user" component={User} title="Here is User" />
+    </Scene>
   </Router>
 );
 
