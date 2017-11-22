@@ -71,31 +71,9 @@ export default class AddMemory extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-  handleSubmit() {
-    const { latitude, longitude, title, text } = this.props
-    this.props.commitMemory(
-      {
-        title: title,
-        text: text,
-        lat: latitude,
-        lng: longitude
-      }
-    )
-  }
-  // arbitrary change
-
-  handleTitle(title) {
-    this.setState({ title })
-  }
-
-  handleText(text) {
-    this.setState({ text })
-    console.log(this.state)
-  }
 
   attachAPin(event) {
-    // this.props.receivedLocation(event.nativeEvent.coordinate)
-    this.setState({ droppedPin: event.nativeEvent.coordinate })
+    this.setState({ droppedPin: event.nativeEvent.coordinate });
   }
 
   render() {

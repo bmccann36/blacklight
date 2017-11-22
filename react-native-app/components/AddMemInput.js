@@ -1,12 +1,10 @@
 
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { commitMemory } from '../store';
-
 
 class AddMemInput extends Component {
   constructor(props) {
@@ -38,8 +36,6 @@ class AddMemInput extends Component {
         lat: latitude,
         lng: longitude,
       });
-    console.log(this.state)
-
   }
 
   render() {
@@ -71,18 +67,9 @@ class AddMemInput extends Component {
   }
 }
 
-
-// const mapState = state => ({
-//   title: state.memEntry.title,
-//   text: state.memEntry.text,
-//   latitude: state.memEntry.location.latitude,
-//   longitude: state.memEntry.location.longitude,
-// });
-
 const mapDispatch = { commitMemory };
 
 export default connect(null, mapDispatch)(AddMemInput);
-
 
 const styles = StyleSheet.create({
   container: {
