@@ -16,6 +16,7 @@ class AddMemory extends Component {
     super(props)
 
     this.state = {
+      title = '',
       currentLocation: {
         latitude: 40.705076,
         longitude: -74.0113487,
@@ -26,7 +27,7 @@ class AddMemory extends Component {
         latitude: 40.705076,
         longitude: -74.0113487
       },
-      droppedPin: false
+      droppedPin: false,
     };
   }
 
@@ -40,9 +41,7 @@ class AddMemory extends Component {
           longitude: position.coords.longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005
-        }
-      });
-      this.setState({
+        },
         markerPosition: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
@@ -59,10 +58,7 @@ class AddMemory extends Component {
           longitude: position.coords.longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005
-        }
-      });
-
-      this.setState({
+        },
         markerPosition: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
@@ -88,13 +84,13 @@ class AddMemory extends Component {
   }
   // arbitrary change
 
-handleTitle(title) {
-  this.props.titleChanged(title)
-}
+  handleTitle(title) {
+    this.setState({title})
+  }
 
-handleText(text) {
-  this.props.textChanged(text)
-}
+  handleText(text) {
+    this.props.textChanged(text)
+  }
 
   attachAPin(event) {
     console.log('event', event.nativeEvent.coordinate)

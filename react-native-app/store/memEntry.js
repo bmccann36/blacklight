@@ -18,19 +18,6 @@ export const textChanged = (text) => ({ type: TEXT_CHANGED, text: text })
 export const receivedLocation = (location) => ({ type: RECEIVED_LOCATION, location: location })
 // export const memorySaved = () => ({ type: MEMORY_SAVED })
 
-//THUNK CREATORS
-
-// this should go in the memories part of the store !!!
-// export const commitMemory = (details) => {
-//   return function thunk(dispatch) {
-//     return axios.post('https://blacklight-app.herokuapp.com/api/memories', details)
-//     .then(res=> res.data)
-//     .then(memory => {
-//       dispatch(memorySaved())
-//     })
-//   }
-// }
-
 
 // REDUCER
 export default (state = INITIAL_STATE, action) => {
