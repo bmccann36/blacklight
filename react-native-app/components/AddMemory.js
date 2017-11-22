@@ -5,18 +5,18 @@ import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
 
+import AddMemInput from './AddMemInput'
 
 
 import { titleChanged, textChanged, receivedLocation, commitMemory } from '../store'
 
 
-class AddMemory extends Component {
+export default class AddMemory extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      title = '',
       currentLocation: {
         latitude: 40.705076,
         longitude: -74.0113487,
@@ -85,11 +85,12 @@ class AddMemory extends Component {
   // arbitrary change
 
   handleTitle(title) {
-    this.setState({title})
+    this.setState({ title })
   }
 
   handleText(text) {
-    this.props.textChanged(text)
+    this.setState({ text })
+    console.log(this.state)
   }
 
   attachAPin(event) {
@@ -123,37 +124,12 @@ class AddMemory extends Component {
             }
           </MapView>
         </View>
-
-        <View style={styles.container}>
-          <Card title='Enter your story'>
-            <FormLabel>Title</FormLabel>
-            <FormInput onChangeText={this.handleTitle.bind(this)} />
-
-            <FormLabel>Text</FormLabel>
-            <FormInput onChangeText={this.handleText.bind(this)} />
-
-            <Button
-              small
-              backgroundColor='#00BFFF'
-              onPress={this.handleSubmit.bind(this)}
-              title='submit'
-            />
-          </Card>
-        </View>
+        <AddMemInput />
       </View>
     );
   }
 }
-const mapState = (state) => ({
-  title: state.memEntry.title,
-  text: state.memEntry.text,
-  latitude: state.memEntry.location.latitude,
-  longitude: state.memEntry.location.longitude
-});
 
-const mapDispatch = { titleChanged, textChanged, receivedLocation, commitMemory }
-
-export default connect(mapState, mapDispatch)(AddMemory)
 
 
 const styles = StyleSheet.create({
