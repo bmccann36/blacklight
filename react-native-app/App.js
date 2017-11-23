@@ -11,7 +11,7 @@ import MemoryList from './components/MemoryList';
 import Home from './components/Home';
 import User from './components/User';
 import MemoryMap from './components/MemoryMap';
-import AddMemory from './components/AddMemory';
+
 
 
 import SingleMemoryView from './components/SingleMemoryView';
@@ -19,7 +19,6 @@ import SingleMemoryView from './components/SingleMemoryView';
 
 export default class App extends Component {
   render() {
-
     return (
       <Provider store={store}>
         <Router />

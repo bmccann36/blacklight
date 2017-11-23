@@ -14,7 +14,7 @@ class Login extends Component {
   handleSubmit() {
     const { email, password } = this.props
     this.props.createUserOnServer({ email, password })
-    Actions.main();
+    Actions.root();
   }
   onEmailChange(text) {
     this.props.emailChanged(text)
@@ -26,7 +26,7 @@ class Login extends Component {
   handleLogin() {
     const { email, password } = this.props;
     this.props.getUser({ email, password });
-    Actions.main();
+    Actions.root();
   }
 
   render() {
@@ -36,10 +36,12 @@ class Login extends Component {
         <Card title='Signup page'>
           <FormLabel>Email</FormLabel>
           <FormInput
+            value="brian@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
           />
           <FormLabel>Password</FormLabel>
           <FormInput
+            value="blacklight"
             secureTextEntry
             onChangeText={this.onPasswordChange.bind(this)}
           />

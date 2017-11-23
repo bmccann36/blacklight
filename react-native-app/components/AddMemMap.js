@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
 
 import AddMemInput from './AddMemInput'
+import { Actions } from 'react-native-router-flux';
 
 import { titleChanged, textChanged, receivedLocation, commitMemory } from '../store'
 
@@ -69,22 +70,24 @@ export default class AddMemory extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
+  handlePress(){
+    Actions.addMemInput()
+  }
 
   attachAPin(event) {
     this.setState({ droppedPin: event.nativeEvent.coordinate });
   }
 
   render() {
-    // console.log('FROM RENDER', this.state.droppedPin)
+
     return (
-      <View style={styles.container} >
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.mapCont} >
           <MapView
             onLongPress={e => this.attachAPin(e)}
             style={styles.map}
             region={this.state.currentLocation}
           >
-
             <MapView.Marker
               coordinate={this.state.markerPosition}>
               <View style={styles.radius}>
@@ -99,20 +102,37 @@ export default class AddMemory extends Component {
             }
           </MapView>
         </View>
-        <AddMemInput
-          memLocation={this.state.droppedPin}
-        />
+
+        <View style={styles.textCont}>
+          <Text> press and hold to add a memory </Text>
+          { this.state.droppedPin && <Button
+              small
+              onPress={this.handlePress}
+              title='leave memory' />
+          }
+        </View>
+
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
     backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  mapCont: {
+    height: 500,
+    width: 300,
+  },
+  textCont: {
+    backgroundColor: 'grey',
+    height: 100,
+    width: 350,
   },
   map: {
     position: 'absolute',
@@ -141,5 +161,5 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#007AFF',
   }
-});
+}
 

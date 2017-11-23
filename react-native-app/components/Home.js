@@ -9,26 +9,11 @@ import User from './User';
 export default class Home extends Component {
 
 
-    // static navigationOptions = {
-    //   title: 'Home',
-    //   tabBarLabel: 'Home',
-    // }
-
-
     render() {
-
-
-
-      // const { navigate } = this.props.navigation;
-
-
 
       return (
         <View style={styles.container}>
           <Text style={styles.text}>WELCOME TO BLACKLIGHT</Text>
-
-
-
         </View>
 
       );
