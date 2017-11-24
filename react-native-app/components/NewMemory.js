@@ -1,45 +1,23 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AlertIOS } from 'react-native';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import AddMemMap from './Map';
 
 
 export default class NewMemory extends Component {
-
-  handlePress() {
-    Actions.addMemMap(); // routes to map to add memory
+  constructor(props) {
+    super(props);
   }
+
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Enter Memory</Text>
-        <Card>
-          <Button
-            title="Leave a memory here"
-          />
-        </Card>
-        <Card>
-          <Button
-            title="Leave a memory somewhere else"
-            onPress={this.handlePress}
-          />
-        </Card>
+      <View style={{ flex: 1 }} >
+        <AddMemMap />
       </View>
     );
   }
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'green',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 20,
-    textAlign: 'center',
-  },
-});

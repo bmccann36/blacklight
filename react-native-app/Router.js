@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Text } from 'react-native';
 
 import Login from './components/Login';
@@ -9,6 +9,7 @@ import NewMemory from './components/NewMemory';
 import AddMemMap from './components/AddMemMap';
 import AddMemInput from './components/AddMemInput';
 import SingleMemoryView from './components/SingleMemoryView';
+import Map from './components/Map'
 
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -18,8 +19,8 @@ const TabIcon = ({ selected, title }) => {
 }
 
 const RouterComponent = props => (
-  <Router>
-    <Scene key="login" component={Login} title="LANDING PAGE" />
+  <Router sceneStyle={{ paddingTop: 30 }}>
+    {/* <Scene key="login" component={Login} title="LANDING PAGE" /> */}
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -36,7 +37,7 @@ const RouterComponent = props => (
           />
         </Scene>
         {/* Tab and it's scenes */}
-        <Scene key="memoryListMain" title="feed" icon={TabIcon} initial>
+        <Scene key="memoryListMain" title="feed" icon={TabIcon} >
           <Scene
             key="memoryList"
             component={MemoryList}
@@ -49,16 +50,16 @@ const RouterComponent = props => (
           />
         </Scene>
         {/* NEW MEMORY INPUT */}
-        <Scene key="page3" title="record" icon={TabIcon} >
+        <Scene key="page3" title="record" icon={TabIcon} initial >
           <Scene
-            key="AddMemory"
+            key="newMemory"
             component={NewMemory}
-            title="TAB 3"
+            title="add a memory on the map"
           />
           <Scene
-            key="addMemMap"
+          initial
+            key="addMemory"
             component={AddMemMap}
-            title="add a memory on the map"
           />
           <Scene
             key="addMemInput"
