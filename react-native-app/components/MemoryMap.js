@@ -7,7 +7,6 @@ import MapView from 'react-native-maps';
 
 const {height, width} = Dimensions.get('window');
 
-import FrontPage from './FrontPage';
 import MemoryList from './MemoryList';
 
 // const ASPECT_RATIO = width / height;

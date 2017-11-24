@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
+import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 
 export default class NewMemory extends Component {
 
   handlePress() {
-    Actions.addMemMap()
+    Actions.addMemMap(); // routes to map to add memory
   }
-
 
   render() {
     return (

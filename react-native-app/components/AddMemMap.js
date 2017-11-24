@@ -72,7 +72,7 @@ export default class AddMemory extends Component {
   }
 
   handlePress(){
-    Actions.addMemInput(this.state.droppedPin)
+    Actions.addMemInput(this.state.droppedPin) // route to addMemInput, passing the coordinates
   }
 
   attachAPin(event) {
@@ -84,7 +84,6 @@ export default class AddMemory extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.mapCont} >
-          <Text> some text text </Text>
           <MapView
             onLongPress={e => this.attachAPin(e)}
             style={styles.map}

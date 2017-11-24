@@ -11,8 +11,8 @@ class AddMemInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'test title',
-      text: 'test memory',
+      title: '',
+      text: '',
     };
     this.handleTitle = this.handleTitle.bind(this);
     this.handleText = this.handleText.bind(this);
@@ -27,8 +27,7 @@ class AddMemInput extends Component {
   }
 
   doSomething() {
-    console.log('fire')
-    Actions.memoryListMain()
+    Actions.memoryListMain();
   }
 
 
@@ -44,7 +43,7 @@ class AddMemInput extends Component {
         lng: longitude,
       });
     Alert.alert('Memory Saved!');
-    Actions.memoryListMain();
+    Actions.memoryListMain(); // redirect to main memory list
   }
 
 
@@ -57,13 +56,11 @@ class AddMemInput extends Component {
             onChangeText={this.handleTitle}
             value={this.state.title}
           />
-
           <FormLabel>Text</FormLabel>
           <FormInput
             onChangeText={this.handleText}
             value={this.state.text}
           />
-
           <Button
             small
             backgroundColor="#00BFFF"

@@ -8,14 +8,13 @@ import { List, ListItem } from 'react-native-elements';
 
 import { Actions } from 'react-native-router-flux';
 
-
 const extractKey = ({ id }) => id;
 
 class MemoryList extends Component {
+
   componentWillMount() {
     store.dispatch(fetchMemories());
   }
-
   handlePress(memory) {
     Actions.singleMemory(memory);
   }
@@ -49,7 +48,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
 
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     backgroundColor: '#F0FFFF',
@@ -62,4 +61,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
-});
+};

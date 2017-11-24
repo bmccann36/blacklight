@@ -28,6 +28,3 @@ export default function SingleMemoryView(props) {
     </ScrollView>
   );
 }
-
-
-

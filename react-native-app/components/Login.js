@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
@@ -10,18 +10,16 @@ import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../s
 
 class Login extends Component {
 
-
-  handleSubmit() {
-    const { email, password } = this.props
-    this.props.createUserOnServer({ email, password })
-    Actions.root();
-  }
   onEmailChange(text) {
     this.props.emailChanged(text)
   }
   onPasswordChange(text) {
     this.props.passwordChanged(text)
-
+  }
+  handleSubmit() {
+    const { email, password } = this.props
+    this.props.createUserOnServer({ email, password })
+    Actions.root();
   }
   handleLogin() {
     const { email, password } = this.props;

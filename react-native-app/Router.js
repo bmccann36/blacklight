@@ -36,7 +36,7 @@ const RouterComponent = props => (
           />
         </Scene>
         {/* Tab and it's scenes */}
-        <Scene key="memoryListMain" title="feed" icon={TabIcon} >
+        <Scene key="memoryListMain" title="feed" icon={TabIcon} initial>
           <Scene
             key="memoryList"
             component={MemoryList}
@@ -61,7 +61,6 @@ const RouterComponent = props => (
             title="add a memory on the map"
           />
           <Scene
-
             key="addMemInput"
             component={AddMemInput}
             title="input your memory"
