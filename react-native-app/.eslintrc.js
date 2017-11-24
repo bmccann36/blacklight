@@ -4,7 +4,8 @@ module.exports = {
     "rules": {
         "react/jsx-filename-extension": "off",
         "react/no-unused-state": "off",
-        "react/prefer-stateless-function": "off"
+        "react/prefer-stateless-function": "off",
+        "class-methods-use-this": "off"
     }
 
 };

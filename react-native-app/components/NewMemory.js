@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux';
 export default class NewMemory extends Component {
 
   handlePress() {
-    console.log('press')
     Actions.addMemMap()
   }
 

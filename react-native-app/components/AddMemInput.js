@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import { commitMemory } from '../store';
 
@@ -10,8 +11,8 @@ class AddMemInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      text: '',
+      title: 'test title',
+      text: 'test memory',
     };
     this.handleTitle = this.handleTitle.bind(this);
     this.handleText = this.handleText.bind(this);
@@ -25,8 +26,14 @@ class AddMemInput extends Component {
     this.setState({ text });
   }
 
+  doSomething() {
+    console.log('fire')
+    Actions.memoryListMain()
+  }
+
+
   handleSubmit() {
-    const { latitude, longitude } = this.props.memLocation;
+    const { latitude, longitude } = this.props;
     const { title, text } = this.state;
     this.setState({ title: '', text: '' });
     this.props.commitMemory(
@@ -36,10 +43,12 @@ class AddMemInput extends Component {
         lat: latitude,
         lng: longitude,
       });
+    Alert.alert('Memory Saved!');
+    Actions.memoryListMain();
   }
 
+
   render() {
-    // console.log(this.props.memLocation);
     return (
       <View style={styles.container}>
         <Card title="Enter your story">

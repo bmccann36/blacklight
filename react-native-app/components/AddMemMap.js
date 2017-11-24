@@ -28,6 +28,7 @@ export default class AddMemory extends Component {
       },
       droppedPin: false,
     };
+    this.handlePress= this.handlePress.bind(this)
   }
 
   watchID = ''
@@ -71,7 +72,7 @@ export default class AddMemory extends Component {
   }
 
   handlePress(){
-    Actions.addMemInput()
+    Actions.addMemInput(this.state.droppedPin)
   }
 
   attachAPin(event) {
@@ -83,6 +84,7 @@ export default class AddMemory extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.mapCont} >
+          <Text> some text text </Text>
           <MapView
             onLongPress={e => this.attachAPin(e)}
             style={styles.map}
@@ -104,7 +106,10 @@ export default class AddMemory extends Component {
         </View>
 
         <View style={styles.textCont}>
-          <Text> press and hold to add a memory </Text>
+          <Text
+          style={styles.message}
+          > press and hold to add a memory
+          </Text>
           { this.state.droppedPin && <Button
               small
               onPress={this.handlePress}
@@ -119,20 +124,22 @@ export default class AddMemory extends Component {
 
 const styles = {
   container: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    backgroundColor: 'white',
-    alignItems: 'center',
+    flex:1,
+    backgroundColor: 'green',
     justifyContent: 'center'
   },
   mapCont: {
-    height: 500,
-    width: 300,
+    flex:3,
+    backgroundColor: 'orange'
   },
   textCont: {
-    backgroundColor: 'grey',
-    height: 100,
-    width: 350,
+    flex:2,
+    backgroundColor: 'skyblue',
+
+  },
+  message: {
+    fontSize: 25,
+    textAlign: 'center',
   },
   map: {
     position: 'absolute',
