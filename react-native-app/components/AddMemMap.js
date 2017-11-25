@@ -23,18 +23,18 @@ export default class AddMemory extends Component {
   }
 
   componentDidMount() {
-    // AlertIOS.alert(
-    //   'Choose Location',
-    //   'use your current location or drop a pin to set location',
-    //   [
-    //     {
-    //       text: 'use my location', onPress: () => {
-    //         Actions.addMemInput(this.state)
-    //       }
-    //     },
-    //     { text: 'drop pin' },
-    //   ],
-    // );
+    AlertIOS.alert(
+      'Choose Location',
+      'use your current location or drop a pin to set location',
+      [
+        {
+          text: 'use my location', onPress: () => {
+            Actions.addMemInput(this.state)
+          }
+        },
+        { text: 'drop pin' },
+      ],
+    );
   }
 
 

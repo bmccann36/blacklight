@@ -21,7 +21,7 @@ const TabIcon = ({ selected, title }) => {
 
 const RouterComponent = props => (
   <Router sceneStyle={{ paddingTop: 30 }}>
-    {/* <Scene key="login" component={Login} title="LANDING PAGE" /> */}
+    <Scene key="login" component={Login} title="LANDING PAGE" />
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -51,11 +51,10 @@ const RouterComponent = props => (
           />
         </Scene>
         {/* NEW MEMORY INPUT */}
-        <Scene key="page3" title="record" icon={TabIcon} initial >
+        <Scene key="page3" title="record" icon={TabIcon} >
           <Scene
-            initial
-            key="Test"
-            component={Test}
+            key="addMemMap"
+            component={AddMemMap}
           />
           <Scene
             key="addMemInput"
