@@ -5,11 +5,11 @@ import { Text } from 'react-native';
 import Login from './components/Login';
 import MemoryList from './components/MemoryList';
 import MemoryMap from './components/MemoryMap';
-import NewMemory from './components/NewMemory';
 import AddMemMap from './components/AddMemMap';
 import AddMemInput from './components/AddMemInput';
 import SingleMemoryView from './components/SingleMemoryView';
 import Map from './components/Map'
+import MapTest from './components/MapTest'
 
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -52,14 +52,9 @@ const RouterComponent = props => (
         {/* NEW MEMORY INPUT */}
         <Scene key="page3" title="record" icon={TabIcon} initial >
           <Scene
-            key="newMemory"
-            component={NewMemory}
-            title="add a memory on the map"
-          />
-          <Scene
-          initial
-            key="addMemory"
-            component={AddMemMap}
+            initial
+            key="mapTest"
+            component={MapTest}
           />
           <Scene
             key="addMemInput"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
+import { Button } from 'react-native-elements';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,6 +66,7 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({
@@ -128,6 +130,7 @@ export default class Map extends Component {
               coordinate={this.state.droppedPin}
             />
           }
+
         </MapView>
       </View>
     );

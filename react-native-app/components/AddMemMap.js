@@ -16,46 +16,62 @@ export default class AddMemory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      memoryLocation: {},
-    };
+      latitude: 0,
+      longitude: 0,
+      disableButton: true,
+    }
   }
 
   componentDidMount() {
-    AlertIOS.alert(
-      'Choose Location',
-      'use your current location or drop a pin to set location',
-      [
-        { text: 'use my location', onPress: () => Actions.addMemInput() },
-        { text: 'drop pin' },
-      ],
-    );
+    // AlertIOS.alert(
+    //   'Choose Location',
+    //   'use your current location or drop a pin to set location',
+    //   [
+    //     {
+    //       text: 'use my location', onPress: () => {
+    //         Actions.addMemInput(this.state)
+    //       }
+    //     },
+    //     { text: 'drop pin' },
+    //   ],
+    // );
   }
 
 
-  handlePress() {
-    Actions.addMemInput(this.state.droppedPin); // route to addMemInput, passing the coordinates
-  }
   setMemoryLocation(loc) {
-    this.setState({ memoryLocation: loc });
+    this.setState({ latitude: loc.latitude, longitude: loc.longitude });
   }
 
   render() {
-    console.log(this.state.memoryLocation)
+    console.log(this.state)
     return (
-      <View style={{ flex: 1 }}>
-        <Map
-          setMemoryLocation={this.setMemoryLocation.bind(this)}
-        />
-        <View style={styles.buttonArea}>
-          <Text> button area </Text>
+      <View style={styles.container}>
+        <View style={styles.map}>
+          <Map
+            setMemoryLocation={this.setMemoryLocation.bind(this)}
+          />
         </View>
-      </View>
+        <View style={styles.buttonArea}>
+          <Button
+            small
+            backgroundColor="#00BFFF"
+            title="record"
+            disabled={this.state.disableButton}
+          />
+        </View>
+      </View >
     );
   }
 }
 
 const styles = {
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 5,
+  },
   buttonArea: {
-    height: 30,
+    flex: 1,
   },
 };
