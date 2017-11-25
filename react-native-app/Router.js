@@ -2,15 +2,11 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Text } from 'react-native';
 
-import Login from './components/Login';
-import MemoryList from './components/MemoryList';
-import MemoryMap from './components/MemoryMap';
-import AddMemMap from './components/AddMemMap';
-import AddMemInput from './components/AddMemInput';
-import SingleMemoryView from './components/SingleMemoryView';
-import Map from './components/Map'
-import MapTest from './components/MapTest'
+
+
 import Test from './components/Test'
+import Test2 from './components/Test2'
+import Login from './components/Login'
 
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -30,38 +26,19 @@ const RouterComponent = props => (
         tabBarStyle={{ backgroundColor: '#FFFFFF', height: 70 }}
       >
         {/* MAP WITH MEMORIES */}
-        <Scene key="memMapCont" title="bird's eye" icon={TabIcon}>
+        <Scene key="key1" title="title" icon={TabIcon}>
           <Scene
-            key="memMap"
-            component={MemoryMap}
+            key="test1"
+            component={Test}
             title="TAB 1"
           />
         </Scene>
-        {/* Tab and it's scenes */}
-        <Scene key="memoryListMain" title="feed" icon={TabIcon} >
+        <Scene key="key2" title="title" icon={TabIcon}>
           <Scene
-            key="memoryList"
-            component={MemoryList}
-            title="TAB 2"
+            key="test2"
+            component={Test2}
+            title="TAB 1"
           />
-          <Scene
-            key="singleMemory"
-            component={SingleMemoryView}
-            title="TAB"
-          />
-        </Scene>
-        {/* NEW MEMORY INPUT */}
-        <Scene key="page3" title="record" icon={TabIcon} >
-          <Scene
-            key="addMemMap"
-            component={AddMemMap}
-          />
-          <Scene
-            key="addMemInput"
-            component={AddMemInput}
-            title="input your memory"
-          />
-
         </Scene>
       </Scene>
 
@@ -71,4 +48,3 @@ const RouterComponent = props => (
 
 
 export default RouterComponent;
-
