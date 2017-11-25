@@ -10,6 +10,7 @@ import AddMemInput from './components/AddMemInput';
 import SingleMemoryView from './components/SingleMemoryView';
 import Map from './components/Map'
 import MapTest from './components/MapTest'
+import Test from './components/Test'
 
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -53,8 +54,8 @@ const RouterComponent = props => (
         <Scene key="page3" title="record" icon={TabIcon} initial >
           <Scene
             initial
-            key="mapTest"
-            component={MapTest}
+            key="Test"
+            component={Test}
           />
           <Scene
             key="addMemInput"
