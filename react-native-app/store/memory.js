@@ -37,7 +37,7 @@ export default function (state = [], action) {
     case GET_ALL_MEMORIES:
       return action.memories
     case MEMORY_SAVED:
-      return  [...state, action.memory]
+      return  [action.memory, ...state]
 
     default:
       return state;

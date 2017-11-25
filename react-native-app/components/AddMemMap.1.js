@@ -5,12 +5,12 @@ import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MapView from 'react-native-maps';
 
-
+import AddMemInput from './AddMemInput'
+import { Actions } from 'react-native-router-flux';
 
 import { titleChanged, textChanged, receivedLocation, commitMemory } from '../store'
 
-
-class AddMemory extends Component {
+export default class AddMemory extends Component {
 
   constructor(props) {
     super(props)
@@ -26,8 +26,9 @@ class AddMemory extends Component {
         latitude: 40.705076,
         longitude: -74.0113487
       },
-      droppedPin: false
+      droppedPin: false,
     };
+    this.handlePress= this.handlePress.bind(this)
   }
 
   watchID = ''
@@ -40,9 +41,7 @@ class AddMemory extends Component {
           longitude: position.coords.longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005
-        }
-      });
-      this.setState({
+        },
         markerPosition: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
@@ -59,10 +58,7 @@ class AddMemory extends Component {
           longitude: position.coords.longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005
-        }
-      });
-
-      this.setState({
+        },
         markerPosition: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
@@ -75,44 +71,24 @@ class AddMemory extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-  handleSubmit() {
-    const { latitude, longitude, title, text } = this.props
-    this.props.commitMemory(
-      {
-        title: title,
-        text: text,
-        lat: latitude,
-        lng: longitude
-      }
-    )
+  handlePress(){
+    Actions.addMemInput(this.state.droppedPin) // route to addMemInput, passing the coordinates
   }
-  // arbitrary change
-
-handleTitle(title) {
-  this.props.titleChanged(title)
-}
-
-handleText(text) {
-  this.props.textChanged(text)
-}
 
   attachAPin(event) {
-    console.log('event', event.nativeEvent.coordinate)
-    this.props.receivedLocation(event.nativeEvent.coordinate)
-    this.setState({ droppedPin: event.nativeEvent.coordinate })
+    this.setState({ droppedPin: event.nativeEvent.coordinate });
   }
 
   render() {
-    // console.log('FROM RENDER', this.state)
+
     return (
-      <View style={styles.container} >
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.mapCont} >
           <MapView
             onLongPress={e => this.attachAPin(e)}
             style={styles.map}
             region={this.state.currentLocation}
           >
-
             <MapView.Marker
               coordinate={this.state.markerPosition}>
               <View style={styles.radius}>
@@ -128,44 +104,41 @@ handleText(text) {
           </MapView>
         </View>
 
-        <View style={styles.container}>
-          <Card title='Enter your story'>
-            <FormLabel>Title</FormLabel>
-            <FormInput onChangeText={this.handleTitle.bind(this)} />
-
-            <FormLabel>Text</FormLabel>
-            <FormInput onChangeText={this.handleText.bind(this)} />
-
-            <Button
+        <View style={styles.textCont}>
+          <Text
+          style={styles.message}
+          > press and hold to add a memory
+          </Text>
+          { this.state.droppedPin && <Button
               small
-              backgroundColor='#00BFFF'
-              onPress={this.handleSubmit.bind(this)}
-              title='submit'
-            />
-          </Card>
+              onPress={this.handlePress}
+              title='leave memory' />
+          }
         </View>
+
       </View>
     );
   }
 }
-const mapState = (state) => ({
-  title: state.memEntry.title,
-  text: state.memEntry.text,
-  latitude: state.memEntry.location.latitude,
-  longitude: state.memEntry.location.longitude
-});
 
-const mapDispatch = { titleChanged, textChanged, receivedLocation, commitMemory }
-
-export default connect(mapState, mapDispatch)(AddMemory)
-
-
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: 'white',
+    flex:1,
+    backgroundColor: 'green',
+    justifyContent: 'center'
+  },
+  mapCont: {
+    flex:3,
+    backgroundColor: 'orange'
+  },
+  textCont: {
+    flex:2,
+    backgroundColor: 'skyblue',
+
+  },
+  message: {
+    fontSize: 25,
+    textAlign: 'center',
   },
   map: {
     position: 'absolute',
@@ -194,5 +167,5 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#007AFF',
   }
-});
+}
 
