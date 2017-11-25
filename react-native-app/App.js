@@ -2,17 +2,26 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import Router from './router';
+import { View, StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
 
-import Test from './components/Test'
+import Router from './router'
+
 
 export default class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
-        <Test />
+        <View style={styles.container}>
+          <Router />
+        </View>
       </Provider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+});

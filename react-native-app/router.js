@@ -3,14 +3,9 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Text } from 'react-native';
 
 
-// import MemoryList from './components/MemoryList';
-// import MemoryMap from './components/MemoryMap';
-// import AddMemMap from './components/AddMemMap';
-// import AddMemInput from './components/AddMemInput';
-// import SingleMemoryView from './components/SingleMemoryView';
-// import Map from './components/Map'
-// import MapTest from './components/MapTest'
+
 import Test from './components/Test'
+import Test2 from './components/Test2'
 
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -22,7 +17,8 @@ const TabIcon = ({ selected, title }) => {
 const RouterComponent = () => {
   return (
   <Router sceneStyle={{ paddingTop: 30 }}>
-    <Scene key="login" component={Test} title="LANDING PAGE"/>
+    <Scene key="test" component={Test} title="LANDING PAGE"/>
+    <Scene key="test2" component={Test2} title="other page" initial />
   </Router>
   )
 }
