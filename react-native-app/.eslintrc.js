@@ -1,4 +1,3 @@
-
 module.exports = {
     "extends": "airbnb",
     "rules": {
@@ -8,5 +7,4 @@ module.exports = {
         "class-methods-use-this": "off",
         "react/prop-types": "off"
     }
-
 };

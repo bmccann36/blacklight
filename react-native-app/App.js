@@ -1,28 +1,20 @@
 'use strict';
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
 import { View, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements';
+import React, { Component } from 'react';
+import { Provider, connect } from 'react-redux';
+import store, { watchLocation, stopWatching } from './store';
 
-import Router from './router'
 
+import Router from './Router';
 
 export default class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
+        <View style={{ flex: 1 }}>
           <Router />
         </View>
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
