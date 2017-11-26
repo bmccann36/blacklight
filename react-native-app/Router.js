@@ -5,11 +5,11 @@ import { Text } from 'react-native';
 
 
 import Test from './components/Test';
-import Test2 from './components/Test2';
 import Login from './components/Login';
 import Record from './components/Record';
 import Main from './components/Main';
 import RecordInput from './components/RecordInput';
+import NearbyMem from './components/NearbyMem';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
@@ -19,7 +19,7 @@ const TabIcon = ({ selected, title }) => {
 
 const RouterComponent = props => (
   <Router sceneStyle={{ paddingTop: 30 }}>
-    <Scene key="login" component={Login} title="LANDING PAGE" />
+    {/* <Scene key="login" component={Login} title="LANDING PAGE" /> */}
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -45,6 +45,14 @@ const RouterComponent = props => (
           <Scene
             key="recordInput"
             component={RecordInput}
+            title=""
+          />
+        </Scene>
+        {/* NEARBY */}
+        <Scene key="nearbyTab" title="nearby" icon={TabIcon}>
+          <Scene
+            key="nearbyMem"
+            component={NearbyMem}
             title=""
           />
         </Scene>

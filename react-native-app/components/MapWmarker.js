@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,22 +49,26 @@ export default function Map(props) {
     <View style={styles.container}>
       <MapView
         initialRegion={props.initialRegion}
-        onLongPress={e => props.attachAPin(e)}
         style={styles.map}
         region={props.currentLocation}
       >
-        <MapView.Marker // CURRENT POSITION MARKER
-          coordinate={props.markerPosition}
-        >
-          <View style={styles.radius}>
-            <View style={styles.marker} />
-          </View>
-        </MapView.Marker>
-        {props.droppedPin && // RENDER PIN WHEN IT'S DEFINED
-          <MapView.Marker
-            coordinate={props.droppedPin}
-          />
-        }
+        {
+          props.memories.map(mem => (
+            <MapView.Marker
+              key={mem.id}
+              coordinate={{ latitude: mem.lat, longitude: mem.lng }}
+              // image={require('../images/crystal.png')}
+              title={mem.title}
+              description={mem.text}>
+              <MapView.Callout>
+                <View style={styles.callout}>
+                  <Text style={styles.calloutTitle}>{mem.title}</Text>
+                  <Text style={styles.calloutText}>{mem.text}</Text>
+                </View>
+              </MapView.Callout>
+            </MapView.Marker>
+          ))}
+
       </MapView>
     </View>
   );
