@@ -4,10 +4,12 @@ import { Text } from 'react-native';
 
 
 
-import Test from './components/Test'
-import Test2 from './components/Test2'
-import Login from './components/Login'
-
+import Test from './components/Test';
+import Test2 from './components/Test2';
+import Login from './components/Login';
+import Record from './components/Record';
+import Main from './components/Main';
+import RecordInput from './components/RecordInput';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
@@ -25,23 +27,29 @@ const RouterComponent = props => (
         tabs
         tabBarStyle={{ backgroundColor: '#FFFFFF', height: 70 }}
       >
-        {/* MAP WITH MEMORIES */}
-        <Scene key="key1" title="title" icon={TabIcon}>
+        {/* MAIN */}
+        <Scene key="mainTab" title="Main" icon={TabIcon}>
           <Scene
-            key="test1"
-            component={Test}
-            title="TAB 1"
+            key="main"
+            component={Main}
+            title="main"
           />
         </Scene>
-        <Scene key="key2" title="title" icon={TabIcon}>
+        {/* RECORD */}
+        <Scene key="recordTab" title="record" icon={TabIcon}>
           <Scene
-            key="test2"
-            component={Test2}
-            title="TAB 1"
+            key="recordHome"
+            component={Record}
+            title=""
+          />
+          <Scene
+            key="recordInput"
+            component={RecordInput}
+            title=""
           />
         </Scene>
       </Scene>
-
+      {/* Tab Container END */}
     </Scene>
   </Router>
 );

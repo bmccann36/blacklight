@@ -19,7 +19,6 @@ export default class Test2 extends Component {
 }
 
 
-
 const styles = {
   container: {
     flex: 1,
