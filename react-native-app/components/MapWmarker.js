@@ -1,6 +1,9 @@
 import React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
+
 
 const styles = StyleSheet.create({
   container: {
@@ -10,6 +13,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   map: {
+    width: width,
+    height: height,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -25,7 +30,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(0, 122, 255, 0.3)',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   marker: {
     height: 20,
@@ -41,10 +46,46 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  callout: {
+    position: 'relative',
+    flex: 1,
+    width: 300,
+    height: 400,
+    paddingRight: 0,
+    paddingBottom: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    backgroundColor: 'white',
+
+  },
+  calloutTitle: {
+    fontSize: 16,
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  calloutText: {
+    color: 'black',
+  },
 });
 
 
 export default function Map(props) {
+  const callouts = props.memories.map(mem => (
+    <MapView.Marker
+      key={mem.id}
+      coordinate={{ latitude: mem.lat, longitude: mem.lng }}
+      title={mem.title}
+      description={mem.text}>
+      <MapView.Callout>
+        <View style={styles.callout}>
+          <Text style={styles.calloutTitle}>{mem.title}</Text>
+          <Text style={styles.calloutText}>{mem.text}</Text>
+        </View>
+      </MapView.Callout>
+    </MapView.Marker>
+  ));
+
+
   return (
     <View style={styles.container}>
       <MapView
@@ -52,24 +93,10 @@ export default function Map(props) {
         style={styles.map}
         region={props.currentLocation}
       >
-        {
-          props.memories.map(mem => (
-            <MapView.Marker
-              key={mem.id}
-              coordinate={{ latitude: mem.lat, longitude: mem.lng }}
-              // image={require('../images/crystal.png')}
-              title={mem.title}
-              description={mem.text}>
-              <MapView.Callout>
-                <View style={styles.callout}>
-                  <Text style={styles.calloutTitle}>{mem.title}</Text>
-                  <Text style={styles.calloutText}>{mem.text}</Text>
-                </View>
-              </MapView.Callout>
-            </MapView.Marker>
-          ))}
-
+        {callouts}
       </MapView>
     </View>
   );
 }
+
+
