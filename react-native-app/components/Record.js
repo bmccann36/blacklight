@@ -71,7 +71,7 @@ class Record extends Component {
             small
             backgroundColor="#00BFFF"
             title="record at pin"
-            onPress={() => Actions.recordInput(this.state.droppedPin)} // NAVIGATE TO NEXT SCREEN
+            onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN
             disabled={!this.state.droppedPin} // DISABLED TILL PIN IS DROPPED
           />
         </View>
