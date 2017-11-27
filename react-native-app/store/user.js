@@ -34,7 +34,7 @@ export const createUserOnServer = (newUser) => {
 }
 
 const initialState = {
-  email:"cody@email.com",
+  email: "cody@email.com",
   id: 1,
 };
 
