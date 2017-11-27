@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
 import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-//ooga booga **
+
 import { commitMemory } from '../store';
 
 
