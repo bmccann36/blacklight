@@ -10,6 +10,7 @@ import Record from './components/Record';
 import Main from './components/Main';
 import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
+import TestLogin from './components/TestLogin';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
@@ -19,7 +20,7 @@ const TabIcon = ({ selected, title }) => {
 
 const RouterComponent = props => (
   <Router sceneStyle={{ paddingTop: 30 }}>
-    <Scene key="login" component={Login} title="LANDING PAGE" />
+    <Scene key="login" component={TestLogin} title="LANDING PAGE" />
     <Scene key="root">
       {/* Tab Container */}
       <Scene
