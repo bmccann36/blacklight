@@ -4,11 +4,12 @@ const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS'
 const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 
 export const createUserSuccess = (user) => ({ type: CREATE_USER_SUCCESS, user: user })
-export const loginUserSuccess = (user) => ({ type: LOGIN_USER_SUCCESS, user: user })
+export const loginUserSuccess = (user) => ({ type: LOGIN_USER_SUCCESS, user: user})
 
 //THUNK CREATORS
 
 export const getUser = (info) => {
+  console.log('thunk ready', info)
   return function thunk(dispatch) {
     return axios.post('https://blacklight-app.herokuapp.com/auth/login', info)
       .then(res => res.data)
@@ -33,12 +34,7 @@ export const createUserOnServer = (newUser) => {
   }
 }
 
-const initialState = {
-  email: "cody@email.com",
-  id: 1,
-};
-
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case CREATE_USER_SUCCESS:
       return action.user

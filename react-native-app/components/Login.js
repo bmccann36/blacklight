@@ -22,9 +22,7 @@ class Login extends Component {
     Actions.root();
   }
   handleLogin() {
-    // const { email, password } = this.props;
-    const email = 'cody@email.com'
-    const password = '123'
+    const { email, password } = this.props;
     this.props.getUser({ email, password });
     Actions.root();
   }
@@ -36,12 +34,12 @@ class Login extends Component {
         <Card title='Signup page'>
           <FormLabel>Email</FormLabel>
           <FormInput
-            value="AUTO-FILLED-NOW"
+            value="brian@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
           />
           <FormLabel>Password</FormLabel>
           <FormInput
-            value="123"
+            value="blacklight"
             secureTextEntry
             onChangeText={this.onPasswordChange.bind(this)}
           />

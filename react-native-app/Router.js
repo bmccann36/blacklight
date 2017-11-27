@@ -5,11 +5,12 @@ import { Text } from 'react-native';
 
 
 import Test from './components/Test';
+import Test2 from './components/Test2';
 import Login from './components/Login';
 import Record from './components/Record';
 import Main from './components/Main';
 import RecordInput from './components/RecordInput';
-import NearbyMem from './components/NearbyMem';
+import AR from './components/AR';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
@@ -35,6 +36,13 @@ const RouterComponent = props => (
             title="main"
           />
         </Scene>
+        <Scene key="ARTab" title="AR" icon={TabIcon}>
+        <Scene
+          key="ar"
+          component={AR}
+          title="ar"
+        />
+      </Scene>
         {/* RECORD */}
         <Scene key="recordTab" title="record" icon={TabIcon}>
           <Scene
@@ -45,14 +53,6 @@ const RouterComponent = props => (
           <Scene
             key="recordInput"
             component={RecordInput}
-            title=""
-          />
-        </Scene>
-        {/* NEARBY */}
-        <Scene key="nearbyTab" title="nearby" icon={TabIcon}>
-          <Scene
-            key="nearbyMem"
-            component={NearbyMem}
             title=""
           />
         </Scene>

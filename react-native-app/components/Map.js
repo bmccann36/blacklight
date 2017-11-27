@@ -48,7 +48,6 @@ export default function Map(props) {
   return (
     <View style={styles.container}>
       <MapView
-        initialRegion={props.initialRegion}
         onLongPress={e => props.attachAPin(e)}
         style={styles.map}
         region={props.currentLocation}

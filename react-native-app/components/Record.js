@@ -7,7 +7,7 @@ import Map from './Map';
 
 const { height, width } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.0100;
+const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const styles = {
@@ -71,7 +71,7 @@ class Record extends Component {
             small
             backgroundColor="#00BFFF"
             title="record at pin"
-            onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN
+            onPress={() => Actions.recordInput(this.state.droppedPin)} // NAVIGATE TO NEXT SCREEN
             disabled={!this.state.droppedPin} // DISABLED TILL PIN IS DROPPED
           />
         </View>

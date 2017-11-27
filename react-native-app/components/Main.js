@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import { watchLocation, stopWatching, fetchMemories } from '../store';
+import { watchLocation, stopWatching } from '../store';
 
 // import { Actions } from 'react-native-router-flux';
 const styles = {
@@ -23,9 +23,8 @@ const styles = {
 
 class Main extends Component {
   // START WATCHING LOCATION
-  componentDidMount() { // was componentWillMount but created a bug that caused location to be lost
+  componentDidMount() {
     this.props.watchLocation();
-    this.props.fetchMemories();
   }
   // STOP WATCHING LOCATION
   componentWillUnmount() {
@@ -40,7 +39,7 @@ class Main extends Component {
   }
 }
 
-const mapDispatchToProps = { watchLocation, stopWatching, fetchMemories };
+const mapDispatchToProps = { watchLocation, stopWatching };
 
 const mapStateToProps = state => ({
   currentPosition: state.position,
