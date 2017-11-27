@@ -34,7 +34,6 @@ class Login extends Component {
         <Card title='Signup page'>
           <FormLabel>Email</FormLabel>
           <FormInput
-            value="brian@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
           />
           <FormLabel>Password</FormLabel>
