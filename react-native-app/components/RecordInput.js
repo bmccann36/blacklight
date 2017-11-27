@@ -46,7 +46,6 @@ class RecordInput extends Component {
   }
 
   render() {
-    console.log(this.props.user)
     return (
       <View style={styles.container}>
         <Card title="Enter your story">
