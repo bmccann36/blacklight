@@ -23,7 +23,7 @@ const styles = {
 
 class Main extends Component {
   // START WATCHING LOCATION
-  componentWillMount() {
+  componentDidMount() { // was componentWillMount but created a bug that caused location to be lost
     this.props.watchLocation();
     this.props.fetchMemories();
   }
