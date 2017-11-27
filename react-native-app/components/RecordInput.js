@@ -2,17 +2,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
-import { View, Alert } from 'react-native';
+import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { commitMemory } from '../store';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-};
 
 class RecordInput extends Component {
   constructor(props) {
@@ -56,7 +50,9 @@ class RecordInput extends Component {
             value={this.state.title}
           />
           <FormLabel>Text</FormLabel>
-          <FormInput
+          <TextInput
+            style={styles.textInput}
+            multiline
             onChangeText={this.handleText}
             value={this.state.text}
           />
@@ -71,6 +67,16 @@ class RecordInput extends Component {
     );
   }
 }
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  textInput: {
+    height: 350, borderColor: 'gray', borderWidth: 1, fontSize: 20,
+  },
+};
+
 
 const mapDispatch = { commitMemory };
 
