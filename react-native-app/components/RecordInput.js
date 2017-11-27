@@ -26,35 +26,39 @@ class RecordInput extends Component {
   handleText(text) {
     this.setState({ text });
   }
+
+  // if dropped pin???
+
   handleSubmit() {
-    const { latitude, longitude } = this.props;
+    // IF THE DROPPEDPIN PROP HAS BEEN PASSED DOWN BY RECORD COMPONENT THROUGH ROUTER THE MEMORY LOCATION WILL BE SET TO DROPPEDPIN ELSE IT WILL SET TO CURRENTPOSITION
+    const loc = this.props.droppedPin ? this.props.droppedPin : this.props.currentPosition;
     const { title, text } = this.state;
     this.setState({ title: '', text: '' });
     this.props.commitMemory({
       title,
       text,
-      lat: latitude,
-      lng: longitude,
+      lat: loc.latitude,
+      lng: loc.longitude,
+      authorId: this.props.user.id,
     });
-    Actions.mainTab(); // REDIRECT TO MAIN TAB
+    // Actions.mainTab(); // REDIRECT TO MAIN TAB
     Alert.alert('Memory Saved!');
   }
 
   render() {
+    console.log(this.props.user)
     return (
       <View style={styles.container}>
         <Card title="Enter your story">
           <FormLabel>Title</FormLabel>
           <FormInput
             onChangeText={this.handleTitle}
-            value={this.state.title}
           />
           <FormLabel>Text</FormLabel>
           <TextInput
             style={styles.textInput}
             multiline
             onChangeText={this.handleText}
-            value={this.state.text}
           />
           <Button
             small
@@ -77,8 +81,9 @@ const styles = {
   },
 };
 
+const mapState = state => ({ currentPosition: state.position, user: state.user });
 
 const mapDispatch = { commitMemory };
 
-export default connect(null, mapDispatch)(RecordInput);
+export default connect(mapState, mapDispatch)(RecordInput);
 
