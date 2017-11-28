@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -48,24 +48,33 @@ class RecordInput extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Card title="Enter your story">
           <FormLabel>Title</FormLabel>
-          <FormInput
+          <FormInput style={styles.input}
+            placeholer="Title"
+            color="#FFFFFF"
             onChangeText={this.handleTitle}
           />
-          <FormLabel>Text</FormLabel>
-          <TextInput
-            style={styles.textInput}
+          <FormLabel>YOUR STORY</FormLabel>
+
+          <TextInput style={styles.textInput}
+            placeholer="Your Story"
+            color="#FFFFFF"
             multiline
             onChangeText={this.handleText}
-          />
-          <Button
-            small
-            backgroundColor="#00BFFF"
-            onPress={this.handleSubmit}
-            title="submit"
-          />
-        </Card>
+            value={this.state.text}
+        />
+
+          <View style={styles.buttonArea}>
+            <Button style={styles.buttonStyle}
+              small
+              title="SUBMIT"
+              backgroundColor="#ffffff"
+              icon={{name:'pencil', type: 'entypo', color: '#000000'}}
+              title="RECORD AT PIN"
+              color='#000000'
+              onPress={this.handleSubmit}
+            />
+          </View>
       </View>
     );
   }
@@ -73,11 +82,32 @@ class RecordInput extends Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   },
   textInput: {
-    height: 350, borderColor: 'gray', borderWidth: 1, fontSize: 20,
+    height: 270,
+    borderColor: 'gray',
+    // borderWidth: 0,
+    fontSize: 20,
+    color: '#ffffff',
+    padding: 10
   },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(192,192,192,0.3)',
+    marginBottom: 20,
+    // padding: 10
+  },
+  // buttonArea: {
+  //   flex: 1,
+  // },
+  buttonStyle: {
+    backgroundColor:'#000000',
+    padding: 10
+  }
 };
 
 const mapState = state => ({ currentPosition: state.position, user: state.user });
@@ -85,4 +115,7 @@ const mapState = state => ({ currentPosition: state.position, user: state.user }
 const mapDispatch = { commitMemory };
 
 export default connect(mapState, mapDispatch)(RecordInput);
+
+
+
 

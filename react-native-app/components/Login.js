@@ -1,12 +1,13 @@
 'use strict';
-import { connect } from 'react-redux';
-import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { View, ImageBackground } from 'react-native';
+import { FormLabel, FormInput, Button, Text } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
 
 import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
 
+// import wallpaper from '../images/wallpaper.jpg'
 
 class Login extends Component {
 
@@ -22,9 +23,9 @@ class Login extends Component {
     Actions.root();
   }
   handleLogin() {
-    // const { email, password } = this.props;
-    const email = 'cody@email.com'
-    const password = '123'
+    const { email, password } = this.props;
+    // const email = 'cody@email.com'
+    // const password = '123'
     this.props.getUser({ email, password });
     Actions.root();
   }
@@ -32,33 +33,49 @@ class Login extends Component {
   render() {
     const { textStyle } = styles
     return (
-      <View style={styles.container}>
-        <Card title='Signup page'>
-          <FormLabel>Email</FormLabel>
-          <FormInput
-            value="AUTO-FILLED-NOW"
+      <ImageBackground
+      source={ require('../images/wallpaper.jpg') }
+      style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Text style={styles.title}>BLACKLIGHT</Text>
+        </View>
+
+        <View>
+        <FormLabel>
+          Email
+        </FormLabel>
+          <FormInput style={styles.input}
+            placeholder="Email"
             onChangeText={this.onEmailChange.bind(this)}
-          />
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            value="123"
-            secureTextEntry
-            onChangeText={this.onPasswordChange.bind(this)}
-          />
-          <Card>
-            <Button
+            />
+          <FormLabel>
+            PW
+          </FormLabel>
+          <FormInput style={styles.input}
+             placeholder="Password"
+              value="blacklight"
+              secureTextEntry
+              onChangeText={this.onPasswordChange.bind(this)}
+            />
+          <Button style={styles.buttonStyle}
               small
+              backgroundColor='#000000'
+              icon={{name:'login', type: 'entypo', size:32}}
               onPress={this.handleLogin.bind(this)}
-              title='log in' />
-          </Card>
-          <Card>
-            <Button
+              title=''
+              />
+          <Button style={styles.buttonStyle}
               small
+              backgroundColor='#000000'
+              icon={{name:'add-user', type: 'entypo', size:32}}
               onPress={this.handleSubmit.bind(this)}
-              title='sign up' />
-          </Card>
-        </Card>
-      </View>
+              title=''
+              />
+        </View>
+
+
+
+      </ImageBackground>
     )
   }
 }
@@ -75,13 +92,74 @@ export default connect(mapStateToProps, mapDispatchToProps)(Login);
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    width: undefined,
+    height: undefined,
+    backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20
   },
-  textStyle: {
-    fontSize: 50
+  // textStyle: {
+  //   fontSize: 50,
+  //   color: 'white',
+  // },
+  title: {
+    fontSize: 34,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 10,
+    fontFamily: 'LaoSangamMN'
+  },
+  logoContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  // formContainer :{
+  //   backgroundColor: 'black',
+  //   alignItems: 'center',
+  // }
+  input: {
+    height: 35,
+    backgroundColor: 'rgba(192,192,192,0.3)',
+    marginBottom: 15,
+    // color: '#FFF',
+    // paddingHorizontal :10
+  },
+  buttonStyle: {
+    padding: 10
+  },
+  labelContainerStyle: {
+    marginTop: 8
   }
 };
 
 
+
+// <View>
+// <Card title='Signup page'>
+//   <FormLabel >Email</FormLabel>
+//   <FormInput
+//   onChangeText={this.onEmailChange.bind(this)}
+// />
+//   <FormLabel >Password</FormLabel>
+//   <FormInput
+//   value="blacklight"
+//   secureTextEntry
+//   onChangeText={this.onPasswordChange.bind(this)}
+//   />
+//   <Card>
+//   <Button
+//     small
+//     onPress={this.handleLogin.bind(this)}
+//     title='log in' />
+//   </Card>
+//   <Card>
+//   <Button
+//     small
+//     onPress={this.handleSubmit.bind(this)}
+//     title='sign up' />
+//  </Card>
+//  </Card>
+// </View>
