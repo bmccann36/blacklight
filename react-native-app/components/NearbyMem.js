@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapWmarker from './MapWmarker';
@@ -59,3 +60,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(NearbyMem);
+
