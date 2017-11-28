@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Icon } from '@expo/vector-icons'
 
 import { commitMemory } from '../store';
 
@@ -69,7 +70,7 @@ class RecordInput extends Component {
               small
               title="SUBMIT"
               backgroundColor="#ffffff"
-              icon={{name:'pencil', type: 'entypo', color: '#000000'}}
+
               title="RECORD AT PIN"
               color='#000000'
               onPress={this.handleSubmit}

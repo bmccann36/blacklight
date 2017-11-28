@@ -3,6 +3,8 @@ import { Text, View, AlertIOS, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
+import { Icon } from '@expo/vector-icons'
+
 import Map from './Map';
 
 const { height, width } = Dimensions.get('window');
@@ -59,7 +61,7 @@ class Record extends Component {
         <View style={styles.buttonArea}>
           <Button style={styles.buttonStyle}
             small
-            icon={{name:'pencil', type: 'entypo', color: '#000000'}}
+
             title="RECORD AT PIN"
             color='#000000'
             onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN

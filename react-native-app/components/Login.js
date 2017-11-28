@@ -2,8 +2,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ImageBackground } from 'react-native';
-import { FormLabel, FormInput, Button, Text } from 'react-native-elements'
+import { FormLabel, FormInput, Button, Text, Icon } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
+// import { Icon } from '@expo/vector-icons'
+
 
 import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
 
@@ -60,16 +62,14 @@ class Login extends Component {
           <Button style={styles.buttonStyle}
               small
               backgroundColor='#000000'
-              icon={{name:'login', type: 'entypo', size:32}}
               onPress={this.handleLogin.bind(this)}
-              title=''
+              title="login"
               />
           <Button style={styles.buttonStyle}
               small
               backgroundColor='#000000'
-              icon={{name:'add-user', type: 'entypo', size:32}}
               onPress={this.handleSubmit.bind(this)}
-              title=''
+              title='signup'
               />
         </View>
 

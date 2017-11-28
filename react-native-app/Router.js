@@ -1,9 +1,9 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 // import { Text } from 'react-native';
-import { Icon, Button, Text } from 'react-native-elements'
+import { Button, Text } from 'react-native-elements'
 
-
+import { Icon } from '@expo/vector-icons'
 import Test from './components/Test';
 import Login from './components/Login';
 import Record from './components/Record';
@@ -12,22 +12,29 @@ import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
 import TestLogin from './components/TestLogin';
 // Simple component to render something in place of icon
-const TabIcon = ({ focused, title }) => {
-  switch (title){
-    case 'MAIN' :
-      return (
-    <Icon color="#cec4c4" name="globe" size={32} type="feather" />
-      )
-    case 'REC' :
-      return (
-    <Icon color="#cec4c4" name="loupe" size={32} type="loupe" />
-      )
-    case 'NEARBY' :
-      return (
-    <Icon color="#cec4c4" name="unlock" size={32} type="feather" />
-      );
-  }
-};
+// const TabIcon = ({ focused, title }) => {
+//   switch (title) {
+//     case 'MAIN':
+//       return (
+//         <Icon color="#cec4c4" name="globe" size={32} type="feather" />
+//       )
+//     case 'REC':
+//       return (
+//         <Icon color="#cec4c4" name="loupe" size={32} />
+//       )
+//     case 'NEARBY':
+//       return (
+//         <Icon color="#cec4c4" name="unlock" size={32} />
+//       );
+//   }
+// };
+
+
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{ color: selected ? 'red' : 'white' }}>{title}</Text>
+  );
+}
 
 // <Scene key="login" component={Login} title="LANDING PAGE" />
 
@@ -37,7 +44,7 @@ const RouterComponent = props => (
     navigationBarStyle={styles.navBar}
     titleStyle={styles.navBarTitle}
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
-    >
+  >
 
     <Scene key="login" component={Login} />
     <Scene key="root">
@@ -87,16 +94,16 @@ const RouterComponent = props => (
 
 const styles = {
   navBar: {
-    backgroundColor:'#000000',
+    backgroundColor: '#000000',
   },
   navBarTitle: {
-    color:'#FFFFFF'
+    color: '#FFFFFF'
   },
   barButtonTextStyle: {
-    color:'#FFFFFF'
+    color: '#FFFFFF'
   },
   barButtonIconStyle: {
-    tintColor:'rgb(255,255,255)'
+    tintColor: 'rgb(255,255,255)'
   },
 }
 
@@ -104,11 +111,6 @@ export default RouterComponent;
 
 
 
-// const TabIcon = ({ selected, title }) => {
-//   return (
-//     <Text style={{ color: selected ? 'red' : 'black' }}>{title}</Text>
-//   );
-// }
 
 
 // <Icon color="Red" name="home" size={34} type="home" />
