@@ -1,6 +1,4 @@
-node_modules/
+node_modules
 .expo/
-ios/
 npm-debug.*
 clipBoard
-Pods/
