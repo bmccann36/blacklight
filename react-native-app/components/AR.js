@@ -32,10 +32,12 @@ class AR extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.stopWatching();
+    // this.props.stopWatching();
   }
 
   performLocationChecking() {
+    console.log('\n', 'this.props.userCurrentLatitude', this.props.userCurrentLatitude, '\n')
+    console.log('\n', 'this.props.userCurrentLongitude', this.props.userCurrentLongitude, '\n')
     let newDistance = geolib.getDistance(
       { latitude: this.props.userCurrentLatitude, longitude: this.props.userCurrentLongitude },
       { latitude: this.state.memory.lat, longitude: this.state.memory.lng },
