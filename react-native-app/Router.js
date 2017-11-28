@@ -5,7 +5,6 @@ import { Text } from 'react-native';
 
 
 import Test from './components/Test';
-import Test2 from './components/Test2';
 import Login from './components/Login';
 import Record from './components/Record';
 import Main from './components/Main';
