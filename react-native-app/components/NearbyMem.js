@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import MapWmarker from './MapWmarker';
+import NewComp from './NewComp';
 import { connect } from 'react-redux';
 
 const { height, width } = Dimensions.get('window');
@@ -27,7 +27,7 @@ class NearbyMem extends Component {
     };
     return (
       <View style={styles.container} >
-        <MapWmarker
+        <NewComp
           initialRegion={region}
           markerPosition={region}
           memories={nearMems}
@@ -60,4 +60,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(NearbyMem);
-
