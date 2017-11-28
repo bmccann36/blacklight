@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -26,43 +26,55 @@ class RecordInput extends Component {
   handleText(text) {
     this.setState({ text });
   }
+
+  // if dropped pin???
+
   handleSubmit() {
-    const { latitude, longitude } = this.props;
+    // IF THE DROPPEDPIN PROP HAS BEEN PASSED DOWN BY RECORD COMPONENT THROUGH ROUTER THE MEMORY LOCATION WILL BE SET TO DROPPEDPIN ELSE IT WILL SET TO CURRENTPOSITION
+    const loc = this.props.droppedPin ? this.props.droppedPin : this.props.currentPosition;
     const { title, text } = this.state;
     this.setState({ title: '', text: '' });
     this.props.commitMemory({
       title,
       text,
-      lat: latitude,
-      lng: longitude,
+      lat: loc.latitude,
+      lng: loc.longitude,
+      authorId: this.props.user.id,
     });
-    Actions.mainTab(); // REDIRECT TO MAIN TAB
+    // Actions.mainTab(); // REDIRECT TO MAIN TAB
     Alert.alert('Memory Saved!');
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Card title="Enter your story">
           <FormLabel>Title</FormLabel>
-          <FormInput
+          <FormInput style={styles.input}
+            placeholer="Title"
+            color="#FFFFFF"
             onChangeText={this.handleTitle}
-            value={this.state.title}
           />
-          <FormLabel>Text</FormLabel>
-          <TextInput
-            style={styles.textInput}
+          <FormLabel>YOUR STORY</FormLabel>
+
+          <TextInput style={styles.textInput}
+            placeholer="Your Story"
+            color="#FFFFFF"
             multiline
             onChangeText={this.handleText}
             value={this.state.text}
-          />
-          <Button
-            small
-            backgroundColor="#00BFFF"
-            onPress={this.handleSubmit}
-            title="submit"
-          />
-        </Card>
+        />
+
+          <View style={styles.buttonArea}>
+            <Button style={styles.buttonStyle}
+              small
+              title="SUBMIT"
+              backgroundColor="#ffffff"
+              icon={{name:'pencil', type: 'entypo', color: '#000000'}}
+              title="RECORD AT PIN"
+              color='#000000'
+              onPress={this.handleSubmit}
+            />
+          </View>
       </View>
     );
   }
@@ -70,15 +82,40 @@ class RecordInput extends Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   },
   textInput: {
-    height: 350, borderColor: 'gray', borderWidth: 1, fontSize: 20,
+    height: 270,
+    borderColor: 'gray',
+    // borderWidth: 0,
+    fontSize: 20,
+    color: '#ffffff',
+    padding: 10
   },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(192,192,192,0.3)',
+    marginBottom: 20,
+    // padding: 10
+  },
+  // buttonArea: {
+  //   flex: 1,
+  // },
+  buttonStyle: {
+    backgroundColor:'#000000',
+    padding: 10
+  }
 };
 
+const mapState = state => ({ currentPosition: state.position, user: state.user });
 
 const mapDispatch = { commitMemory };
 
-export default connect(null, mapDispatch)(RecordInput);
+export default connect(mapState, mapDispatch)(RecordInput);
+
+
+
 

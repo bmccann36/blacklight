@@ -13,6 +13,17 @@ export default class Test extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>TEST COMPONENT</Text>
 
+
+        <Card title="Enter your story">
+        </Card>
+        <TextInput
+          style={styles.textInput}
+          multiline
+          onChangeText={this.handleText}
+          value={this.state.text}
+        />
+
+
       </View>
     );
   }

@@ -10,17 +10,7 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0100;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const styles = {
-  container: {
-    flex: 1,
-  },
-  map: {
-    flex: 5,
-  },
-  buttonArea: {
-    flex: 1,
-  },
-};
+
 
 class Record extends Component {
   constructor() {
@@ -31,12 +21,12 @@ class Record extends Component {
   componentDidMount() {
     AlertIOS.alert(
       'Choose Location',
-      'use your current location or drop a pin to set location',
+      'Use your current location OR drop a pin to set location',
       [
         {
-          text: 'use my location', onPress: () => Actions.recordInput(),
+          text: 'USE MY LOCATION', onPress: () => Actions.recordInput(),
         },
-        { text: 'drop pin' },
+        { text: 'DROP PIN' },
       ],
     );
   }
@@ -67,11 +57,12 @@ class Record extends Component {
           }
         </View>
         <View style={styles.buttonArea}>
-          <Button
+          <Button style={styles.buttonStyle}
             small
-            backgroundColor="#00BFFF"
-            title="record at pin"
-            onPress={() => Actions.recordInput(this.state.droppedPin)} // NAVIGATE TO NEXT SCREEN
+            icon={{name:'pencil', type: 'entypo', color: '#000000'}}
+            title="RECORD AT PIN"
+            color='#000000'
+            onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN
             disabled={!this.state.droppedPin} // DISABLED TILL PIN IS DROPPED
           />
         </View>
@@ -83,6 +74,23 @@ class Record extends Component {
 const mapStateToProps = state => ({
   currentPosition: state.position,
 });
+
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor:'#000000',
+  },
+  map: {
+    flex: 5,
+  },
+  buttonArea: {
+    flex: 1,
+  },
+  buttonStyle: {
+    backgroundColor:'#000000',
+    padding: 10
+  }
+};
 
 export default connect(mapStateToProps)(Record);
 

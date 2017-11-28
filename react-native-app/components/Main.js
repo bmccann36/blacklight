@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { Text, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import { watchLocation, stopWatching, fetchMemories } from '../store';
@@ -35,6 +36,13 @@ class Main extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>MAIN COMPONENT</Text>
+        <Icon
+        name='sc-telegram'
+        type='evilicon'
+        color='#517fa4'
+        />
+        <Text h1>Icon test text h1</Text>
+        <Text h4>text h4</Text>
       </View>
     );
   }
