@@ -10,7 +10,7 @@ import Record from './components/Record';
 import Main from './components/Main';
 import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
-
+import TestLogin from './components/TestLogin';
 // Simple component to render something in place of icon
 const TabIcon = ({ focused, title }) => {
   switch (title){
