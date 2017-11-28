@@ -62,7 +62,7 @@ class Record extends Component {
             icon={{name:'pencil', type: 'entypo', color: '#000000'}}
             title="RECORD AT PIN"
             color='#000000'
-            onPress={() => Actions.recordInput(this.state.droppedPin)} // NAVIGATE TO NEXT SCREEN
+            onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN
             disabled={!this.state.droppedPin} // DISABLED TILL PIN IS DROPPED
           />
         </View>

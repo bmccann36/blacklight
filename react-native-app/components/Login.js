@@ -24,6 +24,8 @@ class Login extends Component {
   }
   handleLogin() {
     const { email, password } = this.props;
+    // const email = 'cody@email.com'
+    // const password = '123'
     this.props.getUser({ email, password });
     Actions.root();
   }

@@ -26,17 +26,22 @@ class RecordInput extends Component {
   handleText(text) {
     this.setState({ text });
   }
+
+  // if dropped pin???
+
   handleSubmit() {
-    const { latitude, longitude } = this.props;
+    // IF THE DROPPEDPIN PROP HAS BEEN PASSED DOWN BY RECORD COMPONENT THROUGH ROUTER THE MEMORY LOCATION WILL BE SET TO DROPPEDPIN ELSE IT WILL SET TO CURRENTPOSITION
+    const loc = this.props.droppedPin ? this.props.droppedPin : this.props.currentPosition;
     const { title, text } = this.state;
     this.setState({ title: '', text: '' });
     this.props.commitMemory({
       title,
       text,
-      lat: latitude,
-      lng: longitude,
+      lat: loc.latitude,
+      lng: loc.longitude,
+      authorId: this.props.user.id,
     });
-    Actions.mainTab(); // REDIRECT TO MAIN TAB
+    // Actions.mainTab(); // REDIRECT TO MAIN TAB
     Alert.alert('Memory Saved!');
   }
 
@@ -48,7 +53,6 @@ class RecordInput extends Component {
             placeholer="Title"
             color="#FFFFFF"
             onChangeText={this.handleTitle}
-            value={this.state.title}
           />
           <FormLabel>YOUR STORY</FormLabel>
 
@@ -106,10 +110,11 @@ const styles = {
   }
 };
 
+const mapState = state => ({ currentPosition: state.position, user: state.user });
 
 const mapDispatch = { commitMemory };
 
-export default connect(null, mapDispatch)(RecordInput);
+export default connect(mapState, mapDispatch)(RecordInput);
 
 
 
