@@ -1,18 +1,11 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Card, Button } from 'react-native-elements';
-import { View, Alert } from 'react-native';
+import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { commitMemory } from '../store';
 
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-};
 
 class RecordInput extends Component {
   constructor(props) {
@@ -32,17 +25,22 @@ class RecordInput extends Component {
   handleText(text) {
     this.setState({ text });
   }
+
+  // if dropped pin???
+
   handleSubmit() {
-    const { latitude, longitude } = this.props;
+    // IF THE DROPPEDPIN PROP HAS BEEN PASSED DOWN BY RECORD COMPONENT THROUGH ROUTER THE MEMORY LOCATION WILL BE SET TO DROPPEDPIN ELSE IT WILL SET TO CURRENTPOSITION
+    const loc = this.props.droppedPin ? this.props.droppedPin : this.props.currentPosition;
     const { title, text } = this.state;
     this.setState({ title: '', text: '' });
     this.props.commitMemory({
       title,
       text,
-      lat: latitude,
-      lng: longitude,
+      lat: loc.latitude,
+      lng: loc.longitude,
+      authorId: this.props.user.id,
     });
-    Actions.mainTab(); // REDIRECT TO MAIN TAB
+    // Actions.mainTab(); // REDIRECT TO MAIN TAB
     Alert.alert('Memory Saved!');
   }
 
@@ -53,12 +51,12 @@ class RecordInput extends Component {
           <FormLabel>Title</FormLabel>
           <FormInput
             onChangeText={this.handleTitle}
-            value={this.state.title}
           />
           <FormLabel>Text</FormLabel>
-          <FormInput
+          <TextInput
+            style={styles.textInput}
+            multiline
             onChangeText={this.handleText}
-            value={this.state.text}
           />
           <Button
             small
@@ -71,8 +69,18 @@ class RecordInput extends Component {
     );
   }
 }
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  textInput: {
+    height: 350, borderColor: 'gray', borderWidth: 1, fontSize: 20,
+  },
+};
+
+const mapState = state => ({ currentPosition: state.position, user: state.user });
 
 const mapDispatch = { commitMemory };
 
-export default connect(null, mapDispatch)(RecordInput);
-
+export default connect(mapState, mapDispatch)(RecordInput);

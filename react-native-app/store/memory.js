@@ -10,11 +10,12 @@ const memorySaved = (memory) => ({ type: MEMORY_SAVED, memory })
 
 //THUNK CREATORS
 export const fetchMemories = () => {
-  // console.log('calling fetch mem')
+  console.log('calling fetch mem')
   return function thunk(dispatch) {
     return axios.get('https://blacklight-app.herokuapp.com/api/memories')
       .then(res => res.data)
       .then(memories => {
+        console.log('memories', memories)
         dispatch(getAllMemories(memories));
       });
   }

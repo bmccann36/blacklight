@@ -1,10 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
 import Expo from 'expo';
+import store, { fetchMemories } from '../store';
 
-export default class AR extends React.Component {
+class AR extends React.Component {
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     memory: {},
+  //   };
+  // }
+
+  componentDidMount() {
+    // console.log('---------- HERE ---------')
+    // console.log('---------- this.props.fetchMemories ---------', this.props.fetchMemories)
+    store.dispatch(fetchMemories());
+  }
 
   _onGLContextCreate = async (gl) => {
     const arSession = await this._glView.startARSessionAsync();
@@ -39,6 +54,8 @@ export default class AR extends React.Component {
   }
 
   render() {
+    // console.log('\n', 'THIS.STATE', this.state, '\n')
+    console.log('\n', 'THIS.PROPS', this.props, '\n')
     return (
       <Expo.GLView
         ref={(ref) => this._glView = ref}
@@ -49,11 +66,12 @@ export default class AR extends React.Component {
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+const mapStateToProps = (state) => ({
+  userCurrentLatitude: state.position.latitude,
+  userCurrentLongitude: state.position.longitude,
+  memories: state.memories
+});
+
+// const mapDispatchToProps = { fetchMemories };
+
+export default connect(mapStateToProps)(AR);
