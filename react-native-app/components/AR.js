@@ -23,29 +23,29 @@ class AR extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.watchLocation();
+  // componentDidMount() {
+  //   // this.props.watchLocation();
 
-    setInterval(
-      this.performLocationChecking.bind(this),
-      1000);
-  }
+  //   setInterval(
+  //     this.performLocationChecking.bind(this),
+  //     1000);
+  // }
 
-  componentWillUnmount() {
-    // this.props.stopWatching();
-  }
+  // componentWillUnmount() {
+  //   // this.props.stopWatching();
+  // }
 
   performLocationChecking() {
-    console.log('\n', 'this.props.userCurrentLatitude', this.props.userCurrentLatitude, '\n')
-    console.log('\n', 'this.props.userCurrentLongitude', this.props.userCurrentLongitude, '\n')
+    // console.log('\n', 'this.props.userCurrentLocation.latitude', this.props.userCurrentLocation.latitude, '\n')
+    // console.log('\n', 'this.props.userCurrentLocation.longitude', this.props.userCurrentLocation.longitude, '\n')
     let newDistance = geolib.getDistance(
-      { latitude: this.props.userCurrentLatitude, longitude: this.props.userCurrentLongitude },
+      { latitude: this.props.userCurrentLocation.latitude, longitude: this.props.userCurrentLocation.longitude },
       { latitude: this.state.memory.lat, longitude: this.state.memory.lng },
       10,
       1
     )
     this.setState({ distance: newDistance });
-    console.log('\n', 'THIS.STATE.DISTANCE', this.state.distance, '\n')
+    // console.log('\n', 'THIS.STATE.DISTANCE', this.state.distance, '\n')
   }
 
   _onGLContextCreate = async (gl) => {
@@ -81,19 +81,22 @@ class AR extends React.Component {
   }
 
   render() {
+    console.log('\n', '---- subscribing to state! ----', this.props.userCurrentLocation, '\n')
     return (
-      <Expo.GLView
-        ref={(ref) => this._glView = ref}
-        style={{ flex: 1 }}
-        onContextCreate={this._onGLContextCreate}
-      />
+      <View>
+        <Text>{this.props.userCurrentLocation}</Text>
+        <Expo.GLView
+          ref={(ref) => this._glView = ref}
+          style={{ flex: 1 }}
+          onContextCreate={this._onGLContextCreate}
+        />
+      </View>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  userCurrentLatitude: state.position.latitude,
-  userCurrentLongitude: state.position.longitude,
+  userCurrentLocation: state.position
 });
 
 const mapDispatchToProps = { watchLocation, stopWatching };
