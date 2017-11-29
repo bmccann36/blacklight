@@ -25,7 +25,7 @@ class Main extends Component {
       style={styles.container}>
         <View style={styles.container}>
           <Text style={styles.textTitle}>Welcome to Blacklight</Text>
-          <Text style={styles.text}>a place to reveal somebody's secret...</Text>
+          <Text style={styles.text}>a place to reveal somebodys secret...</Text>
         </View>
       </ImageBackground>
     );
