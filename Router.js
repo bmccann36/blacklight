@@ -47,7 +47,7 @@ const RouterComponent = props => (
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
   >
 
-    {/* <Scene key="login" component={Login} /> */}
+    <Scene key="login" component={Login} />
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -64,17 +64,6 @@ const RouterComponent = props => (
             color='#000000'
           />
         </Scene>
-<<<<<<< HEAD
-        {/* AR */}
-        <Scene key="arTab" title="AR" icon={TabIcon}>
-        <Scene
-          key="ar"
-          component={AR}
-          title="AR MEMORY"
-        />
-      </Scene>
-=======
->>>>>>> master-2
         {/* memory list */}
         <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
           <Scene
