@@ -61,7 +61,6 @@ class Record extends Component {
           <Button style={styles.buttonStyle}
             small
             title="RECORD AT PIN"
-            color='#000000'
             onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN
             disabled={!this.state.droppedPin} // DISABLED TILL PIN IS DROPPED
           />
