@@ -11,7 +11,7 @@ import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
 
 // Simple component to render something in place of icon
-const TabIcon = ({ focused, title }) => {
+const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
       return (
@@ -26,13 +26,17 @@ const TabIcon = ({ focused, title }) => {
       return (
         <Feather name="unlock" size={32} color="#cec4c4" />
       );
+    case 'MEMORY LIST':
+      return (
+        <Feather name="unlock" size={32}  color={selected ? 'orange' : 'white'} />
+      );
   }
 };
 
 
 // const TabIcon = ({ selected, title }) => {
 //   return (
-//     <Text style={{ color: selected ? 'red' : 'white' }}>{title}</Text>
+//
 //   );
 // }
 
@@ -47,7 +51,7 @@ const RouterComponent = props => (
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
   >
 
-     <Scene key="login" component={Login} />
+    <Scene key="login" component={Login} />
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -62,6 +66,14 @@ const RouterComponent = props => (
             component={Main}
             title="BLACKLIGHT"
             color='#000000'
+          />
+        </Scene>
+        {/* memory list */}
+        <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
+          <Scene
+            key="memoryList"
+            component={MemoryList}
+            title="MEMORY LIST"
           />
         </Scene>
         {/* RECORD */}
