@@ -8,7 +8,7 @@ export default function Map(props) {
   return (
     <View style={styles.container}>
       <MapView
-        mapType='satellite'
+        mapType='hybrid'
         initialRegion={props.initialRegion}
         onLongPress={e => props.attachAPin(e)}
         style={styles.map}
