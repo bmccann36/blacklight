@@ -2,6 +2,36 @@ import React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
 
+
+export default function Map(props) {
+  return (
+    <View style={styles.container}>
+      <MapView
+        mapType='satellite'
+        initialRegion={props.initialRegion}
+        onLongPress={e => props.attachAPin(e)}
+        style={styles.map}
+        region={props.currentLocation}
+        rotateEnabled={false}
+      >
+        <MapView.Marker // CURRENT POSITION MARKER
+          coordinate={props.markerPosition}
+        >
+          <View style={styles.radius}>
+            <View style={styles.marker} />
+          </View>
+        </MapView.Marker>
+        {props.droppedPin && // RENDER PIN WHEN IT'S DEFINED
+          <MapView.Marker
+            coordinate={props.droppedPin}
+          />
+        }
+      </MapView>
+    </View>
+  );
+}
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -42,30 +72,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-
-export default function Map(props) {
-  return (
-    <View style={styles.container}>
-      <MapView
-        initialRegion={props.initialRegion}
-        onLongPress={e => props.attachAPin(e)}
-        style={styles.map}
-        region={props.currentLocation}
-      >
-        <MapView.Marker // CURRENT POSITION MARKER
-          coordinate={props.markerPosition}
-        >
-          <View style={styles.radius}>
-            <View style={styles.marker} />
-          </View>
-        </MapView.Marker>
-        {props.droppedPin && // RENDER PIN WHEN IT'S DEFINED
-          <MapView.Marker
-            coordinate={props.droppedPin}
-          />
-        }
-      </MapView>
-    </View>
-  );
-}

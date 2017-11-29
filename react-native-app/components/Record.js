@@ -3,7 +3,6 @@ import { Text, View, AlertIOS, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
-import { Icon } from '@expo/vector-icons'
 
 import Map from './Map';
 
@@ -61,7 +60,6 @@ class Record extends Component {
         <View style={styles.buttonArea}>
           <Button style={styles.buttonStyle}
             small
-
             title="RECORD AT PIN"
             color='#000000'
             onPress={() => Actions.recordInput(this.state)} // NAVIGATE TO NEXT SCREEN

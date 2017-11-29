@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { View, ImageBackground } from 'react-native';
 import { FormLabel, FormInput, Button, Text, Icon } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
-// import { Icon } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
@@ -63,13 +64,13 @@ class Login extends Component {
               small
               backgroundColor='#000000'
               onPress={this.handleLogin.bind(this)}
-              title="login"
+              title="LOGIN"
               />
           <Button style={styles.buttonStyle}
               small
               backgroundColor='#000000'
               onPress={this.handleSubmit.bind(this)}
-              title='signup'
+              title='SIGNUP'
               />
         </View>
 
