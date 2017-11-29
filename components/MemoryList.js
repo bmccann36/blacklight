@@ -49,7 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#F0FFFF',
+    backgroundColor: '#000000',
     justifyContent: 'center',
   },
   text: {

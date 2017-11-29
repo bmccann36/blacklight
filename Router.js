@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Button, Text } from 'react-native-elements'
-import { Ionicons, Feather, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, Feather, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 import Login from './components/Login';
 import Record from './components/Record';
@@ -16,15 +16,19 @@ const TabIcon = ({ focused, title, selected }) => {
     case 'MAIN':
       return (
         // <Ionicons name="md-checkmark-circle" size={32} color="green" />
-        <Feather name="globe" size={32} color="#cec4c4" />
+        <Feather name="globe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
       )
     case 'REC':
       return (
-        <MaterialIcons name="loupe" size={32} color="#cec4c4" />
+        <MaterialIcons name="loupe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
       )
     case 'NEARBY':
       return (
-        <Feather name="unlock" size={32} color="#cec4c4" />
+        <Feather name="unlock" size={32} color={selected ? 'orange' : '#cec4c4'}  />
+      );
+    case 'MEMORY LIST':
+      return (
+        <FontAwesome name="feed" size={32}  color={selected ? 'orange' : '#cec4c4'} />
       );
     case 'MEMORY LIST':
       return (
@@ -73,7 +77,11 @@ const RouterComponent = props => (
           <Scene
             key="memoryList"
             component={MemoryList}
+<<<<<<< HEAD
+            title="MEMORY FEED"
+=======
             title="MEMORY LIST"
+>>>>>>> master-2
           />
         </Scene>
         {/* RECORD */}
@@ -81,7 +89,7 @@ const RouterComponent = props => (
           <Scene
             key="recordHome"
             component={Record}
-            title="DROP PIN"
+            title="LEAVE MEMORY"
           />
           <Scene
             key="recordInput"
