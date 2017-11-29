@@ -27,7 +27,7 @@ class Main extends Component {
           <Text style={styles.textTitle}>Welcome to Blacklight</Text>
           <Text style={styles.text}>a place to reveal somebody's secret...</Text>
         </View>
-      </ ImageBackground>
+      </ImageBackground>
     );
   }
 }
