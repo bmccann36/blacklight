@@ -110,9 +110,3 @@ export default class AR extends React.Component {
   }
 }
 
-
-
-
-
-
-// sphere stylying
