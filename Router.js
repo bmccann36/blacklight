@@ -9,7 +9,8 @@ import Main from './components/Main';
 import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
-import SingleMemoryView from './components/SingleMemoryView'
+import SingleMemoryView from './components/SingleMemoryView';
+import AR from './components/AR';
 // Simple component to render something in place of icon
 const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
@@ -27,23 +28,14 @@ const TabIcon = ({ focused, title, selected }) => {
       );
     case 'MEMORY LIST':
       return (
-        <FontAwesome name="feed" size={32}  color={selected ? '#e50000' : '#cec4c4'} />
+        <FontAwesome name="feed" size={32}  color={selected ? 'orange' : '#cec4c4'} />
       );
-    // case 'MEMORY LIST':
-    //   return (
-    //     <Feather name="unlock" size={32}  color={selected ? 'orange' : 'white'} />
-    //   );
+    case 'AR':
+      return (
+        <Feather name="unlock" size={32}  color={selected ? 'orange' : 'white'} />
+      );
   }
 };
-
-
-// const TabIcon = ({ selected, title }) => {
-//   return (
-//
-//   );
-// }
-
-// <Scene key="login" component={Login} title="LANDING PAGE" />
 
 const RouterComponent = props => (
   // <Router />
@@ -71,6 +63,14 @@ const RouterComponent = props => (
             color='#000000'
           />
         </Scene>
+        {/* AR */}
+        <Scene key="arTab" title="AR" icon={TabIcon}>
+        <Scene
+          key="ar"
+          component={AR}
+          title="SEE MEMORY"
+        />
+      </Scene>
         {/* memory list */}
         <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
           <Scene
