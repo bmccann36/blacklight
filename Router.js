@@ -28,11 +28,11 @@ const TabIcon = ({ focused, title, selected }) => {
       );
     case 'MEMORY LIST':
       return (
-        <FontAwesome name="feed" size={32} color={selected ? 'orange' : '#cec4c4'} />
+        <FontAwesome name="feed" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     case 'AR':
       return (
-        <Feather name="unlock" size={32} color={selected ? 'orange' : 'white'} />
+        <Feather name="eye" size={32} color={selected ? '#e50000' : 'white'} />
       );
     default: return null;
   }
@@ -62,14 +62,6 @@ const RouterComponent = props => (
             component={Main}
             title="BLACKLIGHT"
             color='#000000'
-          />
-        </Scene>
-        {/* AR */}
-        <Scene key="arTab" title="AR" icon={TabIcon}>
-          <Scene
-            key="ar"
-            component={AR}
-            title="SEE MEMORY"
           />
         </Scene>
         {/* memory list */}
@@ -104,6 +96,14 @@ const RouterComponent = props => (
             key="nearbyMem"
             component={NearbyMem}
             title="MEMORY MAP"
+          />
+        </Scene>
+        {/* AR */}
+        <Scene key="arTab" title="AR" icon={TabIcon}>
+          <Scene
+            key="ar"
+            component={AR}
+            title="SEE MEMORY"
           />
         </Scene>
       </Scene>
