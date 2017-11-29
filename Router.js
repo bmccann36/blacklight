@@ -47,7 +47,7 @@ const RouterComponent = props => (
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
   >
 
-    {/* <Scene key="login" component={Login} /> */}
+    <Scene key="login" component={Login} />
     <Scene key="root">
       {/* Tab Container */}
       <Scene
