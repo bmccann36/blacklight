@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Button, Text } from 'react-native-elements'
-import { Ionicons, Feather, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { Feather, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
 
 import Login from './components/Login';
 import Record from './components/Record';
@@ -16,16 +16,15 @@ const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
       return (
-        // <Ionicons name="md-checkmark-circle" size={32} color="green" />
-        <Feather name="globe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
+        <Entypo name="light-bulb" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
       )
     case 'REC':
       return (
-        <MaterialIcons name="loupe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
+        <MaterialIcons name="loupe" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
       )
     case 'NEARBY':
       return (
-        <Feather name="unlock" size={32} color={selected ? 'orange' : '#cec4c4'}  />
+        <Feather name="globe" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
       );
     case 'MEMORY LIST':
       return (
@@ -37,15 +36,6 @@ const TabIcon = ({ focused, title, selected }) => {
       );
   }
 };
-
-
-// const TabIcon = ({ selected, title }) => {
-//   return (
-//
-//   );
-// }
-
-// <Scene key="login" component={Login} title="LANDING PAGE" />
 
 const RouterComponent = props => (
   // <Router />
@@ -91,7 +81,7 @@ const RouterComponent = props => (
           <Scene
             key="singleMemory"
             component={SingleMemoryView}
-            title="TAB"
+            title="MEMORY"
           />
         </Scene>
         {/* RECORD */}
