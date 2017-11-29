@@ -41,7 +41,7 @@ class RecordInput extends Component {
       lng: loc.longitude,
       authorId: this.props.user.id,
     });
-    // Actions.mainTab(); // REDIRECT TO MAIN TAB
+    Actions.nearbyTab(); // REDIRECT TO MAIN TAB
     Alert.alert('Memory Saved!');
   }
 
