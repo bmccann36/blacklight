@@ -77,11 +77,7 @@ const RouterComponent = props => (
           <Scene
             key="memoryList"
             component={MemoryList}
-<<<<<<< HEAD
             title="MEMORY FEED"
-=======
-            title="MEMORY LIST"
->>>>>>> master-2
           />
           <Scene
             key="singleMemory"
@@ -123,13 +119,13 @@ const styles = {
     backgroundColor: '#000000',
   },
   navBarTitle: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   barButtonTextStyle: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   barButtonIconStyle: {
-    tintColor: 'rgb(255,255,255)'
+    tintColor: 'rgb(255,255,255)',
   },
 }
 
