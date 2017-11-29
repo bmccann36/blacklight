@@ -101,10 +101,6 @@ const styles = {
     justifyContent: 'center',
     padding: 20
   },
-  // textStyle: {
-  //   fontSize: 50,
-  //   color: 'white',
-  // },
   title: {
     fontSize: 34,
     fontWeight: 'bold',
@@ -118,16 +114,10 @@ const styles = {
     flexGrow: 1,
     justifyContent: 'center',
   },
-  // formContainer :{
-  //   backgroundColor: 'black',
-  //   alignItems: 'center',
-  // }
   input: {
     height: 35,
     backgroundColor: 'rgba(192,192,192,0.3)',
     marginBottom: 15,
-    // color: '#FFF',
-    // paddingHorizontal :10
   },
   buttonStyle: {
     padding: 10
