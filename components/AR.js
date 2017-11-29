@@ -31,7 +31,7 @@ export default class AR extends React.Component {
       intvl: null
     };
   }
-  
+
   componentDidMount() {
     let intvl = setInterval(() => {
       Expo.Location.getCurrentPositionAsync({ enableHighAccuracy: true })
@@ -48,7 +48,7 @@ export default class AR extends React.Component {
 
     this.setState({ intvl });
   }
-              
+
   componentWillUnmount() {
     if (typeof this.state.intvl === 'function') {
       this.state.intvl();
@@ -91,7 +91,7 @@ export default class AR extends React.Component {
         renderer.render(scene, camera);
         gl.endFrameEXP();
       }
-      
+
     // } else {
     //   animate = () => {
     //     requestAnimationFrame(animate);
@@ -99,7 +99,7 @@ export default class AR extends React.Component {
     //     gl.endFrameEXP();
     //   }
     // }
-    
+
     animate();
   }
 
@@ -109,3 +109,4 @@ export default class AR extends React.Component {
     );
   }
 }
+

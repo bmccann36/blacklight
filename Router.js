@@ -16,24 +16,25 @@ const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
       return (
-        <Entypo name="light-bulb" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
-      )
+        <Entypo name="light-bulb" size={32} color={selected ? '#e50000' : '#cec4c4'} />
+      );
     case 'REC':
       return (
-        <MaterialIcons name="loupe" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
-      )
+        <MaterialIcons name="loupe" size={32} color={selected ? '#e50000' : '#cec4c4'} />
+      );
     case 'NEARBY':
       return (
-        <Feather name="globe" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
+        <Feather name="globe" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     case 'MEMORY LIST':
       return (
-        <FontAwesome name="feed" size={32}  color={selected ? '#e50000' : '#cec4c4'} />
+        <FontAwesome name="feed" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     case 'AR':
       return (
-        <Feather name="unlock" size={32}  color={selected ? '#e50000' : 'white'} />
+        <Feather name="eye" size={32} color={selected ? '#e50000' : 'white'} />
       );
+    default: return null;
   }
 };
 
@@ -46,7 +47,7 @@ const RouterComponent = props => (
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
   >
 
-    <Scene key="login" component={Login} />
+    {/* <Scene key="login" component={Login} /> */}
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -55,7 +56,7 @@ const RouterComponent = props => (
         tabBarStyle={{ backgroundColor: '#1c1616', height: 50 }}
       >
         {/* MAIN */}
-        <Scene key="mainTab" title="MAIN" icon={TabIcon}>
+        <Scene key="mainTab" title="MAIN" icon={TabIcon} >
           <Scene
             key="main"
             component={Main}
@@ -63,6 +64,7 @@ const RouterComponent = props => (
             color='#000000'
           />
         </Scene>
+<<<<<<< HEAD
         {/* AR */}
         <Scene key="arTab" title="AR" icon={TabIcon}>
         <Scene
@@ -71,6 +73,8 @@ const RouterComponent = props => (
           title="AR MEMORY"
         />
       </Scene>
+=======
+>>>>>>> master-2
         {/* memory list */}
         <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
           <Scene
@@ -98,11 +102,19 @@ const RouterComponent = props => (
           />
         </Scene>
         {/* NEARBY */}
-        <Scene key="nearbyTab" title="NEARBY" icon={TabIcon}>
+        <Scene key="nearbyTab" title="NEARBY" icon={TabIcon} >
           <Scene
             key="nearbyMem"
             component={NearbyMem}
             title="MEMORY MAP"
+          />
+        </Scene>
+        {/* AR */}
+        <Scene key="arTab" title="AR" icon={TabIcon}>
+          <Scene
+            key="ar"
+            component={AR}
+            title="SEE MEMORY"
           />
         </Scene>
       </Scene>
@@ -110,8 +122,6 @@ const RouterComponent = props => (
     </Scene>
   </Router>
 );
-
-
 
 const styles = {
   navBar: {
@@ -126,12 +136,7 @@ const styles = {
   barButtonIconStyle: {
     tintColor: 'rgb(255,255,255)',
   },
-}
+};
 
 export default RouterComponent;
 
-
-
-
-
-// <Icon color="Red" name="home" size={34} type="home" />

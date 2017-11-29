@@ -28,7 +28,7 @@ class Record extends Component {
         {
           text: 'USE MY LOCATION', onPress: () => Actions.recordInput(),
         },
-        { text: 'DROP PIN' },
+        { text: 'OK' },
       ],
     );
   }
@@ -51,7 +51,7 @@ class Record extends Component {
         <View style={styles.map}>
           {this.props.currentPosition && // MAP LOADS IF IT HAS A POSITION
             <Map
-              currentLocation={loc}
+              initialRegion={loc}
               markerPosition={loc}
               attachAPin={this.attachAPin}
               droppedPin={this.state.droppedPin}
