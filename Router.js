@@ -16,23 +16,23 @@ const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
       return (
-        <Entypo name="light-bulb" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
+        <Entypo name="light-bulb" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       )
     case 'REC':
       return (
-        <MaterialIcons name="loupe" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
+        <MaterialIcons name="loupe" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       )
     case 'NEARBY':
       return (
-        <Feather name="globe" size={32} color={selected ? '#e50000' : '#cec4c4'}  />
+        <Feather name="globe" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     case 'MEMORY LIST':
       return (
-        <FontAwesome name="feed" size={32}  color={selected ? 'orange' : '#cec4c4'} />
+        <FontAwesome name="feed" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     case 'AR':
       return (
-        <Feather name="unlock" size={32}  color={selected ? 'orange' : 'white'} />
+        <Feather name="eye" size={32} color={selected ? '#e50000' : 'white'} />
       );
   }
 };
@@ -63,14 +63,6 @@ const RouterComponent = props => (
             color='#000000'
           />
         </Scene>
-        {/* AR */}
-        <Scene key="arTab" title="AR" icon={TabIcon}>
-        <Scene
-          key="ar"
-          component={AR}
-          title="SEE MEMORY"
-        />
-      </Scene>
         {/* memory list */}
         <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
           <Scene
@@ -103,6 +95,14 @@ const RouterComponent = props => (
             key="nearbyMem"
             component={NearbyMem}
             title="MEMORY MAP"
+          />
+        </Scene>
+        {/* AR */}
+        <Scene key="arTab" title="AR" icon={TabIcon}>
+          <Scene
+            key="ar"
+            component={AR}
+            title="SEE MEMORY"
           />
         </Scene>
       </Scene>
