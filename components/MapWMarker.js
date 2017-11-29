@@ -1,11 +1,10 @@
 import React from 'react';
-import MapView from 'react-native-maps';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { MapView } from 'expo';
+import { View, Text } from 'react-native';
+const icon = require('../images/blacklightIcon.png');
 
-const { height, width } = Dimensions.get('window');
-
-
-export default function Map(props) {
+export default function MapWMarker(props) {
+  console.log(props)
   const callouts = props.memories.map(mem => (
     <MapView.Marker
       key={mem.id}
@@ -21,66 +20,23 @@ export default function Map(props) {
       </MapView.Callout>
     </MapView.Marker>
   ));
-
-
   return (
-    <View style={styles.container}>
-      <MapView
-        initialRegion={props.initialRegion}
-        style={styles.map}
-        region={props.currentLocation}
-        rotateEnabled={false}
-        mapType='satellite'
-      >
-        {callouts}
-      </MapView>
-    </View>
+    <MapView
+      style={{ flex: 1 }}
+      initialRegion={props.initialRegion}
+      markerPostion={props.markerPostion}
+    >
+      <MapView.Marker // current position marker
+        title="you are here"
+        coordinate={props.markerPosition}
+        image={icon}
+      />
+      {callouts}
+    </MapView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#000000',
-    flexDirection: 'column',
-    alignSelf: 'flex-start',
-  },
-  map: {
-    width: width,
-    height: height,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  radius: {
-    height: 50,
-    width: 50,
-    borderRadius: 50 / 2,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(0,122,255,0.1)',
-    borderWidth: 1,
-    borderColor: 'rgba(0, 122, 255, 0.3)',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  marker: {
-    height: 20,
-    width: 20,
-    borderWidth: 3,
-    borderColor: 'white',
-    borderRadius: 20 / 2,
-    overflow: 'hidden',
-    backgroundColor: '#007AFF',
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+const styles = {
   callout: {
     width: 250,
     flexDirection: 'row',
@@ -104,4 +60,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#FFFFFF',
   },
-});
+};
