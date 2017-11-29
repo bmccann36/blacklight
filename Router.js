@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Button, Text } from 'react-native-elements'
-import { Ionicons, Feather, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, Feather, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 import Login from './components/Login';
 import Record from './components/Record';
@@ -11,20 +11,24 @@ import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
 
 // Simple component to render something in place of icon
-const TabIcon = ({ focused, title }) => {
+const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
       return (
         // <Ionicons name="md-checkmark-circle" size={32} color="green" />
-        <Feather name="globe" size={32} color="#cec4c4" />
+        <Feather name="globe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
       )
     case 'REC':
       return (
-        <MaterialIcons name="loupe" size={32} color="#cec4c4" />
+        <MaterialIcons name="loupe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
       )
     case 'NEARBY':
       return (
-        <Feather name="unlock" size={32} color="#cec4c4" />
+        <Feather name="unlock" size={32} color={selected ? 'orange' : '#cec4c4'}  />
+      );
+    case 'MEMORY LIST':
+      return (
+        <FontAwesome name="feed" size={32}  color={selected ? 'orange' : '#cec4c4'} />
       );
   }
 };
@@ -32,7 +36,7 @@ const TabIcon = ({ focused, title }) => {
 
 // const TabIcon = ({ selected, title }) => {
 //   return (
-//     <Text style={{ color: selected ? 'red' : 'white' }}>{title}</Text>
+//
 //   );
 // }
 
@@ -47,7 +51,7 @@ const RouterComponent = props => (
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
   >
 
-     <Scene key="login" component={Login} />
+    <Scene key="login" component={Login} />
     <Scene key="root">
       {/* Tab Container */}
       <Scene
@@ -64,12 +68,20 @@ const RouterComponent = props => (
             color='#000000'
           />
         </Scene>
+        {/* memory list */}
+        <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
+          <Scene
+            key="memoryList"
+            component={MemoryList}
+            title="MEMORY FEED"
+          />
+        </Scene>
         {/* RECORD */}
         <Scene key="recordTab" title="REC" icon={TabIcon}>
           <Scene
             key="recordHome"
             component={Record}
-            title="DROP PIN"
+            title="LEAVE MEMORY"
           />
           <Scene
             key="recordInput"
