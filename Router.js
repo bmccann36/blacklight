@@ -9,7 +9,7 @@ import Main from './components/Main';
 import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
-
+import SingleMemoryView from './components/SingleMemoryView'
 // Simple component to render something in place of icon
 const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
@@ -77,11 +77,12 @@ const RouterComponent = props => (
           <Scene
             key="memoryList"
             component={MemoryList}
-<<<<<<< HEAD
             title="MEMORY FEED"
-=======
-            title="MEMORY LIST"
->>>>>>> master-2
+          />
+          <Scene
+            key="singleMemory"
+            component={SingleMemoryView}
+            title="TAB"
           />
         </Scene>
         {/* RECORD */}
@@ -118,13 +119,13 @@ const styles = {
     backgroundColor: '#000000',
   },
   navBarTitle: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   barButtonTextStyle: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   barButtonIconStyle: {
-    tintColor: 'rgb(255,255,255)'
+    tintColor: 'rgb(255,255,255)',
   },
 }
 

@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 
 export default function Map(props) {
+  const defaultRegion = { latitude: 40.705825, longitude: -74.007879 }
   return (
     <View style={styles.container}>
       <MapView
