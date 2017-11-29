@@ -8,7 +8,8 @@ import Map from './Map';
 
 const { height, width } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.0100;
+// const LATITUDE_DELTA = 0.0100;
+const LATITUDE_DELTA = 0.1200;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 

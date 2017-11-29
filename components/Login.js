@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 import { View, ImageBackground } from 'react-native';
 import { FormLabel, FormInput, Button, Text, Icon } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
-import { Ionicons } from '@expo/vector-icons';
-
 
 
 import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
 
-// import wallpaper from '../images/wallpaper.jpg'
 
 class Login extends Component {
 
