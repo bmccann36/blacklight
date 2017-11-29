@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Button, Text } from 'react-native-elements'
-import { Ionicons, Feather, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { Feather, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
 
 import Login from './components/Login';
 import Record from './components/Record';
@@ -10,33 +10,33 @@ import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
 import SingleMemoryView from './components/SingleMemoryView';
-
+import AR from './components/AR';
+// Simple component to render something in place of icon
 const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
       return (
-        // <Ionicons name="md-checkmark-circle" size={32} color="green" />
-        <Feather name="globe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
-      )
+        <Entypo name="light-bulb" size={32} color={selected ? '#e50000' : '#cec4c4'} />
+      );
     case 'REC':
       return (
-        <MaterialIcons name="loupe" size={32} color={selected ? 'orange' : '#cec4c4'}  />
-      )
+        <MaterialIcons name="loupe" size={32} color={selected ? '#e50000' : '#cec4c4'} />
+      );
     case 'NEARBY':
       return (
-        <Feather name="unlock" size={32} color={selected ? 'orange' : '#cec4c4'}  />
+        <Feather name="globe" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     case 'MEMORY LIST':
       return (
-        <FontAwesome name="feed" size={32}  color={selected ? 'orange' : '#cec4c4'} />
+        <FontAwesome name="feed" size={32} color={selected ? 'orange' : '#cec4c4'} />
       );
-    case 'MEMORY LIST':
+    case 'AR':
       return (
-        <Feather name="unlock" size={32}  color={selected ? 'orange' : 'white'} />
+        <Feather name="unlock" size={32} color={selected ? 'orange' : 'white'} />
       );
+    default: return null;
   }
 };
-
 
 const RouterComponent = props => (
   // <Router />
@@ -64,6 +64,14 @@ const RouterComponent = props => (
             color='#000000'
           />
         </Scene>
+        {/* AR */}
+        <Scene key="arTab" title="AR" icon={TabIcon}>
+          <Scene
+            key="ar"
+            component={AR}
+            title="SEE MEMORY"
+          />
+        </Scene>
         {/* memory list */}
         <Scene key="memoryListTab" title="MEMORY LIST" icon={TabIcon}>
           <Scene
@@ -74,7 +82,7 @@ const RouterComponent = props => (
           <Scene
             key="singleMemory"
             component={SingleMemoryView}
-            title="TAB"
+            title="MEMORY"
           />
         </Scene>
         {/* RECORD */}
@@ -104,8 +112,6 @@ const RouterComponent = props => (
   </Router>
 );
 
-
-
 const styles = {
   navBar: {
     backgroundColor: '#000000',
@@ -119,12 +125,7 @@ const styles = {
   barButtonIconStyle: {
     tintColor: 'rgb(255,255,255)',
   },
-}
+};
 
 export default RouterComponent;
 
-
-
-
-
-// <Icon color="Red" name="home" size={34} type="home" />

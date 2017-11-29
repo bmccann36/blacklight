@@ -20,12 +20,16 @@ class MemoryList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>LIST OF MEMORIES</Text>
         <ScrollView>
-          <List>
+          <List containerStyle={styles.containerStyle}>
             {
               this.props.memories.map((memory) => {
-                return (<ListItem key={memory.id} title={memory.title}
+                return (<ListItem
+                  containerStyle={styles.listItem}
+                  titleStyle={styles.text}
+                  key={memory.id}
+                  title={memory.title}
+                  chevronColor="#595a5b"
                   onPress={() => this.handlePress(memory)}
                 />);
               })
@@ -49,14 +53,24 @@ export default connect(mapStateToProps, mapDispatchToProps)(MemoryList);
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#000000',
     justifyContent: 'center',
+    marginTop: 25,
+    backgroundColor: '#000000',
+    marginBottom: 25,
+  },
+  containerStyle:{
+    borderTopColor: "#1c1c1c",
+    borderBottomColor: "#1c1c1c",
+    backgroundColor: '#000000',
+    paddingTop: 30
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'center',
-    marginTop: 10,
+    color: '#FFFFFF',
   },
+  listItem: {
+    backgroundColor: '#000000',
+    borderBottomWidth: 0,
+    borderTopWidth: 0,
+  }
 };

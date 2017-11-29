@@ -1,13 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+// import { connect } from 'react-redux';
+// import { StyleSheet, Text, View } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
 import Expo from 'expo';
 import geolib from 'geolib';
-import { watchLocation, stopWatching } from '../store';
+// import { watchLocation, stopWatching } from '../store';
+console.disableYellowBox = true;
 
-class AR extends React.Component {
+// ---------- NOTE -----------
+// This only works with a hard coded memory on local state right now.
+// Functionally this is just an AR component that keeps track of a users location,
+  // the distance, in meters from users current location and the hardcoded memory.
+  // The sphere is in no way connected to the distance measurement or anything.
+  // The AR part just renders the sphere always.
+
+export default class AR extends React.Component {
 
   constructor(props) {
     super(props);
@@ -20,32 +28,32 @@ class AR extends React.Component {
         authorId: 1,
       },
       distance: NaN,
+      intvl: null
     };
   }
+  
+  componentDidMount() {
+    let intvl = setInterval(() => {
+      Expo.Location.getCurrentPositionAsync({ enableHighAccuracy: true })
+        .then((result) => {
+          let newDistance = geolib.getDistance(
+            { latitude: result.coords.latitude, longitude: result.coords.longitude },
+            { latitude: this.state.memory.lat, longitude: this.state.memory.lng },
+            1,
+            3
+          );
+          this.setState({distance: newDistance});
+        });
+    }, 100);
 
-  // componentDidMount() {
-  //   // this.props.watchLocation();
-
-  //   setInterval(
-  //     this.performLocationChecking.bind(this),
-  //     1000);
-  // }
-
-  // componentWillUnmount() {
-  //   // this.props.stopWatching();
-  // }
-
-  performLocationChecking() {
-    // console.log('\n', 'this.props.userCurrentLocation.latitude', this.props.userCurrentLocation.latitude, '\n')
-    // console.log('\n', 'this.props.userCurrentLocation.longitude', this.props.userCurrentLocation.longitude, '\n')
-    let newDistance = geolib.getDistance(
-      { latitude: this.props.userCurrentLocation.latitude, longitude: this.props.userCurrentLocation.longitude },
-      { latitude: this.state.memory.lat, longitude: this.state.memory.lng },
-      10,
-      1
-    )
-    this.setState({ distance: newDistance });
-    // console.log('\n', 'THIS.STATE.DISTANCE', this.state.distance, '\n')
+    this.setState({ intvl });
+  }
+              
+  componentWillUnmount() {
+    if (typeof this.state.intvl === 'function') {
+      this.state.intvl();
+      this.setState({ intvl: null });
+    }
   }
 
   _onGLContextCreate = async (gl) => {
@@ -60,45 +68,44 @@ class AR extends React.Component {
     );
     const renderer = ExpoTHREE.createRenderer({ gl });
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
+    let animate;
 
     scene.background = ExpoTHREE.createARBackgroundTexture(arSession, renderer);
 
-    const geometry = new THREE.SphereGeometry(0.07, 0.07, 0.07);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.z = -0.4;
-    scene.add(cube);
+    // This doesn't work at the moment because it only checks initially. And initially this.state.distance
+      // is NaN. So it can't compare that to a number. just goes straight to the else.
+      // if distance is less than __ then we render the cube/sphere in the scene.
+      // Otherwise we don't render the cube/sphere, but still render the scene/camera
+      // if (this.state.distance < 100) {
+      const geometry = new THREE.SphereGeometry(0.07, 0.07, 0.07);
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+      const cube = new THREE.Mesh(geometry, material);
 
+      cube.position.z = -0.8;
+      scene.add(cube);
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.07;
-      cube.rotation.y += 0.04;
-      renderer.render(scene, camera);
-      gl.endFrameEXP();
-    }
+      animate = () => {
+        requestAnimationFrame(animate);
+        cube.rotation.x += 0.04;
+        cube.rotation.y += 0.02;
+        renderer.render(scene, camera);
+        gl.endFrameEXP();
+      }
+      
+    // } else {
+    //   animate = () => {
+    //     requestAnimationFrame(animate);
+    //     renderer.render(scene, camera);
+    //     gl.endFrameEXP();
+    //   }
+    // }
+    
     animate();
   }
 
   render() {
-    console.log('\n', '---- subscribing to state! ----', this.props.userCurrentLocation, '\n')
     return (
-      <View>
-        <Text>{this.props.userCurrentLocation}</Text>
-        <Expo.GLView
-          ref={(ref) => this._glView = ref}
-          style={{ flex: 1 }}
-          onContextCreate={this._onGLContextCreate}
-        />
-      </View>
+      <Expo.GLView ref={(ref) => this._glView = ref} style={{ flex: 1 }} onContextCreate={this._onGLContextCreate.bind(this)} />
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  userCurrentLocation: state.position
-});
-
-const mapDispatchToProps = { watchLocation, stopWatching };
-
-export default connect(mapStateToProps, mapDispatchToProps)(AR);
