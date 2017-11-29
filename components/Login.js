@@ -27,8 +27,6 @@ class Login extends Component {
   }
   handleLogin() {
     const { email, password } = this.props;
-    // const email = 'cody@email.com'
-    // const password = '123'
     this.props.getUser({ email, password });
     Actions.root();
   }
@@ -37,41 +35,44 @@ class Login extends Component {
     const { textStyle } = styles
     return (
       <ImageBackground
-      source={ require('../images/wallpaper.jpg') }
-      style={styles.container}>
+        source={require('../images/wallpaper.jpg')}
+        style={styles.container}>
         <View style={styles.logoContainer}>
           <Text style={styles.title}>BLACKLIGHT</Text>
         </View>
-
+        <Button style={styles.buttonStyle}
+          small
+          backgroundColor='#000000'
+          onPress={() => Actions.root()}
+          title="CONTINUE AS GUEST"
+        />
         <View>
-        <FormLabel>
-          Email
+          <FormLabel>
+            Email
         </FormLabel>
           <FormInput style={styles.input}
             placeholder="Email"
             onChangeText={this.onEmailChange.bind(this)}
-            />
+          />
           <FormLabel>
             PW
           </FormLabel>
           <FormInput style={styles.input}
-             placeholder="Password"
-              value="blacklight"
-              secureTextEntry
-              onChangeText={this.onPasswordChange.bind(this)}
-            />
+            secureTextEntry
+            onChangeText={this.onPasswordChange.bind(this)}
+          />
           <Button style={styles.buttonStyle}
-              small
-              backgroundColor='#000000'
-              onPress={this.handleLogin.bind(this)}
-              title="GUEST"
-              />
+            small
+            backgroundColor='#000000'
+            onPress={this.handleLogin.bind(this)}
+            title="LOGIN"
+          />
           <Button style={styles.buttonStyle}
-              small
-              backgroundColor='#000000'
-              onPress={this.handleSubmit.bind(this)}
-              title='SIGNUP'
-              />
+            small
+            backgroundColor='#000000'
+            onPress={this.handleSubmit.bind(this)}
+            title='SIGNUP'
+          />
         </View>
 
 
