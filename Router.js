@@ -10,8 +10,7 @@ import RecordInput from './components/RecordInput';
 import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
 import SingleMemoryView from './components/SingleMemoryView';
-// import CustomMap from './components/CustomMap';
-// Simple component to render something in place of icon
+
 const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
     case 'MAIN':
@@ -39,14 +38,6 @@ const TabIcon = ({ focused, title, selected }) => {
 };
 
 
-// const TabIcon = ({ selected, title }) => {
-//   return (
-//
-//   );
-// }
-
-// <Scene key="login" component={Login} title="LANDING PAGE" />
-
 const RouterComponent = props => (
   // <Router />
   <Router
@@ -65,7 +56,7 @@ const RouterComponent = props => (
         tabBarStyle={{ backgroundColor: '#1c1616', height: 50 }}
       >
         {/* MAIN */}
-        <Scene key="mainTab" title="MAIN" icon={TabIcon} initial>
+        <Scene key="mainTab" title="MAIN" icon={TabIcon} >
           <Scene
             key="main"
             component={Main}
