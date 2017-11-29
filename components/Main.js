@@ -21,13 +21,13 @@ class Main extends Component {
   render() {
     return (
       <ImageBackground
-      source={require('../images/city.jpg')}
+      source={ require('../images/city.jpg') }
       style={styles.container}>
         <View style={styles.container}>
           <Text style={styles.textTitle}>Welcome to Blacklight</Text>
           <Text style={styles.text}>a place to reveal somebody's secret...</Text>
         </View>
-      </ ImageBackground>
+      </ImageBackground>
     );
   }
 }
