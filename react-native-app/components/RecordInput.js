@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { View, Alert, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Icon } from '@expo/vector-icons'
 
 import { commitMemory } from '../store';
 
@@ -49,44 +48,56 @@ class RecordInput extends Component {
   render() {
     return (
       <View style={styles.container}>
+       <View style={styles.formContainer}>
           <FormLabel>Title</FormLabel>
-          <FormInput style={styles.input}
+          <FormInput
+            style={styles.titleInput}
             placeholer="Title"
             color="#FFFFFF"
             onChangeText={this.handleTitle}
           />
           <FormLabel>YOUR STORY</FormLabel>
 
-          <TextInput style={styles.textInput}
+          <FormInput
+            style={styles.textInput}
             placeholer="Your Story"
-            color="#FFFFFF"
             multiline
+            numberOfLines={7}
+            color="#FFFFFF"
             onChangeText={this.handleText}
             value={this.state.text}
         />
 
-          <View style={styles.buttonArea}>
-            <Button style={styles.buttonStyle}
+        <View>
+            <Button
+              style={styles.buttonStyle}
               small
-              title="SUBMIT"
               backgroundColor="#ffffff"
-
               title="RECORD AT PIN"
               color='#000000'
               onPress={this.handleSubmit}
             />
           </View>
+        </View>
       </View>
     );
   }
 }
+
+const mapState = state => ({ currentPosition: state.position, user: state.user });
+
+const mapDispatch = { commitMemory };
+
 const styles = {
   container: {
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20
+    padding: 20,
+  },
+  formContainer: {
+    margin: 100,
   },
   textInput: {
     height: 270,
@@ -94,26 +105,24 @@ const styles = {
     // borderWidth: 0,
     fontSize: 20,
     color: '#ffffff',
-    padding: 10
+    padding: 30,
   },
-  input: {
-    height: 40,
-    backgroundColor: 'rgba(192,192,192,0.3)',
+  titleInput: {
+    height: 60,
+    fontSize: 20,
+    // backgroundColor: 'rgba(192,192,192,0.3)',
     marginBottom: 20,
-    // padding: 10
+    padding: 30,
   },
   // buttonArea: {
   //   flex: 1,
   // },
   buttonStyle: {
-    backgroundColor:'#000000',
-    padding: 10
-  }
+    backgroundColor: '#000000',
+    padding: 10,
+  },
 };
 
-const mapState = state => ({ currentPosition: state.position, user: state.user });
-
-const mapDispatch = { commitMemory };
 
 export default connect(mapState, mapDispatch)(RecordInput);
 

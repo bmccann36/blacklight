@@ -5,12 +5,47 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
 
+export default function Map(props) {
+  const callouts = props.memories.map(mem => (
+    <MapView.Marker
+      key={mem.id}
+      coordinate={{ latitude: mem.lat, longitude: mem.lng }}
+      title={mem.title}
+      description={mem.text}
+    >
+      <MapView.Callout style={styles.callout}>
+        <View>
+          <Text style={styles.calloutTitle}>{mem.title}</Text>
+          <Text style={styles.calloutText}>{mem.text}</Text>
+        </View>
+      </MapView.Callout>
+    </MapView.Marker>
+  ));
+
+
+  return (
+    <View style={styles.container}>
+      <MapView
+        initialRegion={props.initialRegion}
+        style={styles.map}
+        region={props.currentLocation}
+        rotateEnabled={false}
+        mapType='satellite'
+      >
+        {callouts}
+      </MapView>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#000000',
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
   },
   map: {
     width: width,
@@ -47,55 +82,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   callout: {
-    position: 'relative',
-    flex: 1,
-    width: 300,
-    height: 400,
-    paddingRight: 0,
-    paddingBottom: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    backgroundColor: 'white',
+    width: 250,
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    backgroundColor: '#1c5a60',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 6,
+    borderWidth: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
 
   },
   calloutTitle: {
     fontSize: 16,
-    color: 'red',
+    color: '#d31b58',
     fontWeight: 'bold',
+    paddingVertical: 5
   },
   calloutText: {
-    color: 'black',
+    fontSize: 16,
+    color: '#FFFFFF',
   },
 });
-
-
-export default function Map(props) {
-  const callouts = props.memories.map(mem => (
-    <MapView.Marker
-      key={mem.id}
-      coordinate={{ latitude: mem.lat, longitude: mem.lng }}
-      title={mem.title}
-      description={mem.text}>
-      <MapView.Callout>
-        <View style={styles.callout}>
-          <Text style={styles.calloutTitle}>{mem.title}</Text>
-          <Text style={styles.calloutText}>{mem.text}</Text>
-        </View>
-      </MapView.Callout>
-    </MapView.Marker>
-  ));
-
-
-  return (
-    <View style={styles.container}>
-      <MapView
-        initialRegion={props.initialRegion}
-        style={styles.map}
-        region={props.currentLocation}
-      >
-        {callouts}
-      </MapView>
-    </View>
-  );
-}
 
