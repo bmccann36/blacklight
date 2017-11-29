@@ -64,7 +64,7 @@ class Login extends Component {
               small
               backgroundColor='#000000'
               onPress={this.handleLogin.bind(this)}
-              title="LOGIN"
+              title="GUEST"
               />
           <Button style={styles.buttonStyle}
               small

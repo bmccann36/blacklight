@@ -30,6 +30,10 @@ const TabIcon = ({ focused, title, selected }) => {
       return (
         <FontAwesome name="feed" size={32}  color={selected ? 'orange' : '#cec4c4'} />
       );
+    case 'MEMORY LIST':
+      return (
+        <Feather name="unlock" size={32}  color={selected ? 'orange' : 'white'} />
+      );
   }
 };
 
@@ -73,7 +77,11 @@ const RouterComponent = props => (
           <Scene
             key="memoryList"
             component={MemoryList}
+<<<<<<< HEAD
             title="MEMORY FEED"
+=======
+            title="MEMORY LIST"
+>>>>>>> master-2
           />
         </Scene>
         {/* RECORD */}
