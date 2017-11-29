@@ -1,10 +1,10 @@
 import React from 'react';
 import { MapView } from 'expo';
 import { View, Text } from 'react-native';
+
 const icon = require('../images/blacklightIcon.png');
 
 export default function MapWMarker(props) {
-  console.log(props)
   const callouts = props.memories.map(mem => (
     <MapView.Marker
       key={mem.id}
@@ -27,7 +27,6 @@ export default function MapWMarker(props) {
       markerPostion={props.markerPostion}
     >
       <MapView.Marker // current position marker
-        title="you are here"
         coordinate={props.markerPosition}
         image={icon}
       />
@@ -54,7 +53,7 @@ const styles = {
     fontSize: 16,
     color: '#d31b58',
     fontWeight: 'bold',
-    paddingVertical: 5
+    paddingVertical: 5,
   },
   calloutText: {
     fontSize: 16,

@@ -5,8 +5,6 @@ const icon = require('../images/blacklightIcon.png');
 
 
 export default function Map(props) {
-  // const defaultRegion = { latitude: 40.705825, longitude: -74.007879 }
-  console.log(props)
   return (
     <MapView
       style={{ flex: 1 }}
@@ -26,6 +24,4 @@ export default function Map(props) {
     </MapView>
   );
 }
-
-///
 
