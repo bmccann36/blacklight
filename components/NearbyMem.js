@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapWMarker from './MapWMarker';
 import { connect } from 'react-redux';
 
@@ -13,8 +13,6 @@ class NearbyMem extends Component {
   constructor() {
     super()
   }
-
-
 
   render() {
     const allMems = this.props.memories;
@@ -34,7 +32,6 @@ class NearbyMem extends Component {
           markerPosition={region}
           memories={nearMems}
         />
-
       </View>
     );
   }

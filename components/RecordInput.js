@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
-import { View, AlertIOS, TextInput, Keyboard } from 'react-native';
+import { View, AlertIOS, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { commitMemory } from '../store';
@@ -26,8 +26,6 @@ class RecordInput extends Component {
   handleText(text) {
     this.setState({ text });
   }
-
-
 
   // if dropped pin???
 
@@ -111,7 +109,6 @@ const styles = {
   textInput: {
     height: 270,
     borderColor: 'gray',
-    // borderWidth: 0,
     fontSize: 20,
     color: '#ffffff',
     padding: 30,
@@ -119,13 +116,9 @@ const styles = {
   titleInput: {
     height: 60,
     fontSize: 20,
-    // backgroundColor: 'rgba(192,192,192,0.3)',
     marginBottom: 20,
     padding: 30,
   },
-  // buttonArea: {
-  //   flex: 1,
-  // },
   buttonStyle: {
     backgroundColor: '#000000',
     padding: 10,
