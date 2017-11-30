@@ -17,10 +17,10 @@ const reducer = combineReducers({
 });
 
 // WITH LOGGER
-// const middleware = applyMiddleware(thunkMiddleware, logger);
+const middleware = applyMiddleware(thunkMiddleware, logger);
 
 // NO LOGGER
-const middleware = applyMiddleware(thunkMiddleware);
+// const middleware = applyMiddleware(thunkMiddleware);
 
 const store = createStore(reducer, middleware);
 

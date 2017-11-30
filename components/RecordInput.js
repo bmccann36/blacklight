@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
-import { View, Alert, TextInput } from 'react-native';
+import { View, AlertIOS, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { commitMemory } from '../store';
@@ -41,14 +41,21 @@ class RecordInput extends Component {
       lng: loc.longitude,
       authorId: this.props.user.id,
     });
-    // Actions.mainTab(); // REDIRECT TO MAIN TAB
-    Alert.alert('Memory Saved!');
+    AlertIOS.alert(
+      'Memory Saved!',
+      '',
+      [
+        {
+          text: 'ok', onPress: () => Actions.nearbyTab(),
+        }
+      ]
+    );
   }
 
   render() {
     return (
       <View style={styles.container}>
-       <View style={styles.formContainer}>
+        <View style={styles.formContainer}>
           <FormLabel>Title</FormLabel>
           <FormInput
             style={styles.titleInput}
@@ -66,14 +73,14 @@ class RecordInput extends Component {
             color="#FFFFFF"
             onChangeText={this.handleText}
             value={this.state.text}
-        />
+          />
 
-        <View>
+          <View>
             <Button
               style={styles.buttonStyle}
               small
               backgroundColor="#ffffff"
-              title="RECORD AT PIN"
+              title="RECORD"
               color='#000000'
               onPress={this.handleSubmit}
             />
@@ -102,7 +109,6 @@ const styles = {
   textInput: {
     height: 270,
     borderColor: 'gray',
-    // borderWidth: 0,
     fontSize: 20,
     color: '#ffffff',
     padding: 30,
@@ -110,13 +116,9 @@ const styles = {
   titleInput: {
     height: 60,
     fontSize: 20,
-    // backgroundColor: 'rgba(192,192,192,0.3)',
     marginBottom: 20,
     padding: 30,
   },
-  // buttonArea: {
-  //   flex: 1,
-  // },
   buttonStyle: {
     backgroundColor: '#000000',
     padding: 10,
