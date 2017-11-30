@@ -32,7 +32,6 @@ class NearbyMem extends Component {
           markerPosition={region}
           memories={nearMems}
         />
-
       </View>
     );
   }

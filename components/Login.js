@@ -41,7 +41,7 @@ class Login extends Component {
           small
           backgroundColor='#000000'
           onPress={() => Actions.root()}
-          title="CONTINUE AS GUEST"
+          title="CONTINUE AS ANONYMOUS"
         />
         <View style={styles.formContainer}>
           <FormLabel>

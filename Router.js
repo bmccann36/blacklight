@@ -78,7 +78,7 @@ const RouterComponent = props => (
           />
         </Scene>
         {/* RECORD */}
-        <Scene key="recordTab" title="REC" icon={TabIcon}>
+        <Scene key="recordTab" title="REC" icon={TabIcon} >
           <Scene
             key="recordHome"
             component={Record}

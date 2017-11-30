@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-// import { StyleSheet, Text, View } from 'react-native';
+import { View, TouchableHighlight, TouchableOpacity } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
 import Expo from 'expo';
@@ -11,9 +11,9 @@ console.disableYellowBox = true;
 // ---------- NOTE -----------
 // This only works with a hard coded memory on local state right now.
 // Functionally this is just an AR component that keeps track of a users location,
-  // the distance, in meters from users current location and the hardcoded memory.
-  // The sphere is in no way connected to the distance measurement or anything.
-  // The AR part just renders the sphere always.
+// the distance, in meters from users current location and the hardcoded memory.
+// The sphere is in no way connected to the distance measurement or anything.
+// The AR part just renders the sphere always.
 
 export default class AR extends React.Component {
 
@@ -42,7 +42,7 @@ export default class AR extends React.Component {
             1,
             3
           );
-          this.setState({distance: newDistance});
+          this.setState({ distance: newDistance });
         });
     }, 100);
 
@@ -73,24 +73,24 @@ export default class AR extends React.Component {
     scene.background = ExpoTHREE.createARBackgroundTexture(arSession, renderer);
 
     // This doesn't work at the moment because it only checks initially. And initially this.state.distance
-      // is NaN. So it can't compare that to a number. just goes straight to the else.
-      // if distance is less than __ then we render the cube/sphere in the scene.
-      // Otherwise we don't render the cube/sphere, but still render the scene/camera
-      // if (this.state.distance < 100) {
-      const geometry = new THREE.SphereGeometry(0.07, 0.07, 0.07);
-      const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-      const cube = new THREE.Mesh(geometry, material);
+    // is NaN. So it can't compare that to a number. just goes straight to the else.
+    // if distance is less than __ then we render the cube/sphere in the scene.
+    // Otherwise we don't render the cube/sphere, but still render the scene/camera
+    // if (this.state.distance < 100) {
+    const geometry = new THREE.SphereGeometry(0.15, 20, 20);
+    const material = new THREE.MeshBasicMaterial({ color: 0xee82ee, wireframe: true });
+    const cube = new THREE.Mesh(geometry, material);
 
-      cube.position.z = -0.8;
-      scene.add(cube);
+    cube.position.z = -1.2;
+    scene.add(cube);
 
-      animate = () => {
-        requestAnimationFrame(animate);
-        cube.rotation.x += 0.04;
-        cube.rotation.y += 0.02;
-        renderer.render(scene, camera);
-        gl.endFrameEXP();
-      }
+    animate = () => {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+      gl.endFrameEXP();
+    }
 
     // } else {
     //   animate = () => {
@@ -105,8 +105,13 @@ export default class AR extends React.Component {
 
   render() {
     return (
-      <Expo.GLView ref={(ref) => this._glView = ref} style={{ flex: 1 }} onContextCreate={this._onGLContextCreate.bind(this)} />
+      <TouchableOpacity onPress={() => console.log('PRESSED')} style={{ flex: 1 }} >
+        <Expo.GLView
+          ref={(ref) => this._glView = ref}
+          style={{ flex: 1 }}
+          onContextCreate={this._onGLContextCreate.bind(this)}
+        />
+      </TouchableOpacity>
     );
   }
 }
-
