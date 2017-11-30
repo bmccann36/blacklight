@@ -43,7 +43,7 @@ class Login extends Component {
           onPress={() => Actions.root()}
           title="CONTINUE AS GUEST"
         />
-        <View>
+        <View style={styles.formContainer}>
           <FormLabel>
             Email
         </FormLabel>
@@ -121,6 +121,9 @@ const styles = {
   },
   labelContainerStyle: {
     marginTop: 8
+  },
+  formContainer: {
+    padding : 10
   }
 };
 
