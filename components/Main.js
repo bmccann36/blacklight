@@ -64,7 +64,7 @@ const styles = {
     textShadowColor:'#000000',
     textShadowOffset:{width: 5, height: 5},
     textShadowRadius:8,
-  }
+  },
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

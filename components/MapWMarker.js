@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapView } from 'expo';
 import { View, Text } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 const icon = require('../images/blacklightIcon.png');
 
@@ -25,6 +26,7 @@ export default function MapWMarker(props) {
       style={{ flex: 1 }}
       initialRegion={props.initialRegion}
       markerPostion={props.markerPostion}
+      mapType="satellite"
     >
       <MapView.Marker // current position marker
         coordinate={props.markerPosition}
