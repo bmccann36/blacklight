@@ -19,10 +19,10 @@ async function seed() {
   // executed until that promise resolves!
 
   const users = await Promise.all([
-    User.create({ email: 'cody@email.com', password: '123', user_name: 'pone-age' }),
-    User.create({ email: 'murphy@email.com', password: '123', user_name: 'p-diddy' }),
-    User.create({ email: 'dude@email.com', password: 'dude', user_name: 'p-daddy-pint-size' }),
-    User.create({ email: 'heyo@email.com', password: 'heyo', user_name: 'p-dawg00' }),
+    User.create({ email: 'cody@email.com', password: '123' }),
+    User.create({ email: 'murphy@email.com', password: '123' }),
+    User.create({ email: 'dude@email.com', password: 'dude' }),
+    User.create({ email: 'heyo@email.com', password: 'heyo' }),
   ]);
 
   const memories = await Memory.bulkCreate([

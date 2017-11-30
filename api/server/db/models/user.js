@@ -3,9 +3,6 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const User = db.define('user', {
-  user_name: {
-    type: Sequelize.STRING,
-  },
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -17,9 +14,6 @@ const User = db.define('user', {
   salt: {
     type: Sequelize.STRING,
   },
-  // googleId: {
-  //   type: Sequelize.STRING,
-  // },
 });
 
 module.exports = User;
@@ -27,10 +21,6 @@ module.exports = User;
 /**
  * instanceMethods
  */
-// ----- This way doesn't work. I don't know why. -----
-// User.prototype.correctPassword = candidatePwd => (
-//   User.encryptPassword(candidatePwd, this.salt) === this.password
-// );
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt) === this.password
 }
