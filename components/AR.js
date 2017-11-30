@@ -77,16 +77,16 @@ export default class AR extends React.Component {
     // if distance is less than __ then we render the cube/sphere in the scene.
     // Otherwise we don't render the cube/sphere, but still render the scene/camera
     // if (this.state.distance < 100) {
-    const geometry = new THREE.SphereGeometry(0.07, 0.07, 0.07);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+    const geometry = new THREE.SphereGeometry(0.15, 20, 20);
+    const material = new THREE.MeshBasicMaterial({ color: 0xee82ee, wireframe: true });
     const cube = new THREE.Mesh(geometry, material);
 
-    cube.position.z = -0.8;
+    cube.position.z = -1.2;
     scene.add(cube);
 
     animate = () => {
       requestAnimationFrame(animate);
-      cube.rotation.x += 0.02;
+      cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       renderer.render(scene, camera);
       gl.endFrameEXP();
