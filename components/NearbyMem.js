@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const { height, width } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.0100;
+const LATITUDE_DELTA = 0.150;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class NearbyMem extends Component {
@@ -30,7 +30,7 @@ class NearbyMem extends Component {
         <MapWMarker
           initialRegion={region}
           markerPosition={region}
-          memories={nearMems}
+          memories={allMems}
         />
       </View>
     );

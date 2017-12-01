@@ -39,7 +39,7 @@ class RecordInput extends Component {
       text,
       lat: loc.latitude,
       lng: loc.longitude,
-      authorId: this.props.user.id,
+      // authorId: this.props.user.id,
     });
     AlertIOS.alert(
       'Memory Saved!',
