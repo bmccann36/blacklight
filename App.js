@@ -24,7 +24,6 @@ export default class App extends Component {
         require('./images/light.jpg'),
       ]),
       Font.loadAsync({
-        ...Ionicons.font,
         ...Feather.font,
         ...MaterialIcons.font,
         ...FontAwesome.font,
