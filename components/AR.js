@@ -21,7 +21,8 @@ class AR extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      closestMemory: {}
+      closestMemory: {},
+      distanceInMeters: NaN
     };
     this.findNearestMemory = this.findNearestMemory.bind(this);
     this._onGLContextCreate = this._onGLContextCreate.bind(this);
@@ -42,31 +43,27 @@ class AR extends React.Component {
     if (this.props.memories && this.props.currentPosition.latitude) {
       let currentLocLat = this.props.currentPosition.latitude;
       let currentLocLng = this.props.currentPosition.longitude;
-      // for each location marker, perform work in its reducer that stores the distance
-      // from the device to the location
+      let nearestMemory = this.state.closestMemory || this.props.memories[0];
       let shortestDistance = geolib.getDistance(
         { latitude: currentLocLat, longitude: currentLocLng },
         { latitude: this.props.memories[0].lat, longitude: this.props.memories[0].lng },
         1,
         1
       );
-      let nearestMemory = this.state.closestMemory || this.props.memories[0];
 
       this.props.memories.forEach((memory) => {
         let compareDist = geolib.getDistance(
           { latitude: currentLocLat, longitude: currentLocLng },
           { latitude: memory.lat, longitude: memory.lng },
-          1,
-          1
+          1, 1
         );
-
         if (compareDist <= shortestDistance) {
           shortestDistance = compareDist;
           nearestMemory = memory;
         }
       });
 
-      this.setState({ closestMemory: nearestMemory });
+      this.setState({ closestMemory: nearestMemory, distanceInMeters: shortestDistance });
       return nearestMemory;
     }
   }
@@ -87,11 +84,9 @@ class AR extends React.Component {
 
     scene.background = ExpoTHREE.createARBackgroundTexture(arSession, renderer);
 
-    // This doesn't work at the moment because it only checks initially. And initially this.state.distanceInMeters
-    // is NaN. So it can't compare that to a number. just goes straight to the else.
     // if distanceInMeters is less than __ then we render the cube/sphere in the scene.
     // Otherwise we don't render the cube/sphere, but still render the scene/camera
-    // if (this.state.distanceInMeters < 100) {
+    if (this.state.distanceInMeters < 10) {
     const geometry = new THREE.SphereGeometry(0.15, 20, 20);
     const material = new THREE.MeshBasicMaterial({ color: 0xee82ee, wireframe: true });
     const cube = new THREE.Mesh(geometry, material);
@@ -107,20 +102,20 @@ class AR extends React.Component {
       gl.endFrameEXP();
     }
 
-    // } else {
-    //   animate = () => {
-    //     requestAnimationFrame(animate);
-    //     renderer.render(scene, camera);
-    //     gl.endFrameEXP();
-    //   }
-    // }
+    } else {
+      animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+        gl.endFrameEXP();
+      }
+    }
 
     animate();
   }
 
   render() {
     return (
-      <TouchableOpacity onPress={() => Actions.singleMemory(this.state.closestMemory)} style={{ flex: 1 }} >
+      <TouchableOpacity onLongPress={() => Actions.recordInput()} onPress={() => Actions.singleMemory(this.state.closestMemory)} style={{ flex: 1 }} >
         <Expo.GLView
           ref={(ref) => this._glView = ref}
           style={{ flex: 1 }}
