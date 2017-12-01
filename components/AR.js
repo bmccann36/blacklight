@@ -115,7 +115,7 @@ class AR extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onLongPress={() => Actions.recordInput()} onPress={() => Actions.singleMemory(this.state.closestMemory)} style={{ flex: 1 }} >
+      <TouchableOpacity onLongPress={() => Actions.recordInput({ droppedPin: false })} onPress={() => Actions.singleMemory(this.state.closestMemory)} style={{ flex: 1 }} >
         <Expo.GLView
           ref={(ref) => this._glView = ref}
           style={{ flex: 1 }}
