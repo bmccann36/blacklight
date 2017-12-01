@@ -40,11 +40,8 @@ class AR extends React.Component {
   componentDidMount() {
     let intvl = setInterval(() => {
       Expo.Location.getCurrentPositionAsync({ enableHighAccuracy: true })
-        .then((result) => {
-          this.setState({ currentLocCoords: result.coords })
-        })
-        .then(() => {this.findNearestMemory()})
-        // .then(() => console.log(this.state.closestMemory))
+        .then( (result) => {this.setState({ currentLocCoords: result.coords })} )
+        .then( () => {this.findNearestMemory()} )
     }, 1000);
 
     this.setState({ intvl });
