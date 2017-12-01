@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, ImageBackground } from 'react-native';
+import { View, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import { FormLabel, FormInput, Button, Text, Icon } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
 
@@ -43,10 +43,10 @@ class Login extends Component {
           onPress={() => Actions.root()}
           title="CONTINUE AS ANONYMOUS"
         />
-        <View style={styles.formContainer}>
+        <KeyboardAvoidingView style={styles.formContainer} behavior="padding">
           <FormLabel>
             Email
-        </FormLabel>
+          </FormLabel>
           <FormInput style={styles.input}
             placeholder="Email"
             onChangeText={this.onEmailChange.bind(this)}
@@ -70,7 +70,7 @@ class Login extends Component {
             onPress={this.handleSubmit.bind(this)}
             title='SIGNUP'
           />
-        </View>
+        </KeyboardAvoidingView>
 
 
 

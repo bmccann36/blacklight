@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
-import { View, AlertIOS, TextInput } from 'react-native';
+import { View, AlertIOS, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { commitMemory } from '../store';
@@ -55,7 +55,7 @@ class RecordInput extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.formContainer}>
+        <KeyboardAvoidingView style={styles.formContainer} behavior="padding">
           <FormLabel>Title</FormLabel>
           <FormInput
             style={styles.titleInput}
@@ -85,7 +85,7 @@ class RecordInput extends Component {
               onPress={this.handleSubmit}
             />
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
