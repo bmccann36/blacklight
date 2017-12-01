@@ -86,7 +86,7 @@ class AR extends React.Component {
 
     // if distanceInMeters is less than __ then we render the cube/sphere in the scene.
     // Otherwise we don't render the cube/sphere, but still render the scene/camera
-    if (this.state.distanceInMeters < 10) {
+    if (this.state.distanceInMeters < 100) {
     const geometry = new THREE.SphereGeometry(0.15, 20, 20);
     const material = new THREE.MeshBasicMaterial({ color: 0xee82ee, wireframe: true });
     const cube = new THREE.Mesh(geometry, material);
