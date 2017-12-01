@@ -54,8 +54,8 @@ class RecordInput extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView style={styles.formContainer} behavior="padding">
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <View style={styles.formContainer}>
           <FormLabel>Title</FormLabel>
           <FormInput
             style={styles.titleInput}
@@ -85,8 +85,8 @@ class RecordInput extends Component {
               onPress={this.handleSubmit}
             />
           </View>
-        </KeyboardAvoidingView>
-      </View>
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
