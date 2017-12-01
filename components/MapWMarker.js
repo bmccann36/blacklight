@@ -26,7 +26,7 @@ export default function MapWMarker(props) {
       style={{ flex: 1 }}
       initialRegion={props.initialRegion}
       markerPostion={props.markerPostion}
-      mapType="satellite"
+      // mapType="satellite"
     >
       <MapView.Marker // current position marker
         coordinate={props.markerPosition}
