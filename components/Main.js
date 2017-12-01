@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 
 import { watchLocation, stopWatching, fetchMemories } from '../store';
 
-// import { Actions } from 'react-native-router-flux';
-
 class Main extends Component {
   // START WATCHING LOCATION
   componentDidMount() { // was componentWillMount but created a bug that caused location to be lost
