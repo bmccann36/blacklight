@@ -11,6 +11,7 @@ import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
 import SingleMemoryView from './components/SingleMemoryView';
 import AR from './components/AR';
+// import CurrLocTest from './components/CurrLocTest';
 // Simple component to render something in place of icon
 const TabIcon = ({ focused, title, selected }) => {
   switch (title) {

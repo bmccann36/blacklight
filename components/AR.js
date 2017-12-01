@@ -1,5 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, TouchableOpacity } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
@@ -30,6 +31,7 @@ export default class AR extends React.Component {
       distance: NaN,
       intvl: null
     };
+    this.handleShortPress = this.handleShortPress.bind(this);
   }
 
   componentDidMount() {
@@ -103,9 +105,13 @@ export default class AR extends React.Component {
     animate();
   }
 
+  handleShortPress(memory) {
+    Actions.singleMemory(memory);
+  }
+
   render() {
     return (
-      <TouchableOpacity onPress={() => console.log('PRESSED')} style={{ flex: 1 }} >
+      <TouchableOpacity onPress={() => this.handleShortPress(this.state.memory)} style={{ flex: 1 }} >
         <Expo.GLView
           ref={(ref) => this._glView = ref}
           style={{ flex: 1 }}
