@@ -12,7 +12,7 @@ export default function Map(props) {
       initialRegion={props.initialRegion}
       markerPostion={props.markerPostion}
       onLongPress={e => props.attachAPin(e)}
-      // mapType="satellite"
+      mapType="hybrid"
     >
       <MapView.Marker // current position marker
         coordinate={props.markerPosition}
