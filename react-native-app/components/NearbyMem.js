@@ -1,6 +1,6 @@
-
+'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import MapWMarker from './MapWMarker';
 import { connect } from 'react-redux';
 
@@ -10,9 +10,6 @@ const LATITUDE_DELTA = 0.150;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class NearbyMem extends Component {
-  constructor() {
-    super()
-  }
 
   render() {
     const allMems = this.props.memories;

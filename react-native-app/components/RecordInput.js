@@ -1,14 +1,13 @@
-
+'use strict';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
-import { View, AlertIOS, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, AlertIOS, KeyboardAvoidingView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
 import { commitMemory } from '../store';
 
-
 class RecordInput extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +18,7 @@ class RecordInput extends Component {
     this.handleText = this.handleText.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleTitle(title) {
     this.setState({ title });
   }
@@ -101,27 +101,27 @@ const styles = {
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: 20
   },
   formContainer: {
-    margin: 100,
+    margin: 100
   },
   textInput: {
     height: 270,
     borderColor: 'gray',
     fontSize: 20,
     color: '#ffffff',
-    padding: 30,
+    padding: 30
   },
   titleInput: {
     height: 60,
     fontSize: 20,
     marginBottom: 20,
-    padding: 30,
+    padding: 30
   },
   buttonStyle: {
     backgroundColor: '#000000',
-    padding: 10,
+    padding: 10
   },
 };
 

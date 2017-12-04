@@ -4,12 +4,12 @@ import { StyleSheet, Text, ScrollView, View, ImageBackground } from 'react-nativ
 export default function SingleMemoryView(props) {
   return (
     <ImageBackground
-    source={ require('../images/light.jpg') }
-    style={styles.container}>
+      source={require('../images/light.jpg')}
+      style={styles.container}>
       <View style={styles.container}>
         <ScrollView>
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.text}>{props.text}</Text>
+          <Text style={styles.title}>{props.title}</Text>
+          <Text style={styles.text}>{props.text}</Text>
         </ScrollView>
       </View>
     </ImageBackground>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   title: {
     color: '#b20000',
@@ -34,22 +34,20 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     padding: 10,
-    alignSelf:'center',
-    textShadowColor:'#000000',
-    textShadowOffset:{width: 5, height: 5},
-    textShadowRadius:8,
+    alignSelf: 'center',
+    textShadowColor: '#000000',
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 8
   },
   text: {
     color: '#FFFFFF',
     fontSize: 20,
     marginTop: 30,
     padding: 10,
-    alignSelf:'center',
-    textShadowColor:'#000000',
-    textShadowOffset:{width: 5, height: 5},
-    textShadowRadius:8,
-  },
+    alignSelf: 'center',
+    textShadowColor: '#000000',
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 8
+  }
 });
-
-
 

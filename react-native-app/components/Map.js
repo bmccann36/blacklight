@@ -1,9 +1,7 @@
+'use strict';
 import React from 'react';
 import { MapView } from 'expo';
-import { StyleSheet, View } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 const icon = require('../images/blacklightIcon.png');
-
 
 export default function Map(props) {
   return (
