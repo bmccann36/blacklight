@@ -2,24 +2,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ImageBackground, KeyboardAvoidingView } from 'react-native';
-import { FormLabel, FormInput, Button, Text, Icon } from 'react-native-elements'
+import { FormLabel, FormInput, Button, Text } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
-
-
 import { emailChanged, passwordChanged, createUserOnServer, getUser } from '../store';
 
 
 class Login extends Component {
 
   onEmailChange(text) {
-    this.props.emailChanged(text)
+    this.props.emailChanged(text);
   }
   onPasswordChange(text) {
-    this.props.passwordChanged(text)
+    this.props.passwordChanged(text);
   }
   handleSubmit() {
-    const { email, password } = this.props
-    this.props.createUserOnServer({ email, password })
+    const { email, password } = this.props;
+    this.props.createUserOnServer({ email, password });
     Actions.root();
   }
   handleLogin() {
@@ -29,7 +27,6 @@ class Login extends Component {
   }
 
   render() {
-    const { textStyle } = styles
     return (
       <ImageBackground
         source={require('../images/wallpaper.jpg')}
@@ -71,20 +68,17 @@ class Login extends Component {
             title='SIGNUP'
           />
         </KeyboardAvoidingView>
-
-
-
       </ImageBackground>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
   email: state.auth.email,
   password: state.auth.password,
-})
+});
 
-const mapDispatchToProps = { emailChanged, passwordChanged, createUserOnServer, getUser }
+const mapDispatchToProps = { emailChanged, passwordChanged, createUserOnServer, getUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
@@ -109,12 +103,12 @@ const styles = {
   logoContainer: {
     alignItems: 'center',
     flexGrow: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   input: {
     height: 35,
     backgroundColor: 'rgba(192,192,192,0.3)',
-    marginBottom: 15,
+    marginBottom: 15
   },
   buttonStyle: {
     padding: 10
@@ -123,35 +117,6 @@ const styles = {
     marginTop: 8
   },
   formContainer: {
-    padding : 10
+    padding: 10
   }
 };
-
-
-
-// <View>
-// <Card title='Signup page'>
-//   <FormLabel >Email</FormLabel>
-//   <FormInput
-//   onChangeText={this.onEmailChange.bind(this)}
-// />
-//   <FormLabel >Password</FormLabel>
-//   <FormInput
-//   value="blacklight"
-//   secureTextEntry
-//   onChangeText={this.onPasswordChange.bind(this)}
-//   />
-//   <Card>
-//   <Button
-//     small
-//     onPress={this.handleLogin.bind(this)}
-//     title='log in' />
-//   </Card>
-//   <Card>
-//   <Button
-//     small
-//     onPress={this.handleSubmit.bind(this)}
-//     title='sign up' />
-//  </Card>
-//  </Card>
-// </View>

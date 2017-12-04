@@ -1,8 +1,7 @@
+'use strict';
 import React from 'react';
-import { Scene, Router, Actions } from 'react-native-router-flux';
-import { Button, Text } from 'react-native-elements'
+import { Scene, Router } from 'react-native-router-flux';
 import { Feather, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
-
 import Login from './components/Login';
 import Record from './components/Record';
 import Main from './components/Main';
@@ -11,6 +10,7 @@ import NearbyMem from './components/NearbyMem';
 import MemoryList from './components/MemoryList';
 import SingleMemoryView from './components/SingleMemoryView';
 import AR from './components/AR';
+
 // Simple component to render something in place of icon
 const TabIcon = ({ focused, title, selected }) => {
   switch (title) {
@@ -39,14 +39,11 @@ const TabIcon = ({ focused, title, selected }) => {
 };
 
 const RouterComponent = props => (
-  // <Router />
   <Router
-    // sceneStyle={{backgroundColor: 'black'}}
     navigationBarStyle={styles.navBar}
     titleStyle={styles.navBarTitle}
     barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
   >
-
     <Scene key="login" component={Login} />
     <Scene key="root">
       {/* Tab Container */}
@@ -114,17 +111,17 @@ const RouterComponent = props => (
 
 const styles = {
   navBar: {
-    backgroundColor: '#000000',
+    backgroundColor: '#000000'
   },
   navBarTitle: {
-    color: '#FFFFFF',
+    color: '#FFFFFF'
   },
   barButtonTextStyle: {
-    color: '#FFFFFF',
+    color: '#FFFFFF'
   },
   barButtonIconStyle: {
     tintColor: 'rgb(255,255,255)',
-  },
+  }
 };
 
 export default RouterComponent;

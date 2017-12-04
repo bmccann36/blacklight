@@ -1,8 +1,7 @@
+'use strict';
 import React from 'react';
 import { MapView } from 'expo';
 import { View, Text } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-
 const icon = require('../images/blacklightIcon.png');
 
 export default function MapWMarker(props) {
@@ -48,17 +47,16 @@ const styles = {
     borderRadius: 6,
     borderWidth: 0,
     alignItems: 'center',
-    justifyContent: 'center',
-
+    justifyContent: 'center'
   },
   calloutTitle: {
     fontSize: 16,
     color: '#d31b58',
     fontWeight: 'bold',
-    paddingVertical: 5,
+    paddingVertical: 5
   },
   calloutText: {
     fontSize: 16,
-    color: '#FFFFFF',
-  },
+    color: '#FFFFFF'
+  }
 };

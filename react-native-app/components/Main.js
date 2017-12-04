@@ -1,12 +1,9 @@
-
+'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, ImageBackground } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import { Text } from 'react-native-elements';
 import { connect } from 'react-redux';
-
 import { watchLocation, stopWatching, fetchMemories } from '../store';
-
-// import { Actions } from 'react-native-router-flux';
 
 class Main extends Component {
   // START WATCHING LOCATION
@@ -21,8 +18,8 @@ class Main extends Component {
   render() {
     return (
       <ImageBackground
-       source={require('../images/city.jpg')}
-       style={styles.container}>
+        source={require('../images/city.jpg')}
+        style={styles.container}>
         <View style={styles.container}>
           <Text style={styles.textTitle}>Welcome to Blacklight</Text>
           <Text style={styles.text}>a place to reveal somebody's secret...</Text>
@@ -35,7 +32,7 @@ class Main extends Component {
 const mapDispatchToProps = { watchLocation, stopWatching, fetchMemories };
 
 const mapStateToProps = state => ({
-  currentPosition: state.position,
+  currentPosition: state.position
 });
 
 const styles = {
@@ -44,7 +41,7 @@ const styles = {
     width: undefined,
     height: undefined,
     backgroundColor: 'transparent',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textTitle: {
     fontSize: 20,
@@ -52,19 +49,19 @@ const styles = {
     color: '#FFFFFF',
     textAlign: 'center',
     marginTop: 10,
-    textShadowColor:'#000000',
-    textShadowOffset:{width: 5, height: 5},
-    textShadowRadius:8,
+    textShadowColor: '#000000',
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 8
   },
-  text:{
+  text: {
     fontSize: 17,
     color: '#FFFFFF',
     textAlign: 'center',
     marginTop: 20,
-    textShadowColor:'#000000',
-    textShadowOffset:{width: 5, height: 5},
-    textShadowRadius:8,
-  },
+    textShadowColor: '#000000',
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 8
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

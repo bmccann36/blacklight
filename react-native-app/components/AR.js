@@ -1,11 +1,10 @@
+'use strict';
 import React from 'react';
-// import { connect } from 'react-redux';
 import { View, TouchableHighlight, TouchableOpacity } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
 import Expo from 'expo';
 import geolib from 'geolib';
-// import { watchLocation, stopWatching } from '../store';
 console.disableYellowBox = true;
 
 // ---------- NOTE -----------
@@ -91,15 +90,6 @@ export default class AR extends React.Component {
       renderer.render(scene, camera);
       gl.endFrameEXP();
     }
-
-    // } else {
-    //   animate = () => {
-    //     requestAnimationFrame(animate);
-    //     renderer.render(scene, camera);
-    //     gl.endFrameEXP();
-    //   }
-    // }
-
     animate();
   }
 

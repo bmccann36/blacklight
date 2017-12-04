@@ -1,25 +1,23 @@
+'use strict';
 import React, { Component } from 'react';
 import { Text, View, AlertIOS, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
-
 import Map from './Map';
 
 const { height, width } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-// const LATITUDE_DELTA = 0.0100;
 const LATITUDE_DELTA = 0.1200;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-
-
 class Record extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { droppedPin: false };
     this.attachAPin = this.attachAPin.bind(this);
   }
+
   componentDidMount() {
     AlertIOS.alert(
       'Choose Location',
@@ -78,13 +76,13 @@ const mapStateToProps = state => ({
 const styles = {
   container: {
     flex: 1,
-    backgroundColor:'#000000',
+    backgroundColor:'#000000'
   },
   map: {
-    flex: 5,
+    flex: 5
   },
   buttonArea: {
-    flex: 1,
+    flex: 1
   },
   buttonStyle: {
     backgroundColor:'#000000',
