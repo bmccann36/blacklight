@@ -2,6 +2,8 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import { Feather, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
+
+// I think we can do all these component imports in one line because they're all in the same folder...otherwise we could import and export them in an index folder, so that we can one line this...
 import Login from './components/Login';
 import Record from './components/Record';
 import Main from './components/Main';
@@ -32,7 +34,7 @@ const TabIcon = ({ focused, title, selected }) => {
       );
     case 'AR':
       return (
-        <Feather name="eye" size={32} color={selected ? '#e50000' : 'white'} />
+        <Feather name="eye" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     default: return null;
   }

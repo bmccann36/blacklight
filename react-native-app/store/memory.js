@@ -1,3 +1,4 @@
+'use strict';
 import axios from 'axios';
 
 // ACTION TYPES
@@ -22,7 +23,8 @@ export const commitMemory = details => function thunk(dispatch) {
     .then(res => res.data)
     .then((memory) => {
       dispatch(memorySaved(memory));
-    });
+    })
+    .catch(err => console.error(err));
 };
 
 // REDUCER
