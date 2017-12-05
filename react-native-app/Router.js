@@ -2,14 +2,7 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import { Feather, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
-import Login from './components/Login';
-import Record from './components/Record';
-import Main from './components/Main';
-import RecordInput from './components/RecordInput';
-import NearbyMem from './components/NearbyMem';
-import MemoryList from './components/MemoryList';
-import SingleMemoryView from './components/SingleMemoryView';
-import AR from './components/AR';
+import { Login, Record, Main, RecordInput, NearbyMem, MemoryList, SingleMemoryView, AR } from './components';
 
 // Simple component to render something in place of icon
 const TabIcon = ({ focused, title, selected }) => {
@@ -32,7 +25,7 @@ const TabIcon = ({ focused, title, selected }) => {
       );
     case 'AR':
       return (
-        <Feather name="eye" size={32} color={selected ? '#e50000' : 'white'} />
+        <Feather name="eye" size={32} color={selected ? '#e50000' : '#cec4c4'} />
       );
     default: return null;
   }
