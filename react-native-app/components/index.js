@@ -1,3 +1,4 @@
+'use strict';
 export Login from './Login';
 export Record from './Record';
 export Main from './Main';
