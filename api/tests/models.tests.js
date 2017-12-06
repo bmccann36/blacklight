@@ -1,9 +1,8 @@
 const chai = require("chai");
-const Promise = require('bluebird')
+const Promise = require('bluebird');
 const expect = chai.expect;
-const db = require('../db/db')
-
-const Memory = require('../db/models').Memory
+const db = require('../server/db');
+const Memory = require('../server/db/models').Memory;
 
 
 describe("page model", (done) => {
