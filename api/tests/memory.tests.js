@@ -1,20 +1,19 @@
-const chai = require("chai");
+const chai = require('chai');
 const Promise = require('bluebird');
 const expect = chai.expect;
 const db = require('../server/db');
 const Memory = require('../server/db/models').Memory;
 
-describe("memory model", () => {
+describe('memory model', () => {
   beforeEach(() => {
     return db.sync({ force: true })
       .then(() => {
-        console.log("synced the db")
+        console.log('synced the db');
         return;
-      })
+      });
   });
 
   describe('create memory', () => {
-
     let memory;
     beforeEach(() => {
       memory = Memory.build({
