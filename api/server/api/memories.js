@@ -18,8 +18,12 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:memoryId', (req, res, next) => {
+
   Memory.findById(req.params.memoryId)
-    .then(foundMemory => res.json(foundMemory))
+    .then(foundMemory => {
+      if (!foundMemory) res.status(404).send('memory not found');
+      else res.json(foundMemory);
+    })
     .catch(next);
 });
 
