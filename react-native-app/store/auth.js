@@ -1,9 +1,9 @@
-
+'use strict';
 const INITIAL_STATE = {email: '', password: '', user: {}}
 
 //ACTION TYPES
-EMAIL_CHANGED = 'EMAIL_CHANGED'
-PASSWORD_CHANGED = 'PASSWORD_CHANGED'
+const EMAIL_CHANGED = 'EMAIL_CHANGED'
+const PASSWORD_CHANGED = 'PASSWORD_CHANGED'
 
 // ACTION CREATORS
 export const emailChanged = (text) => ({type: EMAIL_CHANGED, text: text })
