@@ -34,17 +34,22 @@ describe('user model', () => {
         .expect(401);
     });
 
-    it('responds with 500 if a user with no email', () => {
+    it('responds with 400 if a user with no email', () => {
       return agent
         .post('/auth/signup')
         .send({
           password: '1234566'
         })
-        .expect(500);
-      //check validation error for more description, set status to not 500? -Alex
+        .expect(400);
     });
-
-    // test the password
+    it('responds with 400 if a user with no password', () => {
+      return agent
+        .post('/auth/signup')
+        .send({
+          email: 'alex@gmail.com'
+        })
+        .expect(400);
+    });
 
   });
 
