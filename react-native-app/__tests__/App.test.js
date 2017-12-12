@@ -1,9 +1,10 @@
 'use strict';
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { Button, Text } from 'react-native-elements';
 
 import App from '../App';
-import { Button } from 'react-native-elements';
+import { Login } from '../components';
 
 // NOTE: I'm still figuring out what the difference is between using
 //   appRenderer vs appRenderer.getInstance() vs appInstance...
@@ -26,6 +27,7 @@ describe('App component', () => {
 
     // appInstance is the Login component now. The Login component should have 3 buttons inside it.
     expect(appInstance.findAllByType(Button).length).toEqual(3);
+
   });
 
 });

@@ -1,0 +1,309 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecordInput component renders without crashing 1`] = `
+<View
+  keyboardVerticalOffset={0}
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "black",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 20,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "margin": 100,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+          undefined,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#86939e",
+                "fontSize": 15,
+                "fontWeight": "bold",
+                "marginBottom": 1,
+                "marginLeft": 20,
+                "marginRight": 20,
+                "marginTop": 15,
+              },
+              undefined,
+              undefined,
+            ],
+          ]
+        }
+      >
+        Title
+      </Text>
+    </View>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "borderBottomColor": "#bdc6cf",
+          "borderBottomWidth": 1,
+          "marginLeft": 20,
+          "marginRight": 20,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        color="#FFFFFF"
+        onChangeText={[Function]}
+        placeholer="Title"
+        style={
+          Array [
+            Object {
+              "color": "#86939e",
+              "minHeight": 36,
+              "width": 750,
+            },
+            Object {
+              "fontSize": 17.5,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {},
+          undefined,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#86939e",
+                "fontSize": 15,
+                "fontWeight": "bold",
+                "marginBottom": 1,
+                "marginLeft": 20,
+                "marginRight": 20,
+                "marginTop": 15,
+              },
+              undefined,
+              undefined,
+            ],
+          ]
+        }
+      >
+        YOUR STORY
+      </Text>
+    </View>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "borderBottomColor": "#bdc6cf",
+          "borderBottomWidth": 1,
+          "marginLeft": 20,
+          "marginRight": 20,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        color="#FFFFFF"
+        multiline={true}
+        numberOfLines={7}
+        onChangeText={[Function]}
+        placeholer="Your Story"
+        style={
+          Array [
+            Object {
+              "color": "#86939e",
+              "minHeight": 36,
+              "width": 750,
+            },
+            Object {
+              "fontSize": 17.5,
+            },
+            undefined,
+          ]
+        }
+        value=""
+      />
+    </View>
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "marginLeft": 15,
+              "marginRight": 15,
+            },
+            undefined,
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "backgroundColor": "#000000",
+                "padding": 10,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            pointerEvents="box-only"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#9E9E9E",
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 19,
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                Object {
+                  "backgroundColor": "#ffffff",
+                },
+                undefined,
+                Object {
+                  "padding": 12,
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {},
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 20,
+                    },
+                    Object {
+                      "color": "#000000",
+                    },
+                    Object {
+                      "fontSize": 17.5,
+                    },
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              RECORD
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
