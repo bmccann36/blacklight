@@ -6,15 +6,15 @@ import App from '../App';
 
 describe('App component', () => {
 
-  const AppComponent = renderer.create(<App />);
+  const appRenderer = renderer.create(<App />);
   
   it('renders AppLoading component initially', () => {
-    expect(AppComponent.toJSON()).toMatchSnapshot();
+    expect(appRenderer.toJSON()).toMatchSnapshot();
   });
   
   it('renders Login component after asset loading completes', () => {
-    AppComponent.getInstance()._handleFinishLoading();
-    expect(AppComponent.toJSON()).toMatchSnapshot();
+    appRenderer.getInstance()._handleFinishLoading();
+    expect(appRenderer.toJSON()).toMatchSnapshot();
   });
 
-})
+});
