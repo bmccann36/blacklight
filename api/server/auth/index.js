@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../db/models/user');
+const chalk = require('chalk')
+
 
 module.exports = router;
 
@@ -18,14 +20,23 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
+
   User.create(req.body)
     .then((user) => {
       req.login(user, err => (err ? next(err) : res.json(user)));
     })
     .catch((err) => {
-      if (err.name === 'SequelizeUniqueConstraintError') {
+      console.log(chalk.magenta(err))
+      if (err.errors[0].message === 'user.email cannot be null'){
+        res.status(400).send('email is required')
+      }
+      else if (err.name === 'SequelizeUniqueConstraintError') {
         res.status(401).send('User already exists');
-      } else {
+      }
+      else if (err.errors[0].message === 'user.password cannot be null'){
+        res.status(400).send('password is required')
+      }
+      else {
         next(err);
       }
     });

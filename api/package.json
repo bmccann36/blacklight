@@ -13,7 +13,7 @@
     "seed": "node script/seed.js",
     "start": "node server",
     "start-server": "NODE_ENV='development' nodemon server -e html,js",
-    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/blacklight-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/blacklight-test' mocha ./tests/*"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "eslint": "^4.11.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "mocha": "^4.0.1",
     "morgan": "^1.9.0",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
