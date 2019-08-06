@@ -1,5 +1,5 @@
 'use strict';
-const INITIAL_STATE = {email: '', password: '', user: {}}
+export const INITIAL_STATE = {email: '', password: '', user: {}}
 
 //ACTION TYPES
 const EMAIL_CHANGED = 'EMAIL_CHANGED'
@@ -10,7 +10,7 @@ export const emailChanged = (text) => ({type: EMAIL_CHANGED, text: text })
 export const passwordChanged = (text) => ({ type: PASSWORD_CHANGED, text: text})
 
 // REDUCER
-export default (state = INITIAL_STATE, action) => {
+export default function auth(state = INITIAL_STATE, action) {
   switch (action.type) {
     case EMAIL_CHANGED:
       return {...state, email: action.text}

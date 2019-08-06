@@ -29,12 +29,12 @@ export const createUserOnServer = (newUser) => {
 }
 
 // Do we need this? I think we should get rid of it... -thetrevlore
-const initialState = {
+export const initialState = {
   email: "Guest@gmail.com",
   id: 26,
 };
 
-export default (state = initialState, action) => {
+export default function user(state = initialState, action) {
   switch (action.type) {
     case CREATE_USER_SUCCESS:
       return action.user
